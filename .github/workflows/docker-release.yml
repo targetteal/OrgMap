@@ -4,6 +4,12 @@ on:
   push:
     tags:
       - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Existing release tag
+        type: string
+        required: true
 
 permissions:
   contents: read
@@ -13,10 +19,13 @@ jobs:
   publish:
     runs-on: ubuntu-24.04
     timeout-minutes: 35
+    env:
+      VERSION: ${{ inputs.version || github.ref_name }}
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           persist-credentials: false
+          ref: refs/tags/${{ env.VERSION }}
       - uses: docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130 # v3
         with:
           platforms: arm64
@@ -29,16 +38,15 @@ jobs:
       - name: Build and push the three release images
         working-directory: ops/docker
         shell: bash
-        env:
-          VERSION: ${{ github.ref_name }}
         run: |
           [[ "$VERSION" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]
           prefix="ghcr.io/${GITHUB_REPOSITORY,,}"
           source="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY"
+          revision=$(git rev-parse HEAD)
           docker buildx bake -f compose.build.yaml --push \
             --set "*.platform=linux/amd64,linux/arm64" \
             --set "*.labels.org.opencontainers.image.source=$source" \
-            --set "*.labels.org.opencontainers.image.revision=$GITHUB_SHA" \
+            --set "*.labels.org.opencontainers.image.revision=$revision" \
             --set "*.labels.org.opencontainers.image.version=$VERSION" \
             --set "app.tags=$prefix-app:$VERSION" \
             --set "setup.tags=$prefix-operator:$VERSION" \
