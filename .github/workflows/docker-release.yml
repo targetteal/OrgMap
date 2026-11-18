@@ -10,6 +10,13 @@ on:
         description: Existing release tag
         type: string
         required: true
+      verify_only:
+        description: Test images that are already in GHCR
+        type: boolean
+        default: false
+
+env:
+  VERSION: ${{ inputs.version || github.ref_name }}
 
 permissions:
   contents: read
@@ -17,10 +24,9 @@ permissions:
 
 jobs:
   publish:
+    if: ${{ !inputs.verify_only }}
     runs-on: ubuntu-24.04
     timeout-minutes: 35
-    env:
-      VERSION: ${{ inputs.version || github.ref_name }}
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
@@ -52,3 +58,52 @@ jobs:
             --set "setup.tags=$prefix-operator:$VERSION" \
             --set "web.tags=$prefix-web:$VERSION" \
             app setup web
+
+  smoke:
+    name: Start an empty installation on Linux
+    needs: publish
+    if: ${{ always() && (needs.publish.result == 'success' || inputs.verify_only) }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    permissions:
+      contents: read
+      packages: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+          ref: refs/tags/${{ env.VERSION }}
+      - uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install from GHCR and check the HTTPS entry point
+        working-directory: ops/docker
+        shell: bash
+        env:
+          COMPOSE_FILE: compose.yaml:compose.https.yaml
+          COMPOSE_PROJECT_NAME: orgmap-release-smoke
+          ORGMAP_TLS_BIND: 127.0.0.1
+          ORGMAP_PUBLIC_URL: https://localhost
+        run: |
+          [[ "$VERSION" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]
+          export ORGMAP_VERSION="$VERSION"
+          export ORGMAP_IMAGE_PREFIX="ghcr.io/${GITHUB_REPOSITORY,,}"
+          export ORGMAP_DB_PASSWORD=$(openssl rand -hex 32)
+          trap 'docker compose --profile operator down -v' EXIT
+          docker compose --profile operator pull
+          docker compose run --rm -T setup prepare
+          docker compose up -d --wait --wait-timeout 150
+          database=$(docker compose exec -T app node -p "require('/var/lib/orgmap/installation.json').database")
+          counts=$(docker compose exec -T -e PGPASSWORD="$ORGMAP_DB_PASSWORD" postgres             psql -X -h /var/run/postgresql -U orgmap_migrator -d "$database" -Atq -v ON_ERROR_STOP=1             -c 'SELECT (SELECT count(*) FROM accounts),(SELECT count(*) FROM organizations),(SELECT count(*) FROM platform_files),(SELECT count(*) FROM schema_migrations)')
+          IFS='|' read -r accounts organizations files migrations <<< "$counts"
+          [[ "$accounts|$organizations|$files" == '0|0|0' && "$migrations" =~ ^[1-9][0-9]*$ ]]
+          for attempt in {1..15}; do
+            if docker compose exec -T caddy cat /data/caddy/pki/authorities/local/root.crt > "$RUNNER_TEMP/orgmap-ca.crt"; then
+              break
+            fi
+            sleep 1
+          done
+          curl -fsS --retry 6 --retry-connrefused --max-time 8 --cacert "$RUNNER_TEMP/orgmap-ca.crt"             https://localhost/api/ready | jq -e --argjson migrations "$migrations" '.status == "ok" and .migrations == $migrations'
+          curl -fsS --max-time 8 --cacert "$RUNNER_TEMP/orgmap-ca.crt" -o /dev/null https://localhost/register
