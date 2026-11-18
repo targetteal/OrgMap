@@ -4,7 +4,31 @@ Você precisa de Docker com Compose v2 e de um terminal. Para hospedar com HTTPS
 
 ## Testar em localhost
 
-Clone o repositório e faça o build pelo Docker. Git é necessário para obter o código.
+Baixe `orgmap-docker.tar.gz` na [última release do OrgMap](https://github.com/targetteal/OrgMap/releases/latest) e rode estes comandos na pasta do download. O pacote já aponta para as imagens públicas da versão que você baixou.
+
+```sh
+tar -xzf orgmap-docker.tar.gz
+cd orgmap-docker
+umask 077
+cp .env.example .env
+docker run --rm node:22-bookworm-slim node -p "require('node:crypto').randomBytes(32).toString('hex')"
+```
+
+Preencha `ORGMAP_DB_PASSWORD` no `.env` com o valor gerado e mantenha uma cópia privada. Rode:
+
+```sh
+docker compose --profile operator pull
+docker compose run --rm -T setup prepare
+docker compose up -d --wait
+```
+
+Abra [http://localhost:5230/register](http://localhost:5230/register), crie sua conta e, depois, sua organização. A instalação começa vazia. Se a porta estiver ocupada, ajuste `ORGMAP_PORT` e `ORGMAP_PUBLIC_URL` juntos.
+
+Para pausar, use `docker compose down`. Os volumes são preservados e a instalação retoma com `docker compose up -d --wait`. Use um nome de projeto Compose diferente com `-p` ou `COMPOSE_PROJECT_NAME` para cada instância independente e mantenha esse nome nos comandos seguintes.
+
+## Compilar a partir do código
+
+Clone o repositório e faça o build pelo Docker usando a configuração local do checkout.
 
 ```sh
 git clone https://github.com/targetteal/OrgMap.git
@@ -22,13 +46,11 @@ docker compose run --rm -T setup prepare
 docker compose up -d --wait
 ```
 
-Abra [http://localhost:5230/register](http://localhost:5230/register), crie sua conta e, depois, sua organização. Cada instalação começa vazia. Se a porta estiver ocupada, ajuste `ORGMAP_PORT` e `ORGMAP_PUBLIC_URL` juntos antes de subir.
-
-`docker compose down` encerra os serviços e preserva os volumes. Para retomar, use `docker compose up -d --wait`. Defina um nome de projeto Compose diferente com `-p` ou `COMPOSE_PROJECT_NAME` para cada instância independente e use o mesmo nome em seus comandos seguintes.
+Acesse [http://localhost:5230/register](http://localhost:5230/register) quando os serviços estiverem saudáveis.
 
 ## Hospedar em um servidor Linux
 
-O pacote de uma release contém `compose.yaml`, `compose.https.yaml`, `Caddyfile` e `.env.example` de uma versão. Use o tag da release em `ORGMAP_VERSION` e o prefixo de imagens da release em `ORGMAP_IMAGE_PREFIX` (por exemplo, `ghcr.io/targetteal/orgmap`). As imagens `-app`, `-operator` e `-web` usam o mesmo tag. Para instalar a partir do código enquanto o registry estiver pendente, use o build da seção anterior e mantenha o prefixo local.
+Baixe e extraia o pacote da [release](https://github.com/targetteal/OrgMap/releases/latest) como no teste local. Ele contém `compose.yaml`, `compose.https.yaml`, `Caddyfile` e `.env.example` com as imagens `-app`, `-operator` e `-web` da mesma versão.
 
 Preencha `.env` como na instalação local, altere `ORGMAP_PUBLIC_URL` para a origem HTTPS, por exemplo `https://orgmap.exemplo.org`, e aponte o DNS desse nome para o servidor. O Caddy da configuração HTTPS recebe as portas 80 e 443 e gerencia o certificado. Libere ambas no firewall. Para reutilizar um proxy reverso existente, mantenha só o Compose base e encaminhe a origem HTTPS para `127.0.0.1:5230`, com suporte a WebSocket. [Documentação do Caddy](https://caddyserver.com/docs/automatic-https).
 
@@ -82,7 +104,7 @@ docker compose run --rm -T setup prepare
 docker compose up -d --wait
 ```
 
-Ao compilar do código, use o checkout da nova versão e o comando de build do início do guia para gerar os novos tags. A atualização executa o migrador versionado. Se ele falhar, investigue antes de subir a aplicação. Depois de aplicar migrations, uma volta de versão pode exigir restauração do backup compatível. Este procedimento cobre atualizações do OrgMap mantendo PostgreSQL 18.
+Ao compilar do código, use o checkout da nova versão e o comando de [build a partir do código](#compilar-a-partir-do-código) para gerar os novos tags. A atualização executa o migrador versionado. Se ele falhar, investigue antes de subir a aplicação. Depois de aplicar migrations, uma volta de versão pode exigir restauração do backup compatível. Este procedimento cobre atualizações do OrgMap mantendo PostgreSQL 18.
 
 ## Restaurar em outra instalação
 
