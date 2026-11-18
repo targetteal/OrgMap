@@ -1,0 +1,20 @@
+services:
+  caddy:
+    image: caddy:2-alpine@sha256:003a97808e781aa9f7e75cc2f43d34d461099031faf5e20faefb9f61126836f0
+    restart: unless-stopped
+    environment:
+      ORGMAP_PUBLIC_URL: ${ORGMAP_PUBLIC_URL:?Set an HTTPS origin in .env}
+    ports:
+      - "${ORGMAP_TLS_BIND:-0.0.0.0}:80:80"
+      - "${ORGMAP_TLS_BIND:-0.0.0.0}:443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    depends_on:
+      web:
+        condition: service_healthy
+
+volumes:
+  caddy-data:
+  caddy-config:

@@ -1,0 +1,791 @@
+.o2-panel {
+  /* O2 can be rendered outside .mare-meetings-module. Rebind legacy aliases
+     here so rooms and their native dialogs inherit the active palette. */
+  --ink: var(--mare-ink);
+  --muted: var(--mare-muted);
+  --line: var(--mare-line);
+  --neutral: var(--mare-neutral);
+  --subtle: var(--mare-subtle);
+  --surface: var(--mare-surface);
+  --primary: var(--mare-primary);
+  --primary-hover: var(--mare-primary-hover);
+  --soft: var(--mare-subtle);
+  --stroke: var(--mare-map-stroke);
+  --o2-ink: var(--ink, #183237);
+  --o2-muted: var(--muted, #50666a);
+  --o2-line: var(--line, #d5e1e2);
+  --o2-orange: var(--primary, #0b7077);
+  font-family: Manrope, sans-serif;
+  display: grid;
+  grid-template-columns: 278px minmax(0, 1fr);
+  color: var(--o2-ink);
+  min-height: calc(100vh - 60px);
+  background: var(--mare-surface);
+  font-size: 16px;
+  line-height: 1.45;
+}
+.o2-queue {
+  background: var(--neutral, #f3f8f8);
+  border-right: 1px solid var(--o2-line);
+  padding: 24px 14px;
+}
+.o2-queue h2 {
+  font-size: 23px;
+  line-height: 1.2;
+  margin: 0 8px 6px;
+}
+.o2-status {
+  color: var(--muted, #50666a);
+  font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+.o2-status:before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background: var(--o2-orange);
+  border-radius: 50%;
+}
+.o2-queue .o2-status {
+  margin: 0 8px 30px;
+}
+.o2-queue h3 {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--muted, #50666a);
+  margin: 0 8px 15px;
+}
+.o2-add {
+  width: 100%;
+  border: 1px solid var(--o2-orange) !important;
+  color: var(--mare-primary-ink) !important;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 11px !important;
+  background: transparent !important;
+  border-radius: 8px !important;
+  margin-bottom: 17px;
+}
+.o2-tension {
+  display: flex !important;
+  text-align: left;
+  align-items: flex-start;
+  gap: 15px;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  width: calc(100% + 28px);
+  margin: 0 -14px;
+  padding: 15px 22px !important;
+  color: var(--o2-ink) !important;
+  font-size: 17px;
+  position: relative;
+}
+.o2-tension svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+  color: var(--muted, #50666a);
+}
+.o2-tension small {
+  display: table;
+  font-size: 13px;
+  color: var(--ink, #183237);
+  background: var(--subtle, #e5f1f1);
+  border-radius: 7px;
+  padding: 3px 12px;
+  margin-top: 7px;
+}
+.o2-tension.selected {
+  background: var(--subtle, #e5f1f1) !important;
+}
+.o2-tension.selected:before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--o2-orange);
+  border-radius: 3px;
+}
+.o2-tension:disabled {
+  opacity: 1;
+  cursor: default;
+}
+.o2-queue > button:last-child {
+  margin-top: 28px;
+}
+.o2-main {
+  padding: 24px 32px;
+  min-width: 0;
+}
+.o2-main > header {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+.o2-main h1 {
+  font-size: 32px;
+  line-height: 1.2;
+  margin: 0;
+  font-weight: 650;
+}
+.o2-steps {
+  display: flex;
+  gap: 42px;
+  border-bottom: 1px solid var(--o2-line);
+  margin-top: 22px;
+}
+.o2-steps button {
+  border: 0;
+  background: transparent;
+  border-radius: 0;
+  padding: 7px 0 20px;
+  color: var(--muted, #50666a);
+  font-size: 17px;
+  position: relative;
+}
+.o2-steps button:disabled {
+  opacity: 1;
+  cursor: default;
+}
+.o2-steps button.current {
+  color: var(--mare-primary-ink);
+}
+.o2-steps button.current:after {
+  content: "";
+  position: absolute;
+  height: 3px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--o2-orange);
+}
+.o2-presence {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  padding: 30px 0;
+  border-bottom: 1px solid var(--o2-line);
+  flex-wrap: wrap;
+}
+.o2-presence > strong {
+  font-weight: 500;
+  color: var(--muted, #50666a);
+}
+.o2-person {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 15px;
+}
+.o2-person small {
+  display: block;
+  color: var(--o2-muted);
+  font-size: 13px;
+}
+.o2-avatar {
+  width: 47px;
+  height: 47px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--mare-subtle);
+}
+.o2-person:nth-child(3n) .o2-avatar {
+  background: var(--mare-subtle);
+}
+.o2-person:nth-child(4n) .o2-avatar {
+  background: var(--mare-subtle);
+}
+.o2-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 14px;
+}
+.o2-tools button {
+  font-size: 13px;
+  padding: 6px 10px;
+}
+.o2-focus {
+  padding: 24px 0 32px;
+  border-bottom: 1px solid var(--o2-line);
+}
+.o2-focus > p:first-child {
+  color: var(--muted, #50666a);
+  font-size: 16px;
+  margin: 0 0 13px;
+}
+.o2-badge {
+  background: var(--subtle, #e5f1f1);
+  border-radius: 6px;
+  padding: 4px 13px;
+  font-size: 14px;
+}
+.o2-focus h2 {
+  font-size: 32px;
+  margin: 0 0 19px;
+  line-height: 1.25;
+  font-weight: 650;
+}
+.o2-proposal-reading {
+  font-size: 19px;
+  color: var(--muted, #50666a);
+  line-height: 1.6;
+}
+.o2-proposal-reading h3 {
+  font-size: 20px;
+}
+.o2-application {
+  font-size: 13px;
+  color: var(--muted, #50666a);
+}
+.o2-process {
+  padding-top: 30px;
+}
+.o2-process h3 {
+  font-size: 18px;
+  margin: 0 0 20px;
+  font-weight: 600;
+}
+.o2-diagram {
+  width: 100%;
+  overflow-x: auto;
+}
+.o2-diagram-caption { display: none; }
+@media (max-width: 767px) {
+  .o2-diagram-caption {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 12px;
+    margin: -8px 0 12px;
+    color: var(--mare-muted);
+    font-size: 13px;
+  }
+  .o2-diagram-caption strong { color: var(--mare-primary-ink); }
+}
+.o2-diagram svg {
+  width: 100%;
+  min-width: 730px;
+  display: block;
+}
+.o2-diagram path {
+  stroke: var(--muted, #50666a);
+  stroke-width: 1.5;
+  fill: none;
+}
+.o2-diagram marker path {
+  fill: var(--muted, #50666a);
+  stroke: none;
+}
+.o2-diagram rect {
+  fill: var(--neutral, #f3f8f8);
+  stroke: var(--line, #d5e1e2);
+  stroke-width: 1.2;
+}
+.o2-diagram text {
+  font-family: inherit;
+  font-size: 16px;
+  fill: var(--ink, #183237);
+}
+.o2-diagram > svg > text {
+  font-size: 14px;
+}
+.o2-diagram .current rect {
+  fill: var(--subtle, #e5f1f1);
+  stroke: var(--mare-primary-ink);
+}
+.o2-diagram .current text {
+  fill: var(--mare-primary-ink);
+}
+.o2-next {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border-block: 1px solid var(--o2-line);
+  padding: 27px 0 32px;
+}
+.o2-next p {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--muted, #50666a);
+  margin: 0 0 2px;
+}
+.o2-next h3 {
+  margin: 0 0 20px;
+}
+.o2-next small {
+  color: var(--muted, #50666a);
+  margin-left: 35px;
+}
+.o2-process-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.o2-panel button.primary {
+  background: var(--primary, #0b7077);
+  border: 1px solid var(--primary, #0b7077);
+  border-radius: 8px;
+  color: var(--mare-on-primary);
+  padding: 13px 20px;
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+}
+.o2-panel button:focus-visible,
+.o2-panel summary:focus-visible {
+  outline: 3px solid var(--primary, #0b7077);
+  outline-offset: 3px;
+}
+.o2-notes {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--o2-line);
+}
+.o2-notes summary {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  list-style: none;
+}
+.o2-notes summary svg:last-child {
+  margin-left: auto;
+}
+.o2-notes textarea {
+  min-height: 150px;
+  width: 100%;
+  margin-block: 18px;
+}
+.o2-panel dialog {
+  width: min(560px, calc(100vw - 32px));
+  max-height: calc(100dvh - 36px);
+  padding: 30px;
+  border-radius: 8px;
+}
+.o2-panel dialog::backdrop {
+  background: var(--mare-overlay);
+}
+.o2-panel .dialog-head h2 {
+  font-size: 29px;
+  margin: 0;
+}
+.o2-panel form {
+  margin-top: 24px;
+}
+.o2-panel form .o2-confirmation-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.o2-panel form .o2-confirmation-check input[type="checkbox"] {
+  flex: none;
+  width: auto;
+  margin: 4px 0 0;
+}
+.o2-panel form .field {
+  margin-bottom: 20px;
+}
+.o2-panel form textarea {
+  min-height: 105px;
+}
+.o2-modes {
+  border: 0;
+  padding: 0;
+  margin-top: 24px;
+}
+.o2-modes legend {
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.o2-modes > label {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  border: 1px solid var(--o2-line);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+.o2-modes > label.selected {
+  border-color: var(--primary, #0b7077);
+  background: var(--subtle, #e5f1f1);
+}
+.o2-modes input {
+  accent-color: var(--primary, #0b7077);
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+.o2-modes small {
+  display: block;
+  color: var(--muted, #50666a);
+  font-size: 14px;
+  margin-top: 4px;
+}
+.o2-panel form footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  border-top: 1px solid var(--o2-line);
+  padding-top: 20px;
+  margin-top: 26px;
+}
+.o2-panel ::selection {
+  background: var(--subtle, #e5f1f1);
+  color: var(--ink, #183237);
+}
+.o2-panel input,
+.o2-panel textarea {
+  caret-color: var(--primary, #0b7077);
+}
+.o2-objection {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--o2-line);
+}
+@media (max-width: 1050px) {
+  .o2-panel {
+    grid-template-columns: 230px minmax(0, 1fr);
+  }
+  .o2-main {
+    padding: 24px;
+  }
+  .o2-presence {
+    gap: 18px;
+  }
+  .o2-main > header {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .o2-steps {
+    gap: 25px;
+  }
+}
+@media (max-width: 700px) {
+  .o2-panel {
+    display: block;
+  }
+  .o2-queue {
+    border-right: 0;
+    border-bottom: 1px solid var(--o2-line);
+    padding: 18px;
+  }
+  .o2-queue .o2-status {
+    margin-bottom: 18px;
+  }
+  .o2-tension {
+    width: 100%;
+    margin: 0;
+    padding: 12px !important;
+  }
+  .o2-queue > button:last-child {
+    margin-top: 15px;
+  }
+  .o2-main {
+    padding: 22px 18px;
+  }
+  .o2-main h1,
+  .o2-focus h2 {
+    font-size: 27px;
+  }
+  .o2-steps {
+    gap: 25px;
+    overflow-x: auto;
+  }
+  .o2-steps button {
+    white-space: nowrap;
+    font-size: 15px;
+  }
+  .o2-presence {
+    padding: 22px 0;
+    gap: 18px;
+  }
+  .o2-presence > strong {
+    width: 100%;
+  }
+  .o2-avatar {
+    width: 40px;
+    height: 40px;
+  }
+  .o2-next {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .o2-next small {
+    margin-left: 0;
+  }
+  .o2-next h3 {
+    margin-bottom: 12px;
+  }
+  .o2-process-actions {
+    justify-content: flex-start;
+  }
+  .o2-panel dialog {
+    padding: 22px;
+  }
+  .o2-diagram {
+    padding-bottom: 12px;
+  }
+  .o2-focus {
+    padding-top: 25px;
+  }
+}
+.o2-controls {
+  position: relative;
+  margin-left: auto;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+.o2-controls > summary {
+  list-style: none;
+  cursor: pointer;
+  border: 1px solid var(--o2-line);
+  border-radius: 7px;
+  padding: 7px 12px;
+  color: var(--o2-muted);
+  white-space: nowrap;
+}
+.o2-controls[open] > summary {
+  border-color: var(--o2-orange);
+}
+.o2-controls .o2-tools {
+  position: absolute;
+  z-index: 20;
+  right: 0;
+  top: calc(100% + 8px);
+  width: 270px;
+  padding: 12px;
+  display: grid;
+  gap: 7px;
+  background: var(--mare-surface);
+  border: 1px solid var(--o2-line);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px var(--mare-shadow);
+}
+.o2-controls .o2-tools button {
+  text-align: left;
+  justify-content: flex-start;
+}
+.o2-controls summary:focus-visible {
+  outline: 3px solid var(--primary, #0b7077);
+  outline-offset: 3px;
+}
+.o2-tension-heading,
+.o2-outcomes-heading,
+.o2-governance-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+}
+.o2-tension-heading > div { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 12px; min-width: 0; }
+.o2-tension-heading h2 { margin: 0; overflow-wrap: anywhere; }
+.o2-tension-heading .o2-badge { white-space: nowrap; color: var(--mare-primary-ink); }
+.o2-tension-heading .o2-complete-tension { background: transparent; color: var(--mare-muted); }
+.o2-outcomes, .o2-governance { margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--mare-line); }
+.o2-outcomes-heading h3, .o2-governance-heading h3 { margin: 0; font-size: 16px; font-weight: 650; }
+.o2-outcomes-heading > button, .o2-governance-heading > button { font-size: 13px; }
+.o2-outcomes ul { list-style: none; padding: 0; margin: 12px 0 0; }
+.o2-outcomes li { border-bottom: 1px solid var(--mare-line); }
+.o2-outcomes li:last-child { border-bottom: 0; }
+.o2-outcomes a {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  min-height: 52px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  color: var(--mare-ink, var(--ink));
+  text-decoration: none;
+}
+.o2-outcomes a:hover { background: var(--mare-neutral, var(--subtle)); }
+.o2-outcomes a:hover strong { text-decoration: underline; text-underline-offset: 3px; }
+.o2-outcomes a:focus-visible { outline: 2px solid var(--primary); outline-offset: -2px; }
+.o2-outcome-icon { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 8px; color: var(--mare-primary-ink, var(--mare-primary-ink)); background: var(--mare-subtle, var(--subtle)); }
+.o2-outcome-text { display: grid; gap: 2px; min-width: 0; overflow-wrap: anywhere; }
+.o2-outcome-text small { color: var(--mare-muted); font-size: 12px; }
+.o2-outcome-text strong { font-size: 14px; font-weight: 600; }
+.o2-outcome-arrow { color: var(--mare-muted); }
+.o2-outcomes-empty { margin: 14px 0 0; color: var(--mare-muted); font-size: 13px; }
+.o2-governance-proposal { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 12px; margin: 12px 0 0; }
+.o2-governance-proposal h4 { margin: 0; font-size: 17px; overflow-wrap: anywhere; }
+.o2-governance .o2-application { margin-bottom: 0; }
+.o2-governance-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--mare-line);
+}
+.o2-governance-footer .o2-application { margin: 0; }
+.o2-panel .dialog-head {
+  padding: 0;
+  border-bottom: 0;
+  align-items: flex-start;
+}
+.o2-panel form .field {
+  font-size: 16px;
+}
+.o2-panel form input:not([type="radio"]):not([type="checkbox"]),
+.o2-panel form textarea,
+.o2-panel form select {
+  font-size: 15px;
+}
+
+/* Maré room: the meeting content gets the space, secondary actions recede. */
+.o2-panel {height:100%;min-height:0;overflow:auto;grid-template-columns:256px minmax(0,1fr);font-size:14px;line-height:1.6;background:var(--surface,#fff)}
+.o2-queue {padding:24px 16px;min-width:0}
+.o2-queue h2 {font-size:18px;font-weight:650;line-height:1.4;margin-inline:0;overflow-wrap:anywhere}
+.o2-queue>.o2-status {font-size:12px;margin:6px 0 28px}
+.o2-status:before {width:6px;height:6px}
+.o2-queue h3 {font-size:14px;font-weight:600;margin:0 0 12px}
+.o2-panel button {font:inherit;min-height:40px;border-radius:10px}
+.o2-panel button.primary {min-height:40px;font-size:14px;padding:8px 16px;border-radius:10px;gap:8px}
+.o2-add {font-size:13px;padding:8px 12px!important;margin-bottom:12px;border-radius:10px!important}
+.o2-tension {width:100%;margin:0;padding:14px 12px!important;font-size:14px;gap:10px;border-radius:10px!important;line-height:1.5;overflow-wrap:anywhere}
+.o2-tension.selected:before {display:none}
+.o2-tension:hover:not(:disabled) {background:var(--subtle,#e5f1f1)!important}
+.o2-tension small {padding:0;margin-top:5px;font-size:12px;color:var(--muted,#50666a);background:transparent}
+.o2-tension.selected small {color:var(--mare-primary-ink)}
+.o2-tension svg {width:15px;height:15px;margin-top:3px}
+.o2-queue>button:last-child {width:100%;margin-top:28px;font-size:13px}
+.o2-main {padding:28px 36px;min-width:0}
+.o2-main>header {gap:12px;flex-wrap:wrap}
+.o2-main h1 {font-size:28px;font-weight:650;letter-spacing:-.025em;flex:1 1 220px;overflow-wrap:anywhere}
+.o2-main>header>.o2-status {font-size:12px;white-space:nowrap}
+.o2-main>header>button {font-size:13px}
+.o2-main>header .o2-controls {margin-left:0}
+.o2-controls>summary {display:flex;align-items:center;min-height:40px;padding:0 12px;border-radius:10px}
+.o2-controls .o2-tools {width:270px;background:var(--surface,#fff);border-radius:14px;box-shadow:0 12px 36px var(--mare-shadow)}
+.o2-controls .o2-tools button {min-height:40px;padding:8px 12px;font-size:13px}
+.o2-steps {margin-top:24px;gap:28px;overflow-x:auto}
+.o2-steps button {font-size:14px;white-space:nowrap;padding:10px 0 14px;font-weight:500;border-radius:0}
+.o2-steps button.current {font-weight:650}
+.o2-steps button.current:after {height:2px}
+.o2-presence {padding:20px 0;gap:12px 24px}
+.o2-presence>strong {font-size:12px}
+.o2-person {font-size:13px}
+.o2-person small {font-size:11px}
+.o2-avatar,.o2-person:nth-child(3n) .o2-avatar,.o2-person:nth-child(4n) .o2-avatar {width:36px;height:36px;flex:none;font-size:12px;font-weight:600;background:var(--subtle,#e5f1f1);color:var(--mare-primary-ink)}
+.o2-focus {padding:32px 0}
+.o2-focus h2 {font-size:24px;font-weight:650;letter-spacing:-.02em;margin-bottom:16px}
+.o2-focus>p:first-child {font-size:13px;margin-bottom:12px}
+.o2-focus>p {max-width:72ch}
+.o2-focus>button {margin-right:8px;margin-top:12px;font-size:13px}
+.o2-badge {font-size:12px;padding:3px 8px;border-radius:6px}
+.o2-proposal-reading {font-size:14px;line-height:1.7;max-width:75ch}
+.o2-proposal-reading h3 {font-size:17px;font-weight:600}
+.o2-process {padding-top:28px}
+.o2-process h3 {font-size:17px;font-weight:600;margin-bottom:16px}
+.o2-next {gap:20px;padding:20px 0;margin-top:16px}
+.o2-next h3 {margin-bottom:10px;font-size:16px}
+.o2-next p {font-size:13px;gap:8px}
+.o2-next small {font-size:12px;margin-left:29px}
+.o2-process-actions {gap:8px}
+.o2-notes {padding:20px 0}
+.o2-notes summary {font-size:14px;min-height:40px;gap:10px}
+.o2-notes textarea {font:inherit;padding:14px;border:1px solid var(--line,#d5e1e2);border-radius:10px;resize:vertical;line-height:1.7;color:var(--ink,#183237);background:var(--surface,#fff)}
+.o2-notes p {white-space:pre-wrap;max-width:72ch}
+.o2-panel .orgmap-dialog {padding:28px;border-radius:14px;background:var(--surface,#fff);border:1px solid var(--line,#d5e1e2);font-size:14px}
+.o2-panel .dialog-head h2 {font-size:28px;font-weight:650;line-height:1.25}
+.o2-panel form .field,.o2-panel form :is(input:not([type=radio]):not([type=checkbox]),textarea,select) {font-size:14px}
+.o2-panel form :is(input:not([type=radio]):not([type=checkbox]),select) {min-height:40px}
+.o2-panel form .field {margin-bottom:20px}
+.o2-panel form :is(input,textarea,select) {border-radius:10px;border-color:var(--line,#d5e1e2);color:var(--ink,#183237)}
+.o2-panel form footer {gap:10px}
+.o2-panel form .o2-confirmation-check {font-size:14px}
+.o2-panel .o2-modes small {font-size:13px}
+.o2-ready {max-width:700px;margin:32px auto;padding:28px 24px 32px;text-align:center;border-bottom:1px solid var(--line,#d5e1e2)}
+.o2-ready-icon {display:inline-grid;place-items:center;width:64px;height:64px;background:var(--subtle,#e5f1f1);color:var(--mare-primary-ink);border-radius:50%}
+.o2-ready h2 {font-size:24px;font-weight:650;margin:18px 0 12px;letter-spacing:-.02em}
+.o2-ready>p {max-width:56ch;margin:12px auto;color:var(--muted,#50666a)}
+.o2-ready>p.muted {font-size:12px;margin-top:24px}
+.o2-ready-facts {display:flex;gap:20px;align-items:center;justify-content:center;flex-wrap:wrap;margin:24px 0;font-size:13px;color:var(--muted,#50666a)}
+.o2-ready-facts>span {display:flex;align-items:center;gap:8px}
+.o2-ready>button:last-child {font-size:13px;background:transparent;border:0;color:var(--mare-primary-ink)}
+.o2-people-list>div {display:flex;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line,#d5e1e2)}
+.o2-people-list>div>span:nth-child(2) {flex:1;min-width:0}
+.o2-people-list strong {font-size:14px;font-weight:600;overflow-wrap:anywhere}
+.o2-people-list small {display:block;color:var(--muted,#50666a);font-size:12px}
+.o2-people-list svg {color:var(--mare-primary-ink);flex:none}
+.o2-occurrence-roles {margin:24px 0}
+.o2-occurrence-roles>div {display:flex;justify-content:space-between;gap:16px;margin:14px 0}
+.o2-occurrence-roles strong {font-size:14px;font-weight:600}
+.o2-occurrence-roles span {font-size:13px;color:var(--muted,#50666a)}
+.o2-people-dialog>p {font-size:13px;max-width:65ch}
+.o2-people-dialog>footer {display:flex;gap:8px;flex-wrap:wrap;border-top:1px solid var(--line,#d5e1e2);padding-top:20px;margin-top:24px}
+.o2-people-dialog>footer>button {font-size:13px}
+@media(max-width:1100px){.o2-panel{grid-template-columns:220px minmax(0,1fr)}.o2-main{padding:24px}.o2-main>header{gap:10px}.o2-main>header h1{flex-basis:100%}.o2-ready{padding-inline:8px}.o2-steps{gap:24px}}
+@media(max-width:760px){.o2-panel{display:block;height:100%;overflow:auto}.o2-queue{border-right:0;border-bottom:1px solid var(--line,#d5e1e2);padding:20px 16px}.o2-queue h2,.o2-queue>.o2-status{display:none}.o2-queue h3{margin:0 0 10px}.o2-queue>.o2-add{width:auto;margin-bottom:8px}.o2-tension{padding:10px 12px!important}.o2-queue>button:last-child{margin-top:12px;width:auto}.o2-main{padding:24px 16px}.o2-main h1{font-size:28px}.o2-focus h2{font-size:24px}.o2-steps{gap:20px}.o2-steps button{font-size:14px}.o2-presence{padding:18px 0;gap:14px}.o2-presence>strong{width:100%}.o2-ready{margin:24px 0;padding:16px 0 24px}.o2-ready h2{font-size:22px}.o2-ready-facts{gap:10px}.o2-next{align-items:flex-start;flex-direction:column}.o2-next small{margin-left:0}.o2-panel .orgmap-dialog{padding:22px}.o2-panel .dialog-head h2{font-size:26px}}
+
+/* Reconciled Maré composition: one header, one agenda, one focus. */
+.o2-room {grid-template-columns:240px minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);height:100%;overflow:hidden;background:var(--mare-surface)}
+.o2-room-header {grid-column:1/-1;min-width:0;padding:20px 28px 0;border-bottom:1px solid var(--mare-line);background:var(--mare-surface)}
+.app-shell .o2-room .o2-back {display:inline-flex;align-items:center;gap:8px;min-height:28px;font-size:12px;padding:0;border:0;background:transparent;color:var(--mare-muted);margin-bottom:16px}
+.o2-room-heading {display:flex;gap:24px;align-items:center;justify-content:space-between;margin-bottom:20px}
+.o2-room-heading>div:first-child {min-width:0;flex:1}
+.o2-circle-name {display:flex;align-items:center;gap:8px;color:var(--mare-muted);font-size:12px;margin-bottom:6px}
+.o2-room-heading h1 {font-size:26px;line-height:1.35;font-weight:650;letter-spacing:-.025em;margin:0;overflow-wrap:anywhere}
+.o2-room-actions {display:flex;align-items:center;gap:10px;flex:none;flex-wrap:wrap}
+.o2-room-actions>.o2-status {font-size:11px;white-space:nowrap;background:var(--mare-subtle);color:var(--mare-primary-ink);padding:4px 8px;border-radius:6px}
+.o2-room .o2-controls>summary {border:0;padding:0 10px}
+.o2-room .o2-controls .o2-tools {max-height:min(480px,65vh);overflow:auto}
+.o2-room-header>.o2-steps {margin:0;border:0;gap:28px;overflow-x:auto}
+.o2-room .o2-steps>button {display:flex;align-items:center;gap:8px;min-height:44px;padding:8px 0 14px;font-size:13px}
+.o2-step-number {display:grid;place-items:center;width:20px;height:20px;border:1px solid var(--mare-line);border-radius:50%;font-size:11px;font-variant-numeric:tabular-nums}
+.o2-steps .current .o2-step-number {background:var(--mare-subtle);border-color:var(--mare-primary)}
+.o2-room>.o2-queue {grid-row:2;grid-column:1;display:flex;flex-direction:column;gap:12px;min-height:0;overflow:auto;padding:20px 16px;background:var(--mare-neutral)}
+.o2-queue-heading {display:flex;align-items:center;justify-content:space-between;gap:12px}
+.o2-queue-heading h2 {font-size:14px;margin:0;display:flex;gap:8px;align-items:center}
+.o2-queue-heading h2 small {font-size:11px;color:var(--mare-muted);font-weight:400}
+.app-shell .o2-queue-heading>button {border:0;background:transparent;padding:4px;min-height:32px;width:32px}
+.o2-room .o2-queue-items {display:grid;gap:6px}
+.o2-room .o2-tension {font-size:13px;gap:10px;padding:14px 10px!important}
+.o2-agenda-number {flex:none;width:16px;padding-top:2px;color:var(--mare-muted);font-size:11px;font-variant-numeric:tabular-nums}
+.o2-room .o2-tension small {font-size:11px;margin-top:6px}
+.o2-room-presence {margin-top:auto;padding-top:20px;border-top:1px solid var(--mare-line)}
+.app-shell .o2-room-presence>button:first-child {display:block;padding:0;border:0;background:transparent;text-align:left;font-size:12px;color:var(--mare-muted)}
+.o2-presence-avatars {display:flex;gap:5px;margin-top:12px}
+.o2-room .o2-presence-avatars .o2-avatar {width:28px;height:28px;font-size:11px;display:grid;place-items:center}
+.app-shell .o2-room-presence>button:last-child:not(:first-child) {font-size:11px;min-height:32px;padding:6px 8px;gap:6px;background:var(--mare-surface);margin-top:14px}
+.o2-room>.o2-main {grid-column:2;grid-row:2;min-height:0;overflow:auto;padding:24px clamp(24px,4vw,56px);background:var(--mare-surface)}
+.o2-room .o2-focus {padding:16px 0 24px;max-width:900px;margin-inline:auto}
+.o2-room .o2-focus>p {color:var(--mare-muted);font-size:14px;line-height:1.8}
+.o2-round-people {margin:28px 0 16px;border-top:1px solid var(--mare-line)}
+.o2-round-people>div {display:flex;gap:12px;align-items:center;min-height:62px;border-bottom:1px solid var(--mare-line);font-size:13px}
+.o2-round-people>small {display:block;font-size:12px;line-height:1.7;color:var(--mare-muted);margin-top:16px}
+.o2-room .o2-next-step {margin-top:24px;margin-bottom:20px}
+.o2-room .o2-ready {padding:16px 0 24px;margin:0 auto 24px;text-align:left}
+.o2-room .o2-ready>p {margin:12px 0}
+.o2-room .o2-ready-facts {justify-content:flex-start;margin:20px 0}
+.o2-room .o2-ready-icon {display:none}
+.o2-room .o2-notes {max-width:900px;margin-inline:auto;border-top:1px solid var(--mare-line)}
+.o2-room-record {grid-template-columns:minmax(0,1fr)}
+.o2-room-record>.o2-main {grid-column:1;width:100%;max-width:1000px;justify-self:center}
+.o2-room-record .o2-main>section>h2 {font-size:22px;margin:8px 0 12px}
+.meeting-steps-editor {display:grid;gap:10px;margin:16px 0}
+.meeting-steps-editor>p {margin:0 0 6px;font-weight:600;font-size:14px}
+.meeting-step-row {display:grid;grid-template-columns:20px minmax(100px,1fr) 130px auto;align-items:center;gap:8px}
+.meeting-step-row>span {font-size:11px;color:var(--muted)}
+.meeting-step-row label {min-width:0}
+.meeting-step-row input,.meeting-step-row select {width:100%;box-sizing:border-box}
+.meeting-step-row>div {display:flex;gap:2px}
+.app-shell .meeting-step-row button {width:30px;min-height:36px;padding:4px;border:0;background:transparent}
+.app-shell .meeting-add-step {display:flex;gap:8px;align-items:center;justify-self:start;border:0;background:transparent;color:var(--mare-primary-ink);font-size:13px;padding:8px 0}
+@media(max-width:1050px){.o2-room{grid-template-columns:210px minmax(0,1fr)}.o2-room-record{grid-template-columns:minmax(0,1fr)}.o2-room-heading{gap:16px}.o2-room-actions{gap:6px}.o2-room-heading h1{font-size:23px}}
+@media(max-width:700px){.o2-room{display:flex;flex-direction:column;overflow:auto}.o2-room-header{padding:16px 16px 0;flex:none}.o2-room-heading{display:block;margin-bottom:16px}.o2-room-heading h1{font-size:24px}.o2-room-actions{margin-top:14px}.o2-room-header>.o2-steps{gap:20px}.o2-room>.o2-queue{flex:none;max-height:170px;overflow:hidden;padding:12px 16px;gap:6px;border-bottom:1px solid var(--mare-line)}.o2-room .o2-queue-items{display:flex;overflow-x:auto;gap:8px}.o2-room .o2-tension{flex:0 0 210px;width:210px;max-width:70vw;padding:10px!important}.o2-room-presence{display:none}.o2-room>.o2-main{flex:none;overflow:visible;min-height:240px;padding:24px 20px}.o2-room .o2-focus{padding-top:0}.meeting-step-row{grid-template-columns:18px minmax(0,1fr) 100px}.meeting-step-row>div{grid-column:2/-1;justify-content:flex-end}.o2-room-record>.o2-main{width:auto}.o2-room-actions>.o2-status{margin-right:auto}}

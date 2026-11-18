@@ -1,0 +1,33 @@
+/* Structure surfaces preserve the warm workspace and organization accent. */
+.structure-directory-toolbar { flex-wrap: wrap; gap: 12px; }
+.structure-directory-toolbar > input { flex: 0 1 400px; width: min(100%, 400px); }
+.structure-directory-toolbar > strong { font-size: 12px; color: var(--muted); font-weight: 500; }
+.structure-kind-filter { display: flex; gap: 6px; padding: 0 24px 16px; }
+.structure-kind-filter button[aria-pressed="true"] { background: var(--selected); border-color: var(--muted); }
+.structure-directory-list .entity-row { min-height: 72px; align-items: center; text-align: left; }
+.structure-directory-list .structure-directory-name { display: grid; gap: 4px; min-width: 0; flex: 1; }
+.structure-directory-name > span { font-size: 14px; font-weight: 500; overflow-wrap: break-word; }
+.structure-directory-list .structure-directory-name small { margin: 0; font-size: 12px; white-space: normal; font-weight: 400; }
+.structure-directory-list .entity-row > small { margin-left: auto; flex-shrink: 0; }
+.structure-entity-heading { min-height: 72px; height: auto; padding-block: 12px; }
+.structure-entity-heading h2 { overflow-wrap: break-word; }
+.structure-entity-heading > button:not(:first-child) { border: 1px solid var(--border); padding: 6px 12px; }
+.structure-entity-content { padding-top: 24px; }
+.structure-entity-content > .breadcrumb { margin-bottom: 24px; }
+.structure-entity-content .structure-purpose-empty { padding-block: 20px; background: var(--surface-muted, var(--mare-neutral)); border: 0; border-radius: 8px; padding-inline: 20px; margin-bottom: 24px; }
+.structure-purpose-empty h3 { margin-bottom: 6px; }
+.structure-purpose-empty p { margin-bottom: 12px; }
+.structure-more-actions { position: relative; flex-shrink: 0; font-size: 12px; }
+.structure-more-actions summary { padding: 7px 12px; cursor: pointer; border: 1px solid var(--border); border-radius: 6px; list-style: none; }
+.structure-more-actions summary::after { content: " ▾"; }
+.structure-more-actions summary:focus-visible { outline: 2px solid var(--focus-ring, var(--mare-primary-ink)); outline-offset: 3px; }
+.structure-more-actions > div { position: absolute; z-index: 10; right: 0; top: calc(100% + 6px); min-width: 160px; display: grid; gap: 4px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 6px; box-shadow: 0 6px 18px var(--mare-shadow); }
+.structure-more-actions > div > button { justify-content: flex-start; border: 0; }
+@media (max-width: 767px) { .structure-entity-heading { flex-wrap: wrap; } .structure-kind-filter { padding-inline: 16px; } }
+
+.structure-export-disclosure { position: relative; font-size: 12px; }
+.structure-export-disclosure > summary { cursor: pointer; padding: 7px 12px; border: 1px solid var(--border); border-radius: 6px; }
+.structure-export-options { display: flex; align-items: end; flex-wrap: wrap; gap: 12px; padding: 16px 0 4px; }
+.structure-export-options .field { min-width: 120px; }
+.structure-governance-disclosure > summary { cursor: pointer; font-size: 13px; font-weight: 500; padding-block: 10px; }
+.structure-governance-disclosure > summary:focus-visible, .structure-export-disclosure > summary:focus-visible { outline: 2px solid var(--focus-ring, var(--mare-primary-ink)); outline-offset: 3px; }

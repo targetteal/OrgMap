@@ -1,0 +1,8 @@
+{
+  "scope": "945_notification_context.sql",
+  "sourceSha256": "4a77c1d1831fed343f00612573026de79961468cb7f2ba061853c105008b1599",
+  "previousReviewedFingerprint": "5b04241a722887e94aaaac54a7fa6d93f169ddb503f4cb920ba26b46ec77a24e",
+  "previousReviewedSnapshotSha256": "58bdec00a6f1d0c7d14dfeba763ce932e3da112af0e21788c32857661890b4ef",
+  "measuredFingerprint": "ad14da07cee4ebf73566b6dceb6c506790e459d0120de3f87c4bf80e22847f6a",
+  "review": "Two independent disposable PostgreSQL 18 databases produced the same fingerprint after the official migrator through 944 and exact additive 945 SQL under the schema advisory lock. Event facts and actor display names are tenant-owned, bounded JSON; historical creation time remains unknown. No RLS or dispatcher metadata privilege is expanded."
+}

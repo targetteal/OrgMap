@@ -1,0 +1,162 @@
+.interop-page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 28px;
+  color: var(--text-color, var(--mare-ink));
+}
+.interop-page section {
+  padding: 24px 0;
+  border-top: 1px solid var(--border-color, var(--mare-line));
+}
+.interop-page h2 {
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0 0 10px;
+}
+.interop-page .muted {
+  line-height: 1.5;
+}
+.interop-page .page-heading {
+  display: block;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+  margin-bottom: 24px;
+}
+.interop-page .empty-state {
+  min-height: 0;
+  padding: 24px 0;
+  text-align: left;
+}
+.interop-form {
+  display: flex;
+  align-items: end;
+  gap: 16px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+.interop-form .field {
+  flex: 1;
+  min-width: 180px;
+}
+.interop-scopes {
+  flex-basis: 100%;
+  min-width: 0;
+  border: 1px solid var(--border, var(--mare-line));
+  padding: 16px;
+  margin: 0;
+}
+.interop-scopes label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 220px;
+  margin: 6px 12px 6px 0;
+}
+.interop-scopes input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+.interop-enrollment {
+  width: min(100% - 32px, 520px);
+  margin: 48px auto;
+  color: var(--text-color, var(--mare-ink));
+}
+.interop-enrollment-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.interop-enrollment-head .auth-language {
+  flex: 0 0 150px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.interop-enrollment h1 {
+  font-size: 22px;
+  line-height: 1.3;
+  margin: 0 0 16px;
+}
+.interop-enrollment p {
+  line-height: 1.5;
+  margin: 16px 0;
+}
+.interop-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.5;
+  min-height: 44px;
+}
+.interop-check input {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  margin-top: 3px;
+}
+.interop-enrollment .form-actions {
+  margin: 24px 0;
+  flex-wrap: wrap;
+}
+.interop-enrollment button,
+.interop-enrollment .field input,
+.interop-enrollment .field select {
+  min-height: 44px;
+}
+.interop-enrollment .notice:focus {
+  outline: 2px solid var(--muted, var(--mare-muted));
+  outline-offset: 4px;
+}
+.interop-list {
+  list-style: none;
+  margin: 20px 0;
+  padding: 0;
+}
+.interop-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-color, var(--mare-line));
+}
+.interop-list strong,
+.interop-list p {
+  overflow-wrap: anywhere;
+}
+.interop-list p {
+  margin: 6px 0 0;
+}
+.interop-secret {
+  padding: 16px;
+  background: var(--surface-secondary, #f4f6f8);
+  margin: 16px 0;
+}
+.interop-secret code {
+  display: block;
+  overflow-wrap: anywhere;
+  margin: 12px 0;
+  user-select: all;
+}
+@media (max-width: 767px) {
+  .interop-page {
+    padding: 20px 16px;
+  }
+  .interop-form {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .interop-form .field {
+    min-width: 0;
+  }
+  .interop-list li {
+    align-items: start;
+    flex-wrap: wrap;
+  }
+}

@@ -1,0 +1,37 @@
+.mare-meeting-room-page {height:100%;min-height:0;padding:0!important;overflow:hidden;display:flex;flex-direction:column}
+.mare-meeting-room-page>.o2-room {flex:1;min-height:0}
+.mare-meeting-room-page>.trace-return {flex:none}
+.mare-standard-room .mare-room-subject-title {font-size:26px;line-height:1.35;max-width:30ch;margin:16px 0}
+.mare-standard-room .o2-focus {border-bottom:0}
+.mare-room-subject-meta {display:flex;align-items:center;justify-content:space-between;gap:16px;color:var(--mare-muted);font-size:12px}
+.mare-room-subject-meta>span:first-child {display:flex;align-items:center;gap:8px}
+.mare-room-subject-meta>span:last-child {padding:3px 8px;background:var(--mare-subtle);border-radius:6px}
+.mare-room-outcomes {margin-top:32px;padding-top:24px;border-top:1px solid var(--mare-line)}
+.mare-room-section-heading {display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px}
+.mare-room-section-heading h3 {margin:0;font-size:14px;font-weight:650}
+.mare-standard-room .mare-room-section-heading>button {display:flex;gap:6px;border:0;background:transparent;color:var(--mare-primary-ink);padding:4px 8px}
+.mare-room-outcome {display:flex;gap:12px;align-items:center;padding:16px 0;border-bottom:1px solid var(--mare-line)}
+.mare-room-outcome>svg {color:var(--mare-primary-ink);flex:none}
+.mare-room-outcome>div {flex:1;min-width:0}
+.mare-room-outcome strong {font-size:14px;font-weight:600;overflow-wrap:anywhere}
+.mare-room-outcome small {display:block;color:var(--mare-muted);font-size:12px;margin-top:4px}
+.mare-room-subject-actions {display:flex;gap:12px;align-items:center;justify-content:space-between;margin-top:32px}
+.mare-room-subject-actions .o2-controls {margin-left:0}
+.mare-room-subject-actions .o2-controls>summary {gap:8px}
+.mare-room-subject-actions .o2-controls .o2-tools {left:0;right:auto;bottom:calc(100% + 8px);top:auto}
+.mare-room-prepared-subject {margin-top:32px;padding-top:24px;border-top:1px solid var(--mare-line)}
+.mare-room-prepared-subject h3 {font-size:16px}
+.mare-room-subject-context {max-width:68ch;margin:20px 0 24px;padding:16px 18px;border:1px solid var(--mare-line);border-radius:10px;background:var(--mare-subtle);overflow-wrap:anywhere}
+.mare-room-subject-context h3,.mare-room-subject-context h4 {font-size:13px;font-weight:650;color:var(--mare-muted);margin:0 0 10px}
+.mare-room-subject-context :last-child {margin-bottom:0}
+.o2-room .o2-ready>button.primary {background:var(--mare-primary);color:var(--mare-on-primary,#fff);border:0}
+.mare-room-empty {padding-block:32px}
+.mare-room-empty>svg {color:var(--mare-primary-ink)}
+.mare-standard-room .o2-notes summary {display:flex;align-items:center;gap:10px;cursor:pointer}
+.mare-standard-room .o2-notes summary>svg:first-child {margin-left:0}
+.mare-standard-room .o2-notes[open] summary>svg:last-child {transform:rotate(180deg)}
+.mare-standard-room .o2-notes[open] summary {margin-bottom:16px}
+.mare-standard-room .o2-notes .meetings-collaboration {margin:0}
+.mare-room-readonly {font-size:12px;color:var(--mare-muted)}
+.mare-standard-room .o2-queue-items .o2-agenda-number>svg {width:14px;margin:0}
+@media(max-width:700px){.mare-meeting-room-page{overflow:auto}.mare-meeting-room-page>.o2-room{flex:none;min-height:100%;height:auto}.mare-standard-room .mare-room-subject-title{font-size:24px}.mare-room-subject-actions{flex-wrap:wrap}.mare-room-outcome{flex-wrap:wrap}.mare-room-outcome>button{margin-left:29px}}

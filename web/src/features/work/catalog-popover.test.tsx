@@ -1,0 +1,30 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import React, { act } from "react";
+import { JSDOM } from "jsdom";
+import { CatalogPopover } from "./catalog-popover";
+
+test("catalog filters are nonmodal, dismiss on Escape and outside interaction, and restore trigger focus", async () => {
+  const dom = new JSDOM("<body><main></main><button id='outside'>Outro</button></body>", {pretendToBeVisual:true});
+  for (const key of ["window", "document", "navigator", "HTMLElement", "Node", "Event"]) Object.defineProperty(globalThis,key,{value:key === "window" ? dom.window : (dom.window as any)[key],configurable:true});
+  Object.defineProperty(globalThis,"IS_REACT_ACT_ENVIRONMENT",{value:true,configurable:true});
+  const { createRoot } = await import("react-dom/client");
+  const root=createRoot(document.querySelector("main")!);
+  await act(async()=>root.render(<CatalogPopover label="Filtros" title="Refinar projetos" icon={<span/>} count={2}><label>Pessoa<select><option>Todas</option></select></label></CatalogPopover>));
+  const trigger=document.querySelector("main button") as HTMLButtonElement;
+  assert.equal(trigger.getAttribute("aria-expanded"),"false");
+  await act(async()=>trigger.click());
+  assert.equal(trigger.getAttribute("aria-expanded"),"true");
+  assert.ok(document.getElementById(trigger.getAttribute("aria-controls")!)?.querySelector("select"));
+  assert.equal(document.querySelector("dialog, [aria-modal=true]"),null);
+  const select=document.querySelector("select")!;
+  select.focus();
+  await act(async()=>select.dispatchEvent(new dom.window.KeyboardEvent("keydown",{key:"Escape",bubbles:true})));
+  assert.equal(trigger.getAttribute("aria-expanded"),"false");
+  assert.equal(document.activeElement,trigger);
+  await act(async()=>trigger.click());
+  await act(async()=>document.querySelector("#outside")!.dispatchEvent(new dom.window.Event("pointerdown",{bubbles:true})));
+  assert.equal(trigger.getAttribute("aria-expanded"),"false");
+  await act(async()=>root.unmount());
+  dom.window.close();
+});

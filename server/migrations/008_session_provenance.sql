@@ -1,0 +1,11 @@
+ALTER TABLE accounts ADD COLUMN email_verified_at timestamptz;
+ALTER TABLE sessions ADD COLUMN auth_method text NOT NULL DEFAULT 'LEGACY' CHECK(auth_method IN ('LEGACY','PASSWORD','FEDERATED'));
+ALTER TABLE sessions ADD COLUMN auth_organization_id uuid REFERENCES organizations(id);
+ALTER TABLE sessions ADD COLUMN auth_connection_id uuid;
+ALTER TABLE sessions ADD COLUMN auth_issuer text;
+ALTER TABLE sessions ADD COLUMN auth_subject text;
+ALTER TABLE sessions ADD COLUMN auth_verified_at timestamptz;
+UPDATE sessions SET auth_verified_at=created_at;
+ALTER TABLE sessions ALTER COLUMN auth_verified_at SET NOT NULL;
+ALTER TABLE sessions ALTER COLUMN auth_verified_at SET DEFAULT clock_timestamp();
+ALTER TABLE sessions ADD CONSTRAINT federated_session_provenance CHECK(auth_method<>'FEDERATED' OR (auth_organization_id IS NOT NULL AND auth_connection_id IS NOT NULL AND auth_issuer IS NOT NULL AND auth_subject IS NOT NULL));

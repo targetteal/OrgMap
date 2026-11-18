@@ -1,0 +1,24 @@
+.invitation-tracking { max-width: 1000px; min-width: 0; padding: 24px; color: var(--mare-ink); }
+.invitation-tracking header { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; }
+.invitation-tracking h2 { margin: 0 0 8px; font-size: 24px; font-weight: 650; }
+.invitation-tracking header p { margin: 0 0 8px; max-width: 65ch; }
+.invitation-tracking-filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 12px; }
+.app-shell .invitation-tracking-filters button[aria-pressed="true"] { background: var(--mare-subtle); color: var(--mare-primary-ink); border-color: var(--mare-primary); }
+.invitation-tracking-list { list-style: none; margin: 0; padding: 0; }
+.invitation-tracking-list > li { padding: 24px 0; border-bottom: 1px solid var(--mare-line); overflow-wrap: anywhere; }
+.invitation-tracking-list > li.is-highlighted { background: var(--mare-subtle); outline: 2px solid var(--mare-primary-ink); outline-offset: 6px; }
+.invitation-tracking-identity { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; }
+.invitation-tracking-state { font-size: 13px; color: var(--mare-muted); }
+.invitation-tracking .state-accepted { color: var(--mare-success); }
+.invitation-tracking .state-expired, .invitation-tracking-warning { color: var(--mare-warning); }
+.invitation-tracking dl { display: flex; flex-wrap: wrap; gap: 12px 32px; margin: 12px 0; font-size: 13px; }
+.invitation-tracking dt { color: var(--mare-muted); }
+.invitation-tracking dd { margin: 2px 0 0; font-variant-numeric: tabular-nums; }
+.invitation-tracking-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.invitation-tracking button { min-height: 44px; white-space: normal; }
+.invitation-tracking-help { max-width: 70ch; color: var(--mare-muted); font-size: 13px; line-height: 1.5; margin: 12px 0; }
+.invitation-tracking-confirm { background: var(--mare-neutral); border: 1px solid var(--mare-line); border-radius: 10px; padding: 16px; margin-top: 16px; }
+.invitation-tracking-confirm p { margin: 0 0 12px; }
+.invitation-tracking-confirm button { margin: 0 8px 8px 0; }
+.admin-settings .invitation-tracking { padding: 24px 0; }
+@media (max-width: 600px) { .invitation-tracking { padding: 20px 16px; } .invitation-tracking header { gap: 12px; flex-wrap: wrap; } .invitation-tracking-identity { display: grid; } .invitation-tracking dl { gap: 12px 24px; } }

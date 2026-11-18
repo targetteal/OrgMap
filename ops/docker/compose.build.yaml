@@ -1,0 +1,20 @@
+x-build: &build
+  context: ../..
+  dockerfile: ops/docker/Dockerfile
+
+services:
+  setup:
+    build:
+      <<: *build
+      target: operator
+    pull_policy: never
+  app:
+    build:
+      <<: *build
+      target: app
+    pull_policy: never
+  web:
+    build:
+      <<: *build
+      target: web
+    pull_policy: never

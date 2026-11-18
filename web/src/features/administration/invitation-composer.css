@@ -1,0 +1,21 @@
+.invitation-composer { min-width: 0; padding: 0; }
+.orgmap-dialog > .invitation-composer { min-height: 0; padding: 24px; overflow-y: auto; overscroll-behavior: contain; }
+.orgmap-dialog > .invitation-composer + .form-actions { position: static; margin: 0; padding: 16px 24px; }
+.invitation-composer-intro { margin: 0 0 24px; color: var(--mare-ink); }
+.invitation-composer form, .invitation-composer fieldset { display: grid; gap: 0; min-width: 0; margin: 0; padding: 0; border: 0; }
+.invitation-composer .field { display: grid; gap: 8px; margin: 0; }
+.invitation-composer textarea { box-sizing: border-box; width: 100%; min-height: 88px; padding: 12px; resize: vertical; font: inherit; color: var(--mare-ink); background: var(--mare-surface); border: 1px solid var(--mare-line); border-radius: 10px; }
+.invitation-composer-help { margin: 8px 0 0; font-size: 13px; line-height: 1.5; }
+.invitation-composer-language { margin: 16px 0; font-size: 13px; }
+.invitation-composer-message { margin: 0 0 20px; }
+.invitation-composer-message summary { width: fit-content; cursor: pointer; color: var(--mare-primary-ink); padding: 10px 0; font-size: 14px; }
+.invitation-composer-message .field { margin-top: 10px; }
+.invitation-composer-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.invitation-composer-actions button { min-height: 44px; }
+.invitation-composer .primary { margin-top: 0; }
+.invitation-composer-advanced { margin-top: 20px; color: var(--mare-primary-ink); background: transparent; border-color: transparent; white-space: normal; text-align: left; }
+.invitation-composer-results { margin-top: 24px; border-top: 1px solid var(--mare-line); padding-top: 20px; }
+.invitation-composer-results h3 { margin: 0 0 12px; font-size: 16px; }
+.invitation-composer-results ul { list-style: none; padding: 0; margin: 0; }
+.invitation-composer-results li { display: grid; gap: 4px; padding: 12px 0; border-bottom: 1px solid var(--mare-line); overflow-wrap: anywhere; }
+.invitation-composer-results li span { font-size: 13px; color: var(--mare-muted); }

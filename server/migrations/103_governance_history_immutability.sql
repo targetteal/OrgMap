@@ -1,0 +1,1 @@
+REVOKE UPDATE,DELETE ON gov_revisions,gov_document_versions,gov_ballots,gov_commits,gov_history,gov_nominations,gov_tension_links FROM orgmap_app;

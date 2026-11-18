@@ -1,0 +1,10 @@
+ALTER TABLE accounts ADD COLUMN version integer NOT NULL DEFAULT 1;
+ALTER TABLE accounts ADD COLUMN password_enabled boolean NOT NULL DEFAULT true;
+ALTER TABLE sessions ADD COLUMN id uuid NOT NULL DEFAULT gen_random_uuid();
+ALTER TABLE sessions ADD COLUMN created_at timestamptz NOT NULL DEFAULT now();
+ALTER TABLE sessions ADD CONSTRAINT sessions_id_unique UNIQUE(id);
+CREATE TABLE account_preferences(account_id uuid PRIMARY KEY REFERENCES accounts(id),locale text NOT NULL DEFAULT 'pt-BR',time_zone text NOT NULL DEFAULT 'America/Sao_Paulo',date_format text NOT NULL DEFAULT 'DD/MM/YYYY' CHECK(date_format IN ('DD/MM/YYYY','MM/DD/YYYY','YYYY-MM-DD')),theme text NOT NULL DEFAULT 'system' CHECK(theme IN ('system','light','dark')),reduced_motion boolean NOT NULL DEFAULT false,version integer NOT NULL DEFAULT 1);
+CREATE TABLE account_events(id uuid PRIMARY KEY,account_id uuid NOT NULL REFERENCES accounts(id),action text NOT NULL,resource_id uuid NOT NULL,at timestamptz NOT NULL DEFAULT now(),request_id text NOT NULL);
+CREATE TABLE password_recovery(id uuid PRIMARY KEY,account_id uuid NOT NULL REFERENCES accounts(id),token_hash text NOT NULL UNIQUE,expires_at timestamptz NOT NULL,used_at timestamptz,command_key text,command_hash text);
+CREATE TABLE account_mail(id uuid PRIMARY KEY,account_id uuid NOT NULL REFERENCES accounts(id),recovery_id uuid NOT NULL REFERENCES password_recovery(id),email text NOT NULL,token text,state text NOT NULL DEFAULT 'PENDING',lease_until timestamptz,attempts integer NOT NULL DEFAULT 0,last_error text);
+GRANT SELECT,INSERT,UPDATE,DELETE ON account_preferences,account_events,password_recovery,account_mail TO orgmap_app;

@@ -1,0 +1,23 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { registerHooks } from "node:module";
+import { JSDOM } from "jsdom";
+import React, { act } from "react";
+const dom = new JSDOM("<!doctype html><body><main></main></body>", { url: "http://localhost", pretendToBeVisual: true });
+for (const key of ["window", "document", "navigator", "HTMLElement", "HTMLDialogElement", "Node", "Event", "MutationObserver", "DOMParser", "getComputedStyle"]) Object.defineProperty(globalThis, key, { value: key === "window" ? dom.window : (dom.window as any)[key], configurable: true });
+Object.defineProperty(globalThis, "IS_REACT_ACT_ENVIRONMENT", { value: true, configurable: true });
+dom.window.HTMLDialogElement.prototype.showModal = function () { this.setAttribute("open", ""); };
+dom.window.HTMLDialogElement.prototype.close = function () { this.removeAttribute("open"); };
+registerHooks({ load(url, options, next) { return url.endsWith(".css") ? { format: "module", source: "export {};", shortCircuit: true } : next(url, options); } });
+const { createRoot } = await import("react-dom/client");
+const { Modal } = await import("./index.js");
+test("work dialogs have unique accessible names linked to their headings", async () => {
+  const root = createRoot(document.querySelector("main")!);
+  await act(async () => root.render(<><Modal title="Primeiro" close={() => {}}>Um</Modal><Modal title="Segundo" close={() => {}}>Dois</Modal></>));
+  const dialogs = [...document.querySelectorAll("dialog")];
+  assert.equal(dialogs.length, 2);
+  const ids = dialogs.map(dialog => dialog.getAttribute("aria-labelledby"));
+  assert.ok(ids[0] && ids[1] && ids[0] !== ids[1]);
+  assert.deepEqual(ids.map(id => document.getElementById(id!)?.textContent), ["Primeiro", "Segundo"]);
+  await act(async () => root.unmount());
+});

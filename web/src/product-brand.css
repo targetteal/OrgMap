@@ -1,0 +1,73 @@
+.orgmap-brand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 176px;
+  max-inline-size: 100%;
+  flex: none;
+  vertical-align: middle;
+}
+.orgmap-brand__signature {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+}
+.orgmap-brand__symbol {
+  display: none;
+  inline-size: 32px;
+  block-size: 32px;
+  flex: none;
+}
+.orgmap-brand--symbol {
+  inline-size: 32px;
+}
+.orgmap-brand--symbol .orgmap-brand__symbol {
+  display: block;
+}
+.orgmap-brand.auth-brand {
+  inline-size: 196px;
+  color: #172d2e;
+}
+.mare-sidebar-head > :is(.orgmap-brand, .orgmap-home-link) {
+  inline-size: 164px;
+}
+.orgmap-home-link {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 44px;
+  border-radius: 8px;
+}
+.orgmap-home-link > .orgmap-brand {
+  inline-size: 100%;
+}
+.account-product-brand {
+  padding: 0 12px 20px;
+}
+.loading-screen > .orgmap-brand {
+  display: flex;
+  margin: 0 auto 16px;
+}
+.interop-enrollment > .orgmap-brand {
+  margin-block-end: 28px;
+}
+.admission-product-brand {
+  margin: 0 auto 24px;
+  display: flex;
+}
+@media (min-width: 768px) {
+  .secondary-collapsed .mare-sidebar-head {
+    height: auto;
+    flex-direction: column;
+    padding-inline: 0;
+    gap: 8px;
+  }
+  .secondary-collapsed .mare-sidebar-head > :is(.orgmap-brand, .orgmap-home-link) {
+    inline-size: 32px;
+  }
+  .secondary-collapsed .mare-sidebar-head .orgmap-brand__signature {
+    display: none;
+  }
+  .secondary-collapsed .mare-sidebar-head .orgmap-brand__symbol {
+    display: block;
+  }
+}

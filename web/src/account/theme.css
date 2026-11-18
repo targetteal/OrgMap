@@ -1,0 +1,85 @@
+/* Personal surface mode. Organization palettes still supply their own hue. */
+html[data-account-theme="dark"],
+html[data-account-theme="dark"] [data-org-theme] {
+  color-scheme: dark;
+  --mare-primary: #76D3D0;
+  --mare-primary-ink: #A5E3E0;
+  --mare-primary-hover: #91E0DC;
+  --mare-on-primary: #102629;
+  --mare-surface: #1C2D30;
+  --mare-ink: #ECF5F3;
+  --mare-muted: #B8CCCA;
+  --mare-line: #405B5E;
+  --mare-subtle: #2A4144;
+  --mare-neutral: #122124;
+  --mare-selection: #E6A385;
+  --mare-selection-bg: #4B3832;
+  --mare-map-stroke: #83AFB0;
+  --mare-map-level-1: #263C3E;
+  --mare-map-level-2: #2D4749;
+  --mare-map-level-3: #365254;
+  --mare-map-level-4: #405F61;
+  --mare-map-level-5: #4B6E70;
+  --mare-error: #FF9B93;
+  --mare-error-bg: #482D2E;
+  --mare-success: #84DDB3;
+  --mare-success-bg: #263F35;
+  --mare-warning: #F4C579;
+  --mare-warning-bg: #453723;
+  --mare-info: #A6C8FF;
+  --mare-overlay: rgb(0 0 0 / .62);
+  --mare-shadow: rgb(0 0 0 / .35);
+  --surface: var(--mare-surface);
+  --surface-muted: var(--mare-neutral);
+  --muted: var(--mare-muted);
+  --border: var(--mare-line);
+  --selected: var(--mare-subtle);
+  --hover: var(--mare-subtle);
+  --accent: var(--mare-primary);
+  --accent-foreground: var(--mare-on-primary);
+  --accent-hover: var(--mare-primary-hover);
+  --focus-ring: var(--mare-primary-ink);
+}
+html[data-account-theme="dark"] [data-org-theme="cobalto"] {
+  --mare-primary: #8FAEF5;
+  --mare-primary-ink: #B7CCFF;
+  --mare-primary-hover: #A9C2FF;
+  --mare-on-primary: #111D35;
+  --mare-selection: #F4C579;
+  --mare-selection-bg: #453723;
+}
+html[data-account-theme="dark"] [data-org-theme="argila"] {
+  --mare-primary: #E6A385;
+  --mare-primary-ink: #F1BEA5;
+  --mare-primary-hover: #F1B89B;
+  --mare-on-primary: #2C1D17;
+  --mare-selection: #A6C8FF;
+  --mare-selection-bg: #293B54;
+}
+html[data-account-theme="dark"] [data-org-theme="grafite"] {
+  --mare-primary: #D7EA6A;
+  --mare-primary-ink: #D7EA6A;
+  --mare-primary-hover: #E3F481;
+  --mare-on-primary: #252B30;
+}
+html[data-account-theme="dark"] :is(input, select, textarea) {
+  background: var(--mare-surface);
+  color: var(--mare-ink);
+}
+html[data-account-theme="dark"] .orgmap-brand img {
+  filter: brightness(0) invert(1);
+}
+html[data-account-theme="dark"] .proposal-filter-wrap > button {
+  background: var(--mare-surface);
+  border: 1px solid var(--mare-line);
+  color: var(--mare-ink);
+}
+html[data-account-theme="dark"] .proposal-label.answered,
+html[data-account-theme="dark"] .proposal-label.state-decided {
+  color: var(--mare-success);
+  background: var(--mare-success-bg);
+}
+html[data-account-theme="dark"] ::selection {
+  background: var(--mare-selection-bg);
+  color: var(--mare-ink);
+}

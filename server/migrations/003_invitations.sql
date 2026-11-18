@@ -1,0 +1,10 @@
+CREATE TABLE invitations(organization_id uuid NOT NULL REFERENCES organizations(id),id uuid NOT NULL,email text NOT NULL,token_hash text NOT NULL UNIQUE,status text NOT NULL DEFAULT 'PENDING' CHECK(status IN ('PENDING','ACCEPTED','REVOKED')),expires_at timestamptz NOT NULL,PRIMARY KEY(organization_id,id));
+CREATE TABLE invitation_delivery(organization_id uuid NOT NULL,id uuid NOT NULL,invitation_id uuid NOT NULL,token text,state text NOT NULL DEFAULT 'PENDING',PRIMARY KEY(organization_id,id),FOREIGN KEY(organization_id,invitation_id) REFERENCES invitations(organization_id,id));
+ALTER TABLE invitations ENABLE ROW LEVEL SECURITY;
+ALTER TABLE invitation_delivery ENABLE ROW LEVEL SECURITY;
+CREATE POLICY tenant ON invitations USING(organization_id=nullif(current_setting('orgmap.organization_id',true),'')::uuid) WITH CHECK(organization_id=nullif(current_setting('orgmap.organization_id',true),'')::uuid);
+CREATE POLICY tenant ON invitation_delivery USING(organization_id=nullif(current_setting('orgmap.organization_id',true),'')::uuid) WITH CHECK(organization_id=nullif(current_setting('orgmap.organization_id',true),'')::uuid);
+GRANT SELECT,INSERT,UPDATE,DELETE ON invitations,invitation_delivery TO orgmap_app;
+CREATE FUNCTION invitation_lookup(token text) RETURNS TABLE(organization_id uuid) LANGUAGE sql SECURITY DEFINER SET search_path=pg_catalog,public AS 'SELECT i.organization_id FROM public.invitations i WHERE i.token_hash=token';
+REVOKE ALL ON FUNCTION invitation_lookup(text) FROM PUBLIC;
+GRANT EXECUTE ON FUNCTION invitation_lookup(text) TO orgmap_app;

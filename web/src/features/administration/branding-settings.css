@@ -1,0 +1,16 @@
+.branding-settings { min-width: 0; }
+.branding-asset { max-width: 600px; min-width: 0; padding-block: 20px; border-top: 1px solid var(--mare-line); }
+.branding-asset h3 { margin: 0 0 8px; font-size: 15px; }
+.branding-asset p { overflow-wrap: anywhere; }
+.branding-preview { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; min-height: 96px; padding: 16px; background: var(--mare-neutral); border-radius: 8px; }
+.branding-preview img { display: block; max-width: min(100%, 320px); max-height: 160px; object-fit: contain; }
+.branding-preview p { margin: 4px 0; }
+.branding-asset input[type="file"] { display: block; max-width: 100%; margin-block: 8px; font-size: 16px; }
+.branding-filename { overflow-wrap: anywhere; }
+.branding-confirm { display: flex; align-items: flex-start; gap: 8px; margin-block: 12px; }
+.branding-confirm input { flex: none; margin-top: 3px; }
+.branding-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.branding-settings .branding-actions .primary { margin: 0; }
+.branding-error { color: var(--mare-error); }
+
+.branding-asset[data-purpose="WORKSPACE_LOGO"] .branding-preview img { max-width: min(100%, 180px); }

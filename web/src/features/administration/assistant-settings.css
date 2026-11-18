@@ -1,0 +1,9 @@
+.assistant-settings { min-width: 0; }
+.assistant-tabs { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--mare-line); margin-block: 18px 24px; }
+.assistant-tabs button { border: 0; border-radius: 0; background: transparent; padding: 10px 12px; }
+.assistant-tabs button[aria-selected="true"] { border-bottom: 2px solid var(--mare-muted); font-weight: 600; }
+.assistant-settings [role="tabpanel"] { max-width: 600px; min-width: 0; }
+.assistant-settings textarea { display: block; width: 100%; max-width: 100%; min-height: 140px; box-sizing: border-box; margin-block: 8px; font: inherit; }
+.assistant-settings p { overflow-wrap: anywhere; }
+.assistant-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.assistant-settings .assistant-actions .primary { margin: 0; }

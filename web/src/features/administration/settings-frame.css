@@ -1,0 +1,154 @@
+/* Quadro de configurações: navegação agrupada + conteúdo na mesma grade (Maré). */
+.settings-frame{min-height:100%;background:var(--mare-neutral);color:var(--mare-ink);font-family:Manrope,system-ui,sans-serif}
+.settings-frame-wrap{max-width:1240px;margin:auto;padding:32px 40px 80px}
+.settings-frame-layout{display:grid;grid-template-columns:224px minmax(0,1fr);gap:40px;align-items:start}
+
+/* Navegação lateral */
+.settings-frame-nav{position:sticky;top:24px;display:flex;flex-direction:column;gap:20px;max-height:calc(100dvh - 124px);overflow:auto;padding:2px 4px 8px 2px;margin:-2px 0 0 -2px;scrollbar-width:thin}
+.settings-frame-group{display:flex;flex-direction:column;gap:2px}
+.settings-frame-group-title{padding:0 10px 6px;color:var(--mare-muted);font-size:12px;font-weight:600;line-height:1.3;letter-spacing:.01em}
+.app-shell .settings-frame-nav button,.settings-frame-nav button{display:flex;align-items:center;justify-content:flex-start;gap:10px;width:100%;min-height:36px;padding:7px 10px;border:0;border-radius:10px;background:transparent;color:var(--mare-ink);text-align:left;font:inherit;font-size:13px;font-weight:500;line-height:1.3;cursor:pointer;box-shadow:none}
+.settings-frame-nav button>svg{flex:none;color:var(--mare-muted)}
+.settings-frame-nav button>span{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.app-shell .settings-frame-nav button:hover,.settings-frame-nav button:hover{background:var(--mare-subtle);color:var(--mare-ink)}
+.app-shell .settings-frame-nav button.active,.settings-frame-nav button.active{background:var(--mare-surface);color:var(--mare-primary-ink);font-weight:650;box-shadow:inset 0 0 0 1px var(--mare-line)}
+.settings-frame-nav button.active>svg{color:var(--mare-primary-ink)}
+.settings-frame-nav button:focus-visible{outline:2px solid var(--mare-primary-ink);outline-offset:1px}
+
+/* Seletor de seção (telas estreitas) */
+.settings-frame-mobile-section{display:none}
+.settings-frame-select{position:relative;display:block}
+.settings-frame-select>svg{position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--mare-muted)}
+.app-shell .settings-frame-select>select,.settings-frame-select>select{-webkit-appearance:none;appearance:none;width:100%;min-height:44px;padding:0 40px 0 14px;border:1px solid var(--mare-line);border-radius:10px;background:var(--mare-surface);background-image:none;color:var(--mare-ink);font:inherit;font-size:15px;font-weight:600}
+
+/* Conteúdo */
+.settings-frame-content{min-width:0;max-width:880px}
+.settings-frame-content .admin-surface,.settings-frame-content .o2-settings{min-height:0;background:transparent;color:var(--mare-ink)}
+.settings-frame-content .admin-heading,.settings-frame-content .o2-heading,.settings-frame-content .sa-page>.page-heading{height:auto;min-height:40px;padding:0 0 20px;background:transparent;border:0;justify-content:flex-start;align-items:center;gap:12px;flex-wrap:wrap}
+.settings-frame-content .admin-heading h1,.settings-frame-content .o2-heading h1,.settings-frame-content .sa-page>.page-heading h1,.settings-frame-content .admin-heading h2,.settings-frame-content .o2-heading h2{font-size:24px;line-height:1.3;font-weight:650;letter-spacing:-.015em;margin:0 auto 0 0}
+.settings-frame-content .admin-settings,.settings-frame-content .admin-editor,.settings-frame-content .o2-settings-body{max-width:none;padding:28px 32px;background:var(--mare-surface);border:1px solid var(--mare-line);border-radius:14px}
+.settings-frame-content .admin-settings .field,.settings-frame-content .admin-editor .field{max-width:none}
+.settings-frame-content .admin-surface input:not([type=checkbox]):not([type=radio]),.settings-frame-content .admin-surface select,.settings-frame-content .o2-settings select,.settings-frame-content .sa-page input:not([type=checkbox]):not([type=radio]),.settings-frame-content .sa-page select{min-height:40px;border:1px solid var(--mare-line);border-radius:10px;background-color:var(--mare-surface);color:var(--mare-ink)}
+/* Setas dos seletores com o traço Maré, sem cor fixa */
+.settings-frame-content :is(.admin-surface,.o2-settings,.sa-page) select:not([multiple]){-webkit-appearance:none;appearance:none;padding-right:38px;background-image:linear-gradient(45deg,transparent calc(50% - .8px),var(--mare-muted) calc(50% - .8px),var(--mare-muted) calc(50% + .8px),transparent calc(50% + .8px)),linear-gradient(135deg,transparent calc(50% - .8px),var(--mare-muted) calc(50% - .8px),var(--mare-muted) calc(50% + .8px),transparent calc(50% + .8px));background-position:calc(100% - 20px) calc(50% + 1px),calc(100% - 15px) calc(50% + 1px);background-size:5px 5px,5px 5px;background-repeat:no-repeat}
+.settings-frame-content :is(.admin-surface,.o2-settings,.sa-page) select[multiple]{padding:6px;min-height:120px}
+.settings-frame-content .admin-surface input[type=checkbox],.settings-frame-content .o2-settings input[type=checkbox],.settings-frame-content .sa-page input[type=checkbox]{accent-color:var(--mare-primary)}
+.settings-frame-content :is(.admin-settings,.admin-editor,.o2-settings-body) :is(p,small,.muted){color:var(--mare-muted);line-height:1.6}
+.settings-frame-content .o2-settings-body :is(a){color:var(--mare-primary-ink)}
+.settings-frame-content .admin-settings h2,.settings-frame-content .o2-settings h3{font-weight:650}
+.settings-frame-content .o2-rule-fields{max-width:650px}
+.settings-frame-content .o2-function-choices label{display:flex;align-items:center;gap:12px;min-height:44px;padding:10px 12px;margin:0;border-bottom:1px solid var(--mare-line)}
+.settings-frame-content .o2-rules,.settings-frame-content .o2-preparation,.settings-frame-content .o2-install{border-color:var(--mare-line)}
+.settings-frame-content .o2-phase{color:var(--mare-primary-ink);border-color:var(--mare-line);background:var(--mare-subtle)}
+.settings-frame-content .sa-page .sa-tabs button[aria-current]{border-color:var(--mare-primary);color:var(--mare-primary-ink)}
+.settings-frame-content .sa-page .sa-tabs{border-color:var(--mare-line)}
+.settings-frame-content .sa-page>section,.settings-frame-content .sa-goals-setting{background:var(--mare-surface);border:1px solid var(--mare-line);border-radius:14px;padding:24px;margin:0 0 20px}
+.settings-frame-content .sa-node:hover,.settings-frame-content .sa-node.sa-selected{background:var(--mare-subtle);border-color:var(--mare-line)}
+.settings-frame-content button:focus-visible,.settings-frame-content input:focus-visible,.settings-frame-content select:focus-visible,.settings-frame-content summary:focus-visible{outline:2px solid var(--mare-primary-ink);outline-offset:3px}
+
+/* Barra de ações do formulário da organização */
+.admin-settings-actions{display:flex;align-items:center;justify-content:flex-end;gap:10px;flex-wrap:wrap;margin:16px -32px -28px;padding:16px 32px;border-top:1px solid var(--mare-line);background:var(--mare-surface);border-radius:0 0 14px 14px}
+.admin-settings-actions>span{flex:1;min-width:12ch;color:var(--mare-muted);font-size:13px;line-height:1.4}
+.admin-settings-actions.dirty{position:sticky;bottom:0;z-index:2;box-shadow:0 -10px 18px -14px var(--mare-shadow,rgb(0 0 0 / .18))}
+.admin-settings-actions.dirty>span{color:var(--mare-ink);font-weight:600}
+.admin-settings-actions.dirty>span::before{content:"";display:inline-block;width:8px;height:8px;margin-right:8px;border-radius:50%;background:var(--mare-primary);vertical-align:1px}
+.settings-frame-content .admin-settings-actions .primary{margin-top:0}
+.settings-frame-content .admin-settings-actions button:disabled{opacity:1;cursor:not-allowed;background:var(--mare-subtle);border-color:transparent;color:var(--mare-muted)}
+
+.o2-circle-settings{margin-top:32px;padding-top:26px;border-top:1px solid var(--mare-line)}.o2-circle-settings .o2-entity-section{padding:20px 0;border-top:1px solid var(--mare-line)}.o2-circle-settings .o2-entity-section:first-of-type{margin-top:20px}
+.admin-brand-identity{margin:28px 0 0;border-top:1px solid var(--mare-line);padding-top:20px}
+.admin-brand-identity[open]>summary{margin-bottom:16px}
+.settings-frame-content .admin-heading h2,.settings-frame-content .o2-heading h2{margin:0 auto 0 0}
+.admin-settings-group{border:0;padding:0;margin:0;min-width:0}
+.admin-settings-group[hidden],.admin-progressive-settings[hidden],.admin-appearance-assets[hidden]{display:none}
+.admin-settings-group h3{font-size:16px;font-weight:650;margin:0 0 4px}
+.admin-settings-group .field+h3{margin-top:28px}
+
+/* Seções do formulário com ritmo regular */
+.admin-form-section{display:grid;gap:18px;padding:0 0 28px}
+.admin-form-section+.admin-form-section{padding-top:28px;border-top:1px solid var(--mare-line)}
+.admin-form-section>header>h3{font-size:16px;line-height:1.35;font-weight:650;margin:0 0 4px}
+.admin-form-section>header>p{margin:0;font-size:13px;color:var(--mare-muted);line-height:1.5}
+.admin-form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 20px}
+.admin-form-grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.admin-form-grid>.wide{grid-column:1/-1}
+.settings-frame-content .admin-form-grid .field{margin:0}
+
+/* Grupos progressivos (details) */
+.admin-settings-progressive{border-top:1px solid var(--mare-line);padding:12px 0}
+.admin-settings-progressive:last-of-type{border-bottom:0}
+.app-shell .admin-settings-progressive.mare-disclosure>summary{display:flex;width:100%;min-height:44px;margin:0;padding:6px 8px;font-size:14px;font-weight:600}
+.admin-settings-progressive[open]>summary{margin-bottom:12px}
+.admin-settings-progressive[open]{padding-bottom:24px}
+.admin-settings-progressive>h3{margin-top:4px}
+.admin-progressive-settings{margin-top:20px;display:grid;gap:12px}
+.admin-progressive-settings>.admin-settings-progressive{background:var(--mare-surface);border:1px solid var(--mare-line);border-radius:14px;padding:10px 16px;margin:0}
+.admin-progressive-settings>.admin-settings-progressive[open]{padding-bottom:24px}
+.admin-progressive-settings .admin-settings{border:0;padding:0 8px;margin-top:12px}
+#settings-essential,#settings-circle-options{scroll-margin-top:24px}
+#settings-appearance{scroll-margin-top:120px}
+.admin-appearance-assets{margin-top:16px}
+
+/* Ferramentas do app */
+.settings-tools h2{font-size:24px;line-height:1.3;font-weight:650;margin:0 0 6px;letter-spacing:-.015em}
+.settings-tools>p{color:var(--mare-muted);font-size:14px;line-height:1.6;margin:0 0 24px}
+.settings-tools-list{background:var(--mare-surface);border:1px solid var(--mare-line);border-radius:14px;overflow:hidden}
+.app-shell .settings-tools-list>button{display:flex;align-items:center;justify-content:flex-start;gap:16px;width:100%;min-height:84px;padding:18px 24px;background:transparent;color:var(--mare-ink);border:0;border-bottom:1px solid var(--mare-line);border-radius:0;text-align:left}
+.app-shell .settings-tools-list>button:last-child{border-bottom:0}
+.app-shell .settings-tools-list>button:not(:disabled):hover{background:var(--mare-neutral)}
+.app-shell .settings-tools-list>button:disabled{opacity:1;color:var(--mare-muted)}
+.settings-tools-list .settings-tool-icon{display:grid;place-items:center;width:40px;height:40px;flex:none;border-radius:10px;background:var(--mare-subtle);color:var(--mare-primary-ink)}
+.settings-tools-list>button>span:nth-child(2){display:grid;gap:4px;flex:1;min-width:0}
+.settings-tools-list strong{font-size:14px;font-weight:600;line-height:1.5}
+.settings-tools-list small{font-size:13px;font-weight:400;line-height:1.5;color:var(--mare-muted)}
+.settings-tools-list>button>svg{flex:none;color:var(--mare-muted)}
+
+.admin-readonly-note{color:var(--mare-muted);font-size:13px;line-height:1.6;margin:0 0 16px;max-width:70ch}
+
+/* Seções vindas de governança (o2) e estrutura avançada dentro do quadro */
+.settings-frame-content .o2-loading{display:grid;gap:14px;justify-items:start}
+.settings-frame-content .o2-settings-body:not(:has(.notice)) .o2-loading::before,.settings-frame-content .sa-page>p[role=status]::before{content:"";display:block;width:100%;height:96px;border-radius:10px;background:linear-gradient(90deg,var(--mare-subtle) 25%,var(--mare-line) 50%,var(--mare-subtle) 75%);background-size:200% 100%;animation:mare-shimmer 1.4s linear infinite}
+.settings-frame-content .o2-loading p[role=status],.settings-frame-content .sa-page>p[role=status]{margin:0;color:var(--mare-muted);font-size:13px}
+.settings-frame-content .sa-page>p[role=status]{display:grid;gap:12px;padding:4px 0}
+.settings-frame-content .o2-heading>button{width:36px;height:36px;min-height:36px;padding:0;display:grid;place-items:center;border-radius:10px}
+.settings-frame-content .sa-page>.page-heading button{min-height:36px;padding:0 14px;border:1px solid var(--mare-line);border-radius:10px;background:var(--mare-surface);color:var(--mare-ink);font-size:13px;font-weight:600}
+.settings-frame-content .sa-page>.page-heading button:hover:not(:disabled){background:var(--mare-subtle)}
+.settings-frame-content .sa-goals-setting h2,.settings-frame-content .sa-page>section>h2{font-size:16px;line-height:1.35;font-weight:650;margin:0 0 12px}
+.settings-frame-content .sa-goals-setting>label{display:flex;align-items:center;gap:10px;margin:0 0 4px;font-size:14px;font-weight:600}
+.app-shell .settings-frame-content .sa-goals-setting>label>input[type=checkbox]{width:18px;height:18px;min-height:0;margin:0;flex:none}
+.settings-frame-content .sa-goals-setting>p{margin:0 0 0 28px;font-size:13px}
+@media (prefers-reduced-motion:reduce){.settings-frame-content .o2-loading::before,.settings-frame-content .sa-page>p[role=status]::before{animation:none}}
+
+@media(max-width:850px){
+ .settings-frame-wrap{padding:16px 20px 56px}
+ .settings-frame-layout{display:block}
+ .settings-frame-nav{display:none}
+ .settings-frame-mobile-section{display:grid;gap:6px;margin:0 0 20px;color:var(--mare-muted);font-size:12px;font-weight:600}
+ .settings-frame-content{max-width:none}
+ .admin-settings-actions{margin:24px -20px -22px;padding:14px 20px}
+ .admin-form-grid.three{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:600px){
+ .settings-frame-wrap{padding:12px 16px 48px}
+ .settings-frame-content .admin-settings,.settings-frame-content .admin-editor,.settings-frame-content .o2-settings-body{padding:22px 20px}
+ .settings-frame-content button{min-height:44px}
+ .settings-frame-content .admin-heading h1,.settings-frame-content .o2-heading h1,.settings-frame-content .sa-page>.page-heading h1,.settings-frame-content .admin-heading h2,.settings-frame-content .o2-heading h2{font-size:22px}
+ .settings-tools h2{font-size:22px}
+ .app-shell .settings-tools-list>button{padding:16px;gap:12px}
+ .admin-form-grid,.admin-form-grid.three{grid-template-columns:minmax(0,1fr)}
+ .admin-settings-actions>span{flex-basis:100%}
+ .admin-settings-actions>button{flex:1}
+ .admin-progressive-settings>.admin-settings-progressive{padding:8px 12px}
+}
+@media(max-width:600px){.settings-frame-content .sa-page>.page-heading h1{flex-basis:100%}}
+/* Estado desabilitado claro e barra de salvar fixa apenas quando há o que salvar */
+.app-shell .settings-frame-content button.primary:disabled{opacity:1;cursor:not-allowed;background:var(--mare-subtle);border-color:transparent;color:var(--mare-muted)}
+.settings-frame-content .o2-settings[data-settings-section=essential] .o2-actions:has(button.primary:disabled){position:static}
+.settings-frame-content .o2-settings[data-settings-section=essential] .o2-actions:not(:has(button.primary:disabled)){z-index:2;box-shadow:0 -10px 18px -14px var(--mare-shadow,rgb(0 0 0 / .18))}
+.admin-settings-progressive:not(:has(h3~h3))>summary+h3{display:none}
+/* Subseções de acesso, segurança, arquivos e indicadores */
+.admin-progressive-settings .admin-settings+.admin-settings{margin-top:28px;padding-top:28px;border-top:1px solid var(--mare-line);border-radius:0}
+.admin-progressive-settings .admin-security h2{font-size:16px;line-height:1.35;font-weight:650;margin:4px 0 8px}
+.admin-progressive-settings .admin-security h3{font-size:14px;font-weight:650;margin:20px 0 6px}
+.settings-frame-content .admin-progressive-settings .admin-security .primary{margin:16px 10px 0 0}
+.settings-frame-content .admin-progressive-settings .admin-security form~button,.settings-frame-content .admin-progressive-settings .admin-security .primary+button{margin-top:16px}

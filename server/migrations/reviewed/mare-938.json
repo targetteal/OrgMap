@@ -1,0 +1,25 @@
+{
+  "format": "orgmap-mare-reviewed-schema-v1",
+  "postgresMajor": 18,
+  "through": 937,
+  "predecessorSnapshotSha256": "bda8c73b1ad3cd8b824c643ab5b8d5709719bc291a216c7ed92a77fcc3a3ec31",
+  "schemaFingerprint": "e07243183515cbc26aa36b91cda52504685f8aa1eceffef48c52eb4a87a8f164",
+  "migrations": [
+    {
+      "name": "934_integrated_reviewed_schema_baseline.sql",
+      "checksum": "dbbafb54e9b7f88b858765e61ce78246c15710f55b5a1e88055a08700a6b02ed"
+    },
+    {
+      "name": "935_governance_escalation.sql",
+      "checksum": "ce7996845ba2a2bf7aa838537da77d0f14b611609a635f1ca5f849bb0f7f0d87"
+    },
+    {
+      "name": "936_work_mare.sql",
+      "checksum": "665558a6ab28126807e864e5a59045d78cc6a3ef6286254fa05541da01bd0b38"
+    },
+    {
+      "name": "937_meeting_agenda_sources.sql",
+      "checksum": "8894277188eacb83ea967146fe50fa910e7531d5ce318ed902fd887317e6c6f1"
+    }
+  ]
+}

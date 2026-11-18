@@ -1,0 +1,29 @@
+.meetings-preview-shell {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  height: 100dvh;
+}
+@media (max-width: 760px) {
+  .meetings-preview-shell {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+  .meetings-preview-shell > aside {
+    min-width: 0;
+    padding: 0 !important;
+  }
+  .meetings-preview-shell > aside h2 {
+    display: none;
+  }
+  .meetings-preview-shell .meetings-sidebar {
+    display: flex;
+    overflow: auto;
+    gap: 4px;
+    padding: 8px;
+  }
+  .meetings-preview-shell .meetings-sidebar button {
+    flex: none;
+    font-size: 12px;
+    padding: 8px;
+  }
+}

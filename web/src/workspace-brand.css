@@ -1,0 +1,12 @@
+.workspace-brand { display: inline-flex; align-items: center; gap: 8px; min-width: 0; max-width: 240px; }
+.workspace-brand img { display: block; max-inline-size: 180px; max-block-size: 28px; object-fit: contain; }
+.workspace-brand-mark { inline-size: 10px; block-size: 10px; border-radius: 50%; flex: none; }
+.workspace-branded .primary, .workspace-branded .view-pill { background: var(--organization-accent); color: var(--organization-on-accent); }
+.workspace-branded .primary:hover, .workspace-branded .view-pill:hover { background: var(--organization-accent); border-color: currentColor; }
+.workspace-branded input, .workspace-branded textarea, .workspace-branded [contenteditable="true"] { caret-color: var(--mare-ink, #183237); }
+@media (max-width: 767px) {
+  .identity-button:has(.workspace-brand) { width: auto; max-width: 64px; flex-shrink: 0; gap: 5px; }
+  .workspace-brand { max-inline-size: 26px; flex: none; }
+  .workspace-brand img { max-inline-size: 26px; max-block-size: 26px; }
+  .workspace-brand-mark { inline-size: 8px; block-size: 8px; }
+}

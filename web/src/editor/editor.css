@@ -1,0 +1,229 @@
+.orgmap-rich-editor,
+.orgmap-rich-view {
+  min-width: 0;
+  color: var(--rich-ink, var(--mare-ink));
+  font: inherit;
+}
+.orgmap-rich-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.orgmap-rich-label span {
+  font-size: 11px;
+  font-weight: 400;
+}
+.orgmap-rich-frame {
+  border: 1px solid var(--rich-border, var(--mare-line));
+  border-radius: 10px;
+  background: var(--mare-surface);
+}
+.orgmap-rich-frame:focus-within {
+  outline: 2px solid var(--mare-primary-ink);
+  outline-offset: 1px;
+}
+.orgmap-rich-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 5px 7px;
+  border-bottom: 1px solid var(--rich-border, var(--mare-line));
+  border-radius: 10px 10px 0 0;
+  background: var(--mare-neutral);
+}
+.orgmap-rich-toolbar button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 30px;
+  min-height: 32px;
+  padding: 6px;
+  gap: 0;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+.orgmap-rich-toolbar button:hover:not(:disabled) {
+  background: var(--mare-subtle);
+}
+.orgmap-rich-toolbar button[aria-pressed="true"] {
+  background: var(--mare-subtle, var(--mare-line));
+  color: var(--mare-ink);
+  border-color: var(--mare-map-stroke, var(--mare-line));
+}
+.orgmap-rich-toolbar button:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+}
+@media (max-width: 767px) {
+  .orgmap-rich-toolbar button { min-width: 44px; min-height: 44px; }
+}
+.orgmap-rich-editor button:focus-visible,
+.orgmap-rich-editor input:focus-visible,
+.orgmap-rich-recovery summary:focus-visible {
+  outline: 2px solid var(--mare-primary-ink);
+  outline-offset: 2px;
+}
+.orgmap-rich-content .tiptap {
+  min-height: 144px;
+  padding: 12px;
+  outline: none;
+  line-height: 1.6;
+  caret-color: var(--mare-primary);
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+.orgmap-rich-editor[data-empty="true"] .tiptap:before {
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  color: var(--mare-muted);
+  pointer-events: none;
+}
+.orgmap-rich-editor[data-readonly="true"] .orgmap-rich-frame {
+  background: var(--mare-neutral);
+}
+.orgmap-rich-editor[data-readonly="true"] .tiptap {
+  cursor: text;
+}
+.orgmap-rich-content .tiptap p,
+.orgmap-rich-view p {
+  margin: 0 0 0.65em;
+}
+.orgmap-rich-content .tiptap p:last-child,
+.orgmap-rich-view p:last-child {
+  margin-bottom: 0;
+}
+.orgmap-rich-content .tiptap ul,
+.orgmap-rich-content .tiptap ol,
+.orgmap-rich-view ul,
+.orgmap-rich-view ol {
+  padding-inline-start: 1.6em;
+  margin: 0.6em 0;
+}
+.orgmap-rich-content .tiptap li p,
+.orgmap-rich-view li p {
+  margin-bottom: 0.25em;
+}
+.orgmap-rich-content a,
+.orgmap-rich-view a {
+  color: var(--mare-primary-ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  overflow-wrap: anywhere;
+}
+.orgmap-rich-content ::selection,
+.orgmap-rich-view ::selection {
+  background: var(--mare-subtle);
+  color: var(--mare-ink);
+}
+.orgmap-rich-status {
+  margin: 5px 0 0;
+  min-height: 18px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--mare-muted);
+}
+.orgmap-rich-error {
+  color: var(--mare-error);
+  font-size: 12px;
+}
+.orgmap-rich-empty {
+  color: var(--mare-muted);
+}
+.orgmap-rich-view {
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  line-height: 1.6;
+}
+.orgmap-rich-link {
+  padding: 10px 12px;
+  background: var(--mare-neutral);
+  border-bottom: 1px solid var(--mare-line);
+}
+.orgmap-rich-link label,
+.orgmap-rich-recovery label {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+.orgmap-rich-link input {
+  width: 100%;
+  min-width: 0;
+  padding: 8px;
+  border: 1px solid var(--mare-line);
+  border-radius: 6px;
+  background: var(--mare-surface);
+  color: var(--mare-ink);
+  font: inherit;
+}
+.orgmap-rich-link > div {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+.orgmap-rich-link button,
+.orgmap-rich-recovery button {
+  min-height: 32px;
+  border: 1px solid var(--mare-line);
+  border-radius: 6px;
+  padding: 5px 10px;
+  font: inherit;
+  background: var(--mare-surface);
+  color: var(--mare-ink);
+  cursor: pointer;
+}
+.orgmap-rich-link .orgmap-rich-apply {
+  background: var(--mare-primary);
+  border-color: var(--mare-primary);
+  color: var(--mare-on-primary);
+}
+.orgmap-rich-link p {
+  font-size: 12px;
+  color: var(--mare-error);
+  margin: 6px 0 0;
+}
+.orgmap-rich-recovery {
+  margin-top: 12px;
+}
+.orgmap-rich-recovery summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+.orgmap-rich-recovery textarea {
+  width: 100%;
+  min-height: 80px;
+  font: inherit;
+  margin-bottom: 8px;
+}
+@media (max-width: 420px) {
+  .orgmap-rich-toolbar {
+    gap: 1px;
+    padding: 4px;
+  }
+  .orgmap-rich-toolbar button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  .orgmap-rich-content .tiptap {
+    min-height: 156px;
+  }
+}
+
+.orgmap-role-mention {color: var(--mare-primary-ink); background: var(--mare-subtle, #eef2fa); border-radius: 3px; padding-inline: 2px; overflow-wrap: anywhere;}
+.orgmap-role-mention[data-unavailable="true"] {color: var(--mare-muted); background: var(--mare-neutral);}
+.orgmap-mention-picker {border-top: 1px solid var(--mare-line); padding: 8px;}
+.orgmap-mention-picker [role="listbox"] {max-height: 220px; overflow-y: auto;}
+.orgmap-mention-picker button {display: block; width: 100%; min-height: 44px; padding: 8px 10px; border: 0; border-radius: 4px; text-align: start; background: var(--mare-surface); color: var(--mare-ink); font: inherit; overflow-wrap: anywhere; cursor: pointer;}
+.orgmap-mention-picker button[aria-selected="true"], .orgmap-mention-picker button:hover {background: var(--mare-subtle, var(--mare-line));}
+.orgmap-mention-picker p {margin: 6px 2px 0; font-size: 12px; color: var(--mare-muted);}
+
+.orgmap-rich-compact .orgmap-rich-content .tiptap {min-height: 48px; padding: 8px 10px;}
+.orgmap-rich-compact:not(:focus-within) .orgmap-rich-toolbar {display: none;}
+.orgmap-rich-compact .orgmap-rich-label {font-size: 13px;}

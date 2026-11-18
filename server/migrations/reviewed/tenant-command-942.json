@@ -1,0 +1,8 @@
+{
+  "scope": "941_tenant_command_root_definitions.sql",
+  "sourceSha256": "eabfccfabc7519f971adb482ef7ca074faa64124e832c1e7ec50198d3684a4b1",
+  "previousReviewedFingerprint": "ac714b95a8ffe26855ee086451e65e432de62a10486a5ecef48678c1e12e3ff8",
+  "previousReviewedSnapshotSha256": "bb282a2c4cf9593107b79eac81120d84c3bd9198aae49e2d0e2caa142f491d22",
+  "measuredFingerprint": "3cad98db49494f4cf59ed4641cbb3da457fabb7eb93a240b3c4663892e9cd030",
+  "review": "Two separate disposable PostgreSQL databases independently yielded the same fingerprint after the official migrator applied 941. The only schema change is the tenant command validator function: current organization creation with empty root definition collections and historical results remain accepted; forged organization IDs remain rejected. No existing migration was edited."
+}

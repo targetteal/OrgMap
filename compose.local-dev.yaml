@@ -1,0 +1,14 @@
+services:
+  postgres:
+    image: postgres:18
+    environment:
+      POSTGRES_USER: orgmap_migrator
+      POSTGRES_PASSWORD: orgmap_local_only
+      POSTGRES_DB: orgmap
+    ports: ["127.0.0.1:55433:5432"]
+    volumes: ["./.orgmap/local-dev/postgres:/var/lib/postgresql"]
+    healthcheck:
+      test: ["CMD-SHELL", "PGPASSWORD=$$POSTGRES_PASSWORD pg_isready -q -h 127.0.0.1 -U orgmap_migrator -d orgmap"]
+      interval: 2s
+      timeout: 3s
+      retries: 30

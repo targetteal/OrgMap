@@ -1,0 +1,27 @@
+import assert from 'node:assert/strict';
+import {readFile,writeFile} from 'node:fs/promises';
+import {validateRichDocument,toPlainText} from '../../../packages/content/index.js';
+const base='http://127.0.0.1:3016/api/v1';
+const fixture=JSON.parse(await readFile('web/src/features/governance/evidence/preview-fixture.json','utf8'));
+const proof=await fetch(base+'/governance-preview').then(r=>r.json());
+assert.equal(proof.testOnly,true);assert.equal(proof.databaseName,fixture.databaseName);
+assert.match(proof.databaseName,/^orgmap_gov_ui_[0-9a-f]{12}$/);
+assert.ok(fixture.synthetic && fixture.purposePreview);
+const proposalId=process.argv[2];assert.match(proposalId??'',/^[0-9a-f-]{36}$/);
+const login=await fetch(base+'/auth/login',{method:'POST',headers:{origin:'http://governance.localhost:5186','content-type':'application/json'},body:JSON.stringify({email:fixture.email,password:'governanca-preview-test-2026'})});
+assert.equal(login.status,200);
+const cookie=login.headers.getSetCookie().find(c=>c.startsWith('orgmap_session='))!.split(';')[0];
+async function get(path:string){const r=await fetch(base+path,{headers:{cookie}});assert.equal(r.status,200);return (await r.json()).data;}
+const prefix='/organizations/'+fixture.organizationId;
+const detail=await get(prefix+'/proposals/'+proposalId);
+assert.equal(detail.proposal.applyState,'APPLIED');
+const approved=validateRichDocument(detail.revisions.find((r:any)=>r.number===detail.proposal.revision).payload.changes[0].purposeRich);
+const structure=await get(prefix+'/structure');
+const current=structure.roles.find((r:any)=>r.id===fixture.roleId);
+assert.deepEqual(current.purposeRich,approved);assert.equal(current.purpose,toPlainText(approved));
+const role=await get(prefix+'/roles/'+fixture.roleId);
+assert.deepEqual(role.entity.purposeRich,approved);
+assert.ok(JSON.stringify(approved).includes('"bold"'));assert.ok(JSON.stringify(approved).includes('"bulletList"'));
+assert.ok(toPlainText(approved).includes('Registrar aprendizados e '));
+await writeFile('web/src/features/governance/evidence/purpose-existing-roundtrip.json',JSON.stringify({synthetic:true,databaseName:proof.databaseName,proposalId,roleId:fixture.roleId,applyState:detail.proposal.applyState,entityVersion:role.entity.version,approvedPurposeRich:approved,structurePurposeRich:current.purposeRich,detailPurposeRich:role.entity.purposeRich,plain:current.purpose,verifiedAt:new Date().toISOString()},null,2)+'\n');
+console.log('Applied purpose AST matches proposal revision, structure list and role detail; bold/list preserved.');

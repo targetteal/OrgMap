@@ -1,0 +1,26 @@
+import {test,after} from 'node:test';import assert from 'node:assert/strict';import {randomUUID} from 'node:crypto';import {buildApp} from '../../server/src/app.js';import {pool} from '../../server/src/db.js';import {createOrgMapIntegration} from '../../server/integration/index.js';
+if(!/^\/orgmap_integration_[a-f0-9]{32}$/.test(new URL(process.env.DATABASE_URL??'postgres://invalid/').pathname))throw Error('ISOLATED_FIXTURE_REQUIRED');
+const app=await buildApp([createOrgMapIntegration()],{migrationMaxPrefix:999});after(async()=>{await app.close();await pool.end();});
+type Actor={id:string;cookie:string;csrf:string};
+async function call(method:string,path:string,payload?:any,user?:Actor,version?:number){return app.inject({method:method as any,url:'/api/v1'+path,payload,headers:{origin:'http://localhost:5173','idempotency-key':randomUUID(),...(user?{cookie:user.cookie,'x-csrf-token':user.csrf}:{}),...(version!==undefined?{'if-match':`"${version}"`}:{})}});}
+function data(r:any){assert.ok([200,201].includes(r.statusCode),r.body);return r.json().data;}
+async function user(){const r=await call('POST','/auth/register',{email:randomUUID()+'@fixture.invalid',password:'Synthetic-password-1234',displayName:'Circle filter'});return {id:r.json().data.account.id,cookie:`orgmap_session=${r.cookies.find((c:any)=>c.name==='orgmap_session')!.value}`,csrf:r.json().data.csrfToken};}
+test('meeting circle filter preserves grants, scoped cursors and tenant isolation',async()=>{
+ const owner=await user(),member=await user(),guest=await user(),foreign=await user();const org=data(await call('POST','/organizations',{name:'Filter org'},owner)),other=data(await call('POST','/organizations',{name:'Other org'},foreign));const base='/organizations/'+org.organization.id,root=org.rootCircle.id;
+ const circle=data(await call('POST',base+'/circles',{parentCircleId:root,name:'Second circle',mode:'DIRECT'},owner)).circle;
+ const m=data(await call('POST',base+'/members',{accountId:member.id},owner)).membership;
+ async function create(circleId:string,title:string,day:number,access:'READ'|'DENY'){return data(await call('POST',base+'/meeting-series',{title,circleId,localStart:`2030-03-0${day}T12:00`,timeZone:'UTC',durationMinutes:60,recurrence:{frequency:'ONCE'},sections:[{id:'agenda',title:'Agenda',kind:'AGENDA'}],participants:[{memberId:m.id,access,canManage:false,canPublish:false,canRestore:false}],policy:{}},owner)).occurrenceIds[0];}
+ const first=await create(root,'Root one',1,'READ'),second=await create(root,'Root two',2,'READ'),denied=await create(root,'Denied',3,'DENY'),otherMeeting=await create(circle.id,'Other circle',4,'READ');
+ const p1=data(await call('GET',base+'/meetings?circleId='+root+'&limit=1',undefined,member));assert.equal(p1.items.length,1);assert.equal(p1.items[0].id,first);assert.equal(p1.page.hasMore,true);
+ const p2=data(await call('GET',base+'/meetings?circleId='+root+'&limit=1&cursor='+encodeURIComponent(p1.page.nextCursor),undefined,member));assert.deepEqual(p2.items.map((x:any)=>x.id),[second]);assert.equal(p2.page.hasMore,false);
+ assert.equal((await call('GET',base+'/meetings?circleId='+circle.id+'&limit=1&cursor='+encodeURIComponent(p1.page.nextCursor),undefined,member)).statusCode,400);
+ const filtered=data(await call('GET',base+'/meetings?circleId='+circle.id,undefined,member));assert.deepEqual(filtered.items.map((x:any)=>x.id),[otherMeeting]);
+ const all=data(await call('GET',base+'/meetings',undefined,member));assert.deepEqual(all.items.map((x:any)=>x.id),[first,second,otherMeeting]);assert.ok(!all.items.some((x:any)=>x.id===denied));
+ assert.deepEqual(data(await call('GET',base+'/meetings?circleId='+other.rootCircle.id,undefined,member)).items,[]);assert.equal((await call('GET',base+'/meetings?circleId=bad',undefined,member)).statusCode,400);assert.equal((await call('GET',base+'/meetings?circleId='+root,undefined,foreign)).statusCode,404);
+ const plan=[first,second,denied,otherMeeting].map(id=>({resource:{context:'meetings',kind:'meeting',id},actions:['read']}));const guestMember=data(await call('POST',base+'/members',{accountId:guest.id,memberType:'GUEST',accessPlan:plan},owner)).membership;
+ const deniedDetail=data(await call('GET',base+'/meetings/'+denied,undefined,owner));data(await call('POST',base+'/meetings/'+denied+'/actions/participants',{participants:[{memberId:guestMember.id,access:'DENY',canManage:false,canPublish:false,canRestore:false}]},owner,deniedDetail.meeting.version));
+ const guestRoot=data(await call('GET',base+'/meetings?circleId='+root+'&limit=1',undefined,guest));assert.deepEqual(guestRoot.items.map((x:any)=>x.id),[first]);assert.equal(guestRoot.page.hasMore,true);
+ const guestNext=data(await call('GET',base+'/meetings?circleId='+root+'&limit=1&cursor='+encodeURIComponent(guestRoot.page.nextCursor),undefined,guest));assert.deepEqual(guestNext.items.map((x:any)=>x.id),[second]);assert.equal(guestNext.page.hasMore,false);
+ assert.equal((await call('GET',base+'/meetings?circleId='+circle.id+'&limit=1&cursor='+encodeURIComponent(guestRoot.page.nextCursor),undefined,guest)).statusCode,400);
+ assert.deepEqual(data(await call('GET',base+'/meetings?circleId='+circle.id,undefined,guest)).items.map((x:any)=>x.id),[otherMeeting]);assert.equal((await call('GET',base+'/meetings?circleId=bad',undefined,guest)).statusCode,400);
+});

@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "license": "SIL Open Font License 1.1",
+  "upstream": "https://github.com/antijingoist/opendyslexic",
+  "upstreamCommit": "1824da5c0e41dc3e13ffc7f3a636dcaf695d61b7",
+  "modified": false,
+  "files": [
+    {
+      "name": "OpenDyslexic-Regular.woff",
+      "bytes": 115096,
+      "sha256": "7465efa8054da355ee52d1c0404bab60cb2fe1eabfc1cfcecfc37679be4ecb58",
+      "origin": "https://raw.githubusercontent.com/antijingoist/opendyslexic/1824da5c0e41dc3e13ffc7f3a636dcaf695d61b7/compiled/OpenDyslexic-Regular.woff"
+    },
+    {
+      "name": "OpenDyslexic-Bold.woff",
+      "bytes": 121096,
+      "sha256": "2dc180ab7df58833b64ed4a871c51adbe3c53936ca4ac3200c109b26d731075b",
+      "origin": "https://raw.githubusercontent.com/antijingoist/opendyslexic/1824da5c0e41dc3e13ffc7f3a636dcaf695d61b7/compiled/OpenDyslexic-Bold.woff"
+    },
+    {
+      "name": "OFL.txt",
+      "bytes": 4453,
+      "sha256": "caafcccfb70fc72458fcbda812ec8f0a06cb300cbabb87eabbb30b946124394b",
+      "origin": "https://raw.githubusercontent.com/antijingoist/opendyslexic/1824da5c0e41dc3e13ffc7f3a636dcaf695d61b7/OFL.txt"
+    },
+    {
+      "name": "pointer.svg",
+      "bytes": 202,
+      "sha256": "078596ad986b5a82dc84243b7e1be72c583aaed3b5d5cee9b6712ac20f617796",
+      "origin": "Original OrgMap cursor, not OpenDyslexic"
+    }
+  ]
+}

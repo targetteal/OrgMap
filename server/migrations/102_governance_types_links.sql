@@ -1,0 +1,10 @@
+CREATE TABLE gov_document_types(organization_id uuid NOT NULL REFERENCES organizations(id),id uuid NOT NULL,name text NOT NULL,workflow text NOT NULL CHECK(workflow IN ('DIRECT','GOVERNANCE')),active boolean NOT NULL DEFAULT true,version int NOT NULL DEFAULT 1,PRIMARY KEY(organization_id,id));
+ALTER TABLE gov_documents ADD COLUMN type_id uuid;
+ALTER TABLE gov_documents ADD FOREIGN KEY(organization_id,type_id) REFERENCES gov_document_types(organization_id,id);
+CREATE TABLE gov_tension_links(organization_id uuid NOT NULL,id uuid NOT NULL,tension_id uuid NOT NULL,target_kind text NOT NULL CHECK(target_kind IN ('TASK','GOAL','PROPOSAL')),target_id uuid NOT NULL,at timestamptz NOT NULL DEFAULT clock_timestamp(),PRIMARY KEY(organization_id,id),UNIQUE(organization_id,tension_id,target_kind,target_id),FOREIGN KEY(organization_id,tension_id) REFERENCES gov_tensions(organization_id,id));
+ALTER TABLE gov_document_types ENABLE ROW LEVEL SECURITY;
+CREATE POLICY tenant ON gov_document_types USING(organization_id=nullif(current_setting('orgmap.organization_id',true),'')::uuid) WITH CHECK(organization_id=nullif(current_setting('orgmap.organization_id',true),'')::uuid);
+GRANT SELECT,INSERT,UPDATE ON gov_document_types TO orgmap_app;
+ALTER TABLE gov_tension_links ENABLE ROW LEVEL SECURITY;
+CREATE POLICY tenant ON gov_tension_links USING(organization_id=nullif(current_setting('orgmap.organization_id',true),'')::uuid) WITH CHECK(organization_id=nullif(current_setting('orgmap.organization_id',true),'')::uuid);
+GRANT SELECT,INSERT,UPDATE ON gov_tension_links TO orgmap_app;

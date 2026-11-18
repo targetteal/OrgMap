@@ -1,0 +1,221 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { registerHooks } from "node:module";
+import React, { act } from "react";
+import { JSDOM } from "jsdom";
+import type { FeatureContext } from "../../feature-contract";
+import type { SavedProjectView } from "./project-catalog";
+
+test("a role-filtered catalog view saves and reloads grouping and due sort while popover Escape restores focus", async () => {
+  const dom=new JSDOM("<!doctype html><body><main></main></body>",{url:"http://localhost",pretendToBeVisual:true});
+  Object.defineProperty(dom.window, "innerWidth", { configurable: true, value: 1025 });
+  for(const key of ["window","document","navigator","HTMLElement","HTMLInputElement","HTMLSelectElement","HTMLTextAreaElement","HTMLDialogElement","MutationObserver","DOMParser","Node","Event","FormData","getComputedStyle"]) Object.defineProperty(globalThis,key,{value:key === "window" ? dom.window : (dom.window as any)[key],configurable:true});
+  Object.defineProperty(globalThis,"IS_REACT_ACT_ENVIRONMENT",{value:true,configurable:true});
+  dom.window.HTMLDialogElement.prototype.show = function () { this.setAttribute("open", ""); };
+  dom.window.HTMLDialogElement.prototype.showModal = function () { this.setAttribute("open", ""); this.dataset.testModal = "true"; };
+  dom.window.HTMLDialogElement.prototype.close = function () { this.removeAttribute("open"); delete this.dataset.testModal; };
+  registerHooks({load(url,options,next){return url.endsWith(".css") ? {format:"module",source:"export {};",shortCircuit:true} : next(url,options);}});
+  const {createRoot}=await import("react-dom/client");
+  const {LocalizationProvider}=await import("../../localization");
+  const {feature}=await import("./index");
+  const Component=feature.Component;
+  const roleId="00000000-0000-4000-8000-000000000001", circleId="00000000-0000-4000-8000-000000000002", memberId="00000000-0000-4000-8000-000000000003";
+  let stored:SavedProjectView[]=[],version=0,rejectOrder=false;
+  let configuredStates:{id:string;name:string;semantic:string}[]=[],stateVersion=0;
+  const project=(id:string,title:string,endsAt:string|null,role:boolean)=>({id,title,endsAt,creatorId:memberId,description:"",circleId,startsAt:null,contextLinks:role?[{kind:"ROLE",targetId:roleId}]:[],tags:[],accessRole:"MANAGER",visibility:"PRIVATE",version:1,views:["LIST"],frozen:false});
+  const records=[project("early","Prazo primeiro","2026-11-04T12:00:00Z",true),project("late","Prazo depois","2026-12-04T12:00:00Z",true),{...project("other","Outro papel",null,false),circleId:null}];
+  const task = {
+    id: "00000000-0000-4000-8000-000000000004",
+    projectId: "early",
+    creatorId: memberId,
+    title: "Tarefa visível",
+    description: "",
+    status: "TODO",
+    parentId: null,
+    version: 1,
+  };
+  const api=async(path:string,options:any={})=>{
+    let data:any;
+    if(path.endsWith("/project-views")) { if(options.method === "POST") {assert.equal(options.version,version);if(rejectOrder)throw Error("Ordem recusada");stored=options.body.views;version++;} data={views:stored,version}; }
+    else if(path.endsWith("/project-states")) {if(options.method==='POST'){assert.equal(options.version,stateVersion);configuredStates=options.body.states;stateVersion++;}data={states:configuredStates,version:stateVersion};}
+    else if(options.method==='PATCH'&&/\/projects\/[^/]+$/.test(path)){const record=records.find(item=>path.endsWith('/'+item.id))!;assert.ok(record);assert.equal(options.version,record.version);Object.assign(record,{projectStateId:options.body.projectStateId,version:record.version+1});data={project:record};}
+    else if(path.endsWith("/settings")) data={settings:{version:1,defaultPrivacy:"PUBLIC",lockProjectConfiguration:false}};
+    else if(path.endsWith("/projects")) data={projects:records};
+    else if(path.endsWith("/projects/archived"))data={projects:[project("archived-a","Arquivo primeiro",null,true),project("archived-b","Outro registro",null,true)]};
+    else if(path.endsWith("/tasks")) data={tasks:[task]};
+    else if(path.endsWith("/tasks/" + task.id)) data={task,capabilities:{edit:false,assign:false},checklist:[],dependencies:[],links:[],groups:[],subtasks:[]};
+    else throw Error(`Unexpected catalog API ${path}`);
+    return {data};
+  };
+  const context={organizationId:"organization",path:"/projects",session:{account:{id:"account"}},bootstrap:{organization:{name:"Organização de teste"},membership:{id:memberId,orgRole:"OWNER",memberType:"MEMBER"}},members:[{id:memberId,displayName:"Ana",status:"ACTIVE"}],structure:{nodes:[{nodeId:"circle-node",entityId:circleId,kind:"CIRCLE",name:"Pesquisa",parentNodeId:null},{nodeId:"role-node",entityId:roleId,kind:"ROLE",name:"Facilitação",parentNodeId:"circle-node"}],memberships:[],occupancies:[]},api,navigate:()=>{},notify:()=>{}} as unknown as FeatureContext;
+  const mount=async()=>{const root=createRoot(document.querySelector("main")!);await act(async()=>root.render(<LocalizationProvider preferences={{locale:"pt-BR"}}><Component context={context}/></LocalizationProvider>));return root;};
+  const button=(name:string)=>Array.from(document.querySelectorAll<HTMLButtonElement>("button")).find((button)=>button.textContent===name || (button.classList.contains("mare-catalog-pop-trigger") && button.querySelector("span")?.textContent===name))!;
+  const field=(name:string)=>Array.from(document.querySelectorAll("label.field")).find((label)=>label.firstChild?.textContent===name)?.querySelector("input,select") as HTMLInputElement|HTMLSelectElement;
+  const change=async(input:HTMLInputElement|HTMLSelectElement,value:string)=>{await act(async()=>{const prototype=input instanceof HTMLInputElement ? dom.window.HTMLInputElement.prototype : dom.window.HTMLSelectElement.prototype;Object.getOwnPropertyDescriptor(prototype,"value")!.set!.call(input,value);input.dispatchEvent(new dom.window.Event(input instanceof HTMLInputElement ? "input" : "change",{bubbles:true}));});};
+  let root=await mount();
+  try {
+    assert.equal(document.querySelector('[role=status].mare-catalog-count')?.textContent,'3 projetos');
+    const search=document.querySelector<HTMLInputElement>('.mare-catalog-search input')!;
+    await change(search,'projeto sem resultado');
+    assert.equal(document.querySelector('[role=status].mare-catalog-count')?.textContent,'0 projetos');
+    await change(search,'Prazo primeiro');
+    assert.equal(document.querySelector('[role=status].mare-catalog-count')?.textContent,'1 projeto');
+    await change(search,'');
+    const filterTrigger=button("Filtros");
+    await act(async()=>filterTrigger.click());
+    const role=field("Papel");
+    assert.ok(role);
+    await change(role,roleId);
+    assert.equal(document.querySelectorAll(".mare-project-row").length,2);
+    assert.equal(document.querySelector('[role=status].mare-catalog-count')?.textContent,'2 projetos');
+    role.focus();
+    await act(async()=>role.dispatchEvent(new dom.window.KeyboardEvent("keydown",{key:"Escape",bubbles:true})));
+    assert.equal(document.activeElement,filterTrigger);
+    assert.equal(filterTrigger.getAttribute("aria-expanded"),"false");
+    await act(async()=>button("Visualização").click());
+    await change(field("Agrupar"),"ROLE");
+    await change(field("Ordenar"),"DUE");
+    assert.ok(document.querySelector(".mare-project-group")?.textContent?.includes("Facilitação · Pesquisa"));
+    assert.equal(document.querySelector(".mare-project-row strong")?.textContent,"Prazo primeiro");
+    await act(async()=>button("Vistas salvas").click());
+    await change(field("Nome da vista"),"Papel e prazo");
+    await act(async()=>document.querySelector(".mare-catalog-popover form")!.dispatchEvent(new dom.window.Event("submit",{bubbles:true,cancelable:true})));
+    assert.equal(stored[0].roleFilter,roleId);
+    assert.equal(stored[0].grouping,"ROLE");
+    assert.equal(stored[0].sort,"DUE");
+    await act(async()=>root.unmount());
+    root=await mount();
+    assert.equal(document.querySelectorAll(".mare-project-row").length,3);
+    await act(async()=>button("Vistas salvas").click());
+    await act(async()=>button("Papel e prazo").click());
+    assert.equal(document.querySelectorAll(".mare-project-row").length,2);
+    assert.ok(document.querySelector(".mare-project-group")?.textContent?.includes("Facilitação · Pesquisa"));
+    await act(async()=>button("Filtros").click());
+    assert.equal(field("Papel").value,roleId);
+    await act(async()=>button("Visualização").click());
+    await change(field("Ordenar"),"MANUAL");
+    const down=document.querySelector<HTMLButtonElement>('[aria-label="Mover projeto Prazo depois para baixo"]')!;
+    down.focus();
+    await act(async()=>down.click());
+    assert.equal(stored[0].sort,"MANUAL");
+    assert.deepEqual(stored[0].orderIds,["other","early","late"]);
+    assert.equal(document.querySelector(".mare-project-row strong")?.textContent,"Prazo primeiro");
+    assert.equal((document.activeElement as HTMLElement).dataset.orderProjectId,"late");
+    rejectOrder=true;
+    await act(async()=>document.querySelector<HTMLButtonElement>('[aria-label="Mover projeto Prazo depois para cima"]')!.click());
+    assert.equal(document.querySelector(".mare-project-row strong")?.textContent,"Prazo primeiro","a rejected command must not change visible order");
+    assert.deepEqual(stored[0].orderIds,["other","early","late"]);
+    rejectOrder=false;
+    await act(async()=>root.unmount());
+    root=await mount();
+    assert.equal(document.querySelectorAll(".mare-project-row").length,2,"last saved manual view is restored on reopen");
+    assert.equal(document.querySelector(".mare-project-row strong")?.textContent,"Prazo primeiro");
+    const transfer={effectAllowed:"",setData:()=>{}};
+    const drag=new dom.window.Event("dragstart",{bubbles:true});
+    Object.defineProperty(drag,"dataTransfer",{value:transfer});
+    await act(async()=>document.querySelector('[aria-label="Arrastar ordem pessoal de Prazo depois"]')!.dispatchEvent(drag));
+    const drop=new dom.window.Event("drop",{bubbles:true,cancelable:true});
+    Object.defineProperty(drop,"dataTransfer",{value:transfer});
+    await act(async()=>document.querySelector(".mare-project-row-wrap")!.dispatchEvent(drop));
+    assert.equal(document.querySelector(".mare-project-row strong")?.textContent,"Prazo depois");
+    assert.deepEqual(stored[0].orderIds,["other","late","early"]);
+    await act(async()=>button("Visualização").click());
+    const propertyCheckboxes=Array.from(document.querySelectorAll<HTMLInputElement>(".mare-property-options input[type=checkbox]"));
+    assert.equal(propertyCheckboxes.length,4);
+    for(const checkbox of propertyCheckboxes) await act(async()=>checkbox.click());
+    const assertMetadataHidden=()=>{
+      assert.equal(document.querySelectorAll(".mare-project-status,.mare-project-participants,.mare-project-due,.mare-project-progress").length,0);
+      assert.ok(document.querySelector(".mare-project-access"),"access identity cannot be hidden");
+    };
+    assertMetadataHidden();
+    assert.ok(document.querySelector(".mare-project-row strong"));
+    assert.ok(document.querySelector('[aria-label="Selecionar projeto Prazo depois"]'),"selection remains available with metadata hidden");
+    await act(async()=>button("Galeria").click());
+    assertMetadataHidden();
+    assert.ok(document.querySelector(".mare-project-row strong"));
+    await act(async()=>button("Kanban").click());
+    assertMetadataHidden();
+    assert.ok(document.querySelector(".mare-project-board-column h3"),"state remains the structural column heading");
+    assert.ok(document.querySelector(".mare-project-board-open"));
+    await act(async()=>button("Usar estados sugeridos").click());
+    assert.deepEqual(configuredStates.map(state=>state.semantic),['TODO','IN_PROGRESS','DONE']);
+    assert.equal(document.querySelectorAll('.mare-project-board-column').length,4);
+    const article=Array.from(document.querySelectorAll<HTMLElement>('.mare-project-board article')).find(item=>item.querySelector('.mare-project-board-open')?.textContent==='Prazo primeiro')!;
+    const dragData=new Map<string,string>(),boardTransfer={effectAllowed:'',dropEffect:'',types:['application/x-orgmap-project'],setData:(key:string,value:string)=>dragData.set(key,value),getData:(key:string)=>dragData.get(key)??''};
+    const boardDrag=new dom.window.Event('dragstart',{bubbles:true});Object.defineProperty(boardDrag,'dataTransfer',{value:boardTransfer});await act(async()=>article.dispatchEvent(boardDrag));
+    const boardDrop=new dom.window.Event('drop',{bubbles:true,cancelable:true});Object.defineProperty(boardDrop,'dataTransfer',{value:boardTransfer});
+    await act(async()=>document.querySelector(`[data-project-state-id="${configuredStates[0].id}"]`)!.dispatchEvent(boardDrop));
+    assert.equal((records.find(record=>record.id==='early') as any).projectStateId,configuredStates[0].id,'dropping in another column sends and persists the versioned state command');
+    assert.ok(document.querySelector(`[data-project-state-id="${configuredStates[0].id}"]`)!.textContent!.includes('Prazo primeiro'));
+    await act(async()=>button("Vistas salvas").click());
+    await change(field("Nome da vista"),"Sem metadados");
+    await act(async()=>document.querySelector(".mare-catalog-popover form")!.dispatchEvent(new dom.window.Event("submit",{bubbles:true,cancelable:true})));
+    assert.deepEqual(stored[0].visibleProperties,[]);
+    await act(async()=>root.unmount());
+    root=await mount();
+    assertMetadataHidden();
+    assert.ok(document.querySelector(".mare-project-board-open"),"the saved layout and visible properties survive remount");
+    await act(async()=>button("Visualização").click());
+    assert.ok(Array.from(document.querySelectorAll<HTMLInputElement>(".mare-property-options input")).every((input)=>!input.checked));
+    await act(async()=>button("Restaurar propriedades").click());
+    assert.ok(document.querySelector(".mare-project-progress"));
+    const archiveCheckbox=Array.from(document.querySelectorAll("label")).find((label)=>label.textContent?.includes("Mostrar arquivados"))!.querySelector<HTMLInputElement>("input")!;
+    await act(async()=>archiveCheckbox.click());
+    assert.ok(document.querySelector(".mare-archive-list"));
+    assert.equal(document.querySelector('[role=status].mare-catalog-count')?.textContent,'2 projetos arquivados');
+    await change(document.querySelector<HTMLInputElement>(".mare-catalog-search input")!,"arquivo");
+    assert.ok(document.querySelector(".mare-archive-list")!.textContent!.includes("Arquivo primeiro"));
+    assert.equal(document.querySelector('[role=status].mare-catalog-count')?.textContent,'1 projeto arquivado');
+    assert.ok(!document.querySelector(".mare-archive-list")!.textContent!.includes("Outro registro"),"archive uses the actual query filter");
+    await act(async()=>button("Vistas salvas").click());
+    await change(field("Nome da vista"),"Arquivo pesquisado");
+    await act(async()=>document.querySelector(".mare-catalog-popover form")!.dispatchEvent(new dom.window.Event("submit",{bubbles:true,cancelable:true})));
+    assert.equal(stored[0].archived,true);assert.equal(stored[0].query,"arquivo");
+    await act(async()=>root.unmount());root=await mount();
+    assert.ok(document.querySelector(".mare-archive-list"));
+    assert.ok(document.querySelector(".mare-archive-list")!.textContent!.includes("Arquivo primeiro"));
+    assert.ok(!document.querySelector(".mare-archive-list")!.textContent!.includes("Outro registro"));
+    await act(async()=>button("Voltar aos ativos").click());
+    await act(async()=>button("Limpar recorte").click());
+    await act(async()=>button("Kanban").click());
+    const cardCheckbox=document.querySelector<HTMLInputElement>('.mare-project-board [aria-label="Selecionar projeto Prazo primeiro"]')!;
+    assert.ok(cardCheckbox);await act(async()=>cardCheckbox.click());
+    assert.ok(document.querySelector(".mare-bulk-actions"),"Kanban project selection exposes the same bulk actions");
+    assert.ok(document.querySelector(".mare-project-board")!.textContent!.includes("Sem círculo"));
+    assert.ok(!document.querySelector(".mare-project-board")!.textContent!.includes("Projeto pessoal"),"a missing circle never asserts personal privacy");
+
+    const projectOpener = document.querySelector<HTMLButtonElement>(`[data-project-state-id="${configuredStates[0].id}"] .mare-project-board-open`)!;
+    await act(async () => projectOpener.click());
+    const preview = document.querySelector<HTMLDialogElement>(".mare-project-drawer")!;
+    assert.ok(preview.open);
+    assert.equal(preview.dataset.testModal, undefined, "the desktop preview remains modeless");
+    const tasksTab = preview.querySelector<HTMLButtonElement>('[role="tab"][id$="-tasks"]')!;
+    await act(async () => tasksTab.click());
+    assert.equal(tasksTab.getAttribute("aria-selected"), "true");
+    await act(async () => {
+      Object.defineProperty(dom.window, "innerWidth", { configurable: true, value: 1024 });
+      dom.window.dispatchEvent(new dom.window.Event("resize"));
+    });
+    assert.equal(preview.dataset.testModal, "true", "the catalog becomes modal at the compact split boundary");
+    assert.equal(tasksTab.getAttribute("aria-selected"), "true");
+    const taskOpener = preview.querySelector<HTMLButtonElement>(".mare-preview-tasks button")!;
+    await act(async () => taskOpener.click());
+    const taskDrawer = document.querySelector<HTMLDialogElement>(".mare-task-drawer")!;
+    assert.equal(taskDrawer.dataset.testModal, "true", "a task opened over a modal preview joins the top layer");
+    assert.equal(taskDrawer.querySelector("h1")?.textContent, task.title);
+    assert.equal(document.activeElement?.getAttribute("aria-label"), "Fechar tarefa");
+    await act(async () => taskDrawer.dispatchEvent(new dom.window.Event("cancel", { cancelable: true, bubbles: true })));
+    assert.equal(document.querySelector(".mare-task-drawer"), null);
+    assert.ok(preview.open, "closing the task leaves the project preview open");
+    assert.equal(document.activeElement, taskOpener);
+    await act(async () => {
+      Object.defineProperty(dom.window, "innerWidth", { configurable: true, value: 390 });
+      dom.window.dispatchEvent(new dom.window.Event("resize"));
+    });
+    assert.equal(preview.dataset.testModal, "true");
+    assert.equal(tasksTab.getAttribute("aria-selected"), "true", "entering the mobile modal keeps the selected tab");
+    await act(async () => preview.dispatchEvent(new dom.window.Event("cancel", { cancelable: true })));
+    assert.equal(document.querySelector(".mare-project-drawer"), null);
+    assert.equal(document.activeElement, projectOpener);
+  } finally { await act(async()=>root.unmount()); dom.window.close(); }
+});

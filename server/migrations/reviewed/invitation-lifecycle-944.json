@@ -1,0 +1,8 @@
+{
+  "scope": "943_invitation_lifecycle.sql",
+  "sourceSha256": "d3aa264ebc265e432dba05e0e40b26db4d9dfe7824891fbc96565e20b7540e73",
+  "previousReviewedFingerprint": "3cad98db49494f4cf59ed4641cbb3da457fabb7eb93a240b3c4663892e9cd030",
+  "previousReviewedSnapshotSha256": "124213c62b53f1680e064e3f5444b578a30a9378009ae50655300675e056a592",
+  "measuredFingerprint": "5b04241a722887e94aaaac54a7fa6d93f169ddb503f4cb920ba26b46ec77a24e",
+  "review": "Two separate disposable PostgreSQL databases independently yielded the same fingerprint after the official migrator applied 943. Additive invitation timestamps retain unknown historical chronology; delivery generations, bounded terminal outcomes and notifier deduplication preserve existing RLS and table ownership. The dispatcher excludes terminal jobs. No applied migration was edited."
+}

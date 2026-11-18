@@ -1,0 +1,27 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { JSDOM } from "jsdom";
+import React, { act } from "react";
+const dom=new JSDOM("<!doctype html><main></main>",{url:"http://localhost",pretendToBeVisual:true});
+for(const key of ["window","document","navigator","HTMLElement","HTMLInputElement","HTMLSelectElement","HTMLTextAreaElement","Node","Event","MutationObserver","localStorage"]) Object.defineProperty(globalThis,key,{value:(dom.window as any)[key],configurable:true});
+Object.defineProperty(globalThis,"IS_REACT_ACT_ENVIRONMENT",{value:true,configurable:true});
+const {createRoot}=await import("react-dom/client");
+const {DraftForm,clearFormDraft}=await import("./draft-form.js");
+test("form drafts restore typed properties, checkboxes and asynchronous options until explicitly cleared",async()=>{
+ const host=document.querySelector("main")!,root=createRoot(host);
+ const render=(options:boolean)=><DraftForm draftKey="account:org:task"><input name="title" defaultValue="original"/><textarea name="tags"/><input type="checkbox" name="include" defaultChecked={false}/><select name="section"><option value="">Escolha</option>{options && <option value="late">Depois</option>}</select></DraftForm>;
+ await act(async()=>root.render(render(true)));
+ const title=host.querySelector<HTMLInputElement>('input[name="title"]')!,tags=host.querySelector<HTMLTextAreaElement>('textarea')!,checkbox=host.querySelector<HTMLInputElement>('input[type="checkbox"]')!,select=host.querySelector<HTMLSelectElement>('select')!;
+ title.value="Em edição";tags.value="azul";checkbox.checked=true;select.value="late";
+ await act(async()=>select.dispatchEvent(new dom.window.Event("change",{bubbles:true})));
+ await act(async()=>root.render(<div/>));
+ await act(async()=>root.render(render(false)));
+ assert.equal(host.querySelector<HTMLInputElement>('input[name="title"]')!.value,"Em edição");
+ assert.equal(host.querySelector<HTMLTextAreaElement>('textarea')!.value,"azul");
+ assert.equal(host.querySelector<HTMLInputElement>('input[type="checkbox"]')!.checked,true);
+ await act(async()=>root.render(render(true)));
+ await act(async()=>{});
+ assert.equal(host.querySelector<HTMLSelectElement>('select')!.value,"late");
+ clearFormDraft("account:org:task");assert.equal(localStorage.getItem("account:org:task:fields"),null);
+ await act(async()=>root.unmount());
+});

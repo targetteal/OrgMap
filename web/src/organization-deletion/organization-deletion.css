@@ -1,0 +1,9 @@
+.organization-closure { margin-block: 2rem; padding-block-start: 1.5rem; border-top: 1px solid var(--border, var(--mare-line)); }
+.organization-closure h2 { font-size: 1.1rem; }
+.organization-closure p { max-width: 72ch; line-height: 1.6; }
+.organization-closure .dialog-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .75rem; margin-block-start: 1rem; }
+.organization-closure-receipt { padding-block: 1.25rem; border-bottom: 1px solid var(--border, var(--mare-line)); }
+.organization-closure-receipt h2 { font-size: 1.1rem; }
+.organization-closure-receipt dl { display: grid; gap: .75rem; }
+.organization-closure-receipt dt { color: var(--muted, var(--mare-muted)); font-size: .9rem; }
+.organization-closure-reference { overflow-wrap: anywhere; }

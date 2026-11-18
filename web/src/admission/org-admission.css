@@ -1,0 +1,111 @@
+.org-admission {
+  width: min(100%, 600px);
+  margin: 48px auto;
+  padding: 28px;
+  background: var(--surface, #fff);
+  border: 1px solid var(--border, var(--mare-line));
+  border-radius: 12px;
+  overflow-wrap: anywhere;
+}
+.org-admission h1 {
+  margin-bottom: 14px;
+  outline: none;
+}
+.org-admission p {
+  max-width: 70ch;
+  margin-bottom: 16px;
+}
+.org-admission-account {
+  font-weight: 500;
+}
+.org-admission-proof {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border, var(--mare-line));
+}
+.org-admission-proof h2 {
+  margin-bottom: 10px;
+}
+.org-admission form {
+  display: grid;
+  gap: 8px;
+}
+.org-admission .field {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+}
+.org-admission input {
+  min-height: 44px;
+  caret-color: var(--orange, var(--mare-primary-ink));
+}
+.org-admission input[aria-invalid="true"] {
+  border-color: var(--mare-error);
+}
+.org-admission input:disabled {
+  color: var(--muted, var(--mare-muted));
+  background: var(--hover, var(--mare-subtle));
+}
+.org-admission .org-admission-help {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted, var(--mare-muted));
+  margin: 0 0 14px;
+}
+.org-admission-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+}
+.org-admission-actions button {
+  min-height: 44px;
+  padding: 10px 16px;
+  white-space: normal;
+}
+.org-admission .primary {
+  background: var(--mare-primary);
+}
+.org-admission .primary:hover {
+  background: var(--mare-primary);
+}
+.org-admission .org-admission-new-help {
+  margin: 12px 0 0;
+}
+.org-admission .org-admission-notice {
+  margin: 20px 0;
+  padding: 14px 16px;
+  border: 1px solid var(--mare-line);
+  border-radius: 8px;
+  background: var(--mare-error-bg);
+  color: var(--mare-warning);
+}
+.org-admission-success {
+  margin: 24px 0 16px;
+  font-weight: 500;
+}
+.org-admission-progress {
+  margin: 14px 0 0;
+  font-size: 12px;
+  color: var(--muted, var(--mare-muted));
+}
+.org-admission :focus-visible {
+  outline: 2px solid var(--mare-primary-ink);
+  outline-offset: 3px;
+}
+@media (max-width: 600px) {
+  .org-admission {
+    margin: 20px auto;
+    padding: 20px;
+    width: 100%;
+  }
+  .org-admission-actions {
+    align-items: stretch;
+  }
+  .org-admission-actions button {
+    flex: 1 1 auto;
+  }
+  .org-admission h1 {
+    font-size: 20px;
+  }
+}

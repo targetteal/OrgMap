@@ -1,0 +1,16 @@
+{
+  "name": "@orgmap/content",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@tiptap/pm": "3.32.0",
+    "@tiptap/y-tiptap": "3.0.10",
+    "yjs": "13.6.33"
+  },
+  "exports": {
+    ".": "./index.ts",
+    "./collaboration": "./collaboration.ts",
+    "./schema": "./schema.ts"
+  }
+}

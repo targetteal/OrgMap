@@ -1,0 +1,50 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import React,{act,useState} from 'react';
+import {JSDOM} from 'jsdom';
+import {createServer} from 'vite';
+test('directory retains filters while opening, switching and closing the real profile',async()=>{
+ const dom=new JSDOM('<!doctype html><main></main>',{url:'http://members.localhost/members'});
+ Object.defineProperty(dom.window,'innerWidth',{configurable:true,value:1025});
+ for(const key of ['window','document','navigator','HTMLElement','Element','Node','Event','KeyboardEvent'])Object.defineProperty(globalThis,key,{value:key==='window'?dom.window:(dom.window as any)[key],configurable:true});
+ Object.defineProperty(globalThis,'IS_REACT_ACT_ENVIRONMENT',{value:true,configurable:true});
+ Object.defineProperty(globalThis,'requestAnimationFrame',{value:(callback:FrameRequestCallback)=>setTimeout(()=>callback(0),0),configurable:true});
+ const {createRoot}=await import('react-dom/client');
+ const vite=await createServer({root:new URL('../',import.meta.url).pathname,configFile:false,logLevel:'error',server:{middlewareMode:true,watch:null,hmr:false,ws:false},appType:'custom'});
+ const {MemberDirectoryPage}=await vite.ssrLoadModule('/src/MemberDirectoryPage.tsx');
+ const {MemberProfileContent}=await vite.ssrLoadModule('/src/MemberProfileContent.tsx');
+ const members=[{id:'p',displayName:'Lia',status:'ACTIVE',memberType:'MEMBER',orgRole:'MEMBER'},{id:'q',displayName:'Mar',status:'SUSPENDED',memberType:'GUEST',orgRole:'MEMBER'}];
+ const structure={nodes:[{nodeId:'c',entityId:'circle',kind:'CIRCLE',name:'Comunicação',parentNodeId:null},{nodeId:'r',entityId:'role',kind:'ROLE',name:'Curadoria',parentNodeId:'c'}],occupancies:[{id:'occ',memberId:'p',roleId:'role',circleId:'circle',startsAt:'2020-01-01T00:00:00Z'}],memberships:[],coverage:{complete:true}};
+ let invites=0,adds=0;
+ function Harness(){const [path,setPath]=useState('/members');const id=/^\/members\/([^/?]+)/.exec(path)?.[1];const selected=members.find(m=>m.id===id);return <MemberDirectoryPage organizationId="org" organizationName="Organização real" members={members} structure={structure} selectedMember={selected} path={path} guest={false} owner={true} currentMemberId="p" navigate={setPath} onInvite={()=>invites++} onAdd={()=>adds++}>{selected&&<MemberProfileContent member={selected} structure={structure} context={null} path={path} guest={false} owner={true} currentMemberId="p" navigate={setPath} onEdit={()=>{}}/>}</MemberDirectoryPage>}
+ const root=createRoot(document.querySelector('main')!);
+ try{
+  await act(async()=>root.render(<Harness/>));
+  const input=document.querySelector('input[aria-label="Pesquisar membros"]') as HTMLInputElement;
+  await act(async()=>{Object.getOwnPropertyDescriptor(dom.window.HTMLInputElement.prototype,'value')!.set!.call(input,'comunicacao');input.dispatchEvent(new dom.window.Event('input',{bubbles:true}));});
+  assert.equal(document.querySelectorAll('.mare-member-row').length,1);
+  const row=document.querySelector('.mare-member-row') as HTMLButtonElement;
+  await act(async()=>row.click());
+  assert.equal(document.querySelector('.mare-member-drawer h1')?.textContent,'Lia');
+  assert.match(document.querySelector('.mare-member-drawer')!.textContent!,/Curadoria|Comunicação/);
+  assert.equal(input.value,'comunicacao');
+  const expand=document.querySelector('button[aria-label="Expandir perfil"]') as HTMLButtonElement;
+  await act(async()=>expand.click());
+  assert.equal((document.querySelector('.mare-members-directory') as HTMLElement).hidden,true);
+  await act(async()=>(document.querySelector('button[aria-label="Restaurar largura do perfil"]') as HTMLButtonElement).click());
+  assert.equal((document.querySelector('.mare-members-directory') as HTMLElement).hidden,false);
+  Object.defineProperty(window,'innerWidth',{configurable:true,value:1024});
+  await act(async()=>window.dispatchEvent(new dom.window.Event('resize')));
+  assert.equal(document.querySelector('.mare-member-drawer')?.getAttribute('role'),'dialog');
+  assert.ok(document.querySelector('.mare-members-directory')!.hasAttribute('inert'));
+  assert.equal(document.querySelector('button[aria-label="Expandir perfil"]'),null);
+  const structureTab=Array.from(document.querySelectorAll('.member-profile-tabs a')).find(a=>a.textContent==='Estrutura') as HTMLAnchorElement;
+  await act(async()=>structureTab.click());
+  assert.equal(structureTab.getAttribute('aria-current'),'page');
+  const drawer=document.querySelector('.mare-member-drawer') as HTMLElement;
+  await act(async()=>drawer.dispatchEvent(new dom.window.KeyboardEvent('keydown',{key:'Escape',bubbles:true})));
+  assert.equal(document.querySelector('.mare-member-drawer'),null);assert.equal(input.value,'comunicacao');
+  await act(async()=>new Promise(resolve=>setTimeout(resolve,5)));assert.equal(document.activeElement,row);
+  assert.equal(invites,0);assert.equal(adds,0);
+ }finally{await act(async()=>root.unmount());await vite.close();dom.window.close()}
+});

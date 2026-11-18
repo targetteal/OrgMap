@@ -1,0 +1,83 @@
+name: orgmap-selfhosted
+
+services:
+  postgres:
+    image: postgres:18-bookworm@sha256:ece55f7868da684e400f82f1030a050718adbdd65c23aa500c486f6e2950dc0f
+    network_mode: none
+    environment:
+      POSTGRES_USER: orgmap_migrator
+      POSTGRES_PASSWORD: ${ORGMAP_DB_PASSWORD:?Set ORGMAP_DB_PASSWORD in .env}
+      POSTGRES_DB: postgres
+      POSTGRES_INITDB_ARGS: --auth-local=scram-sha-256 --auth-host=scram-sha-256
+    restart: unless-stopped
+    volumes:
+      - postgres:/var/lib/postgresql
+      - postgres-socket:/var/run/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "PGPASSWORD=$$POSTGRES_PASSWORD pg_isready -q -h 127.0.0.1 -U orgmap_migrator -d postgres"]
+      interval: 2s
+      timeout: 3s
+      retries: 45
+
+  setup:
+    image: ${ORGMAP_IMAGE_PREFIX:-ghcr.io/targetteal/orgmap}-operator:${ORGMAP_VERSION:?Set ORGMAP_VERSION in .env}
+    profiles: [operator]
+    hostname: orgmap-runtime
+    network_mode: none
+    init: true
+    environment:
+      ORGMAP_DB_PASSWORD: ${ORGMAP_DB_PASSWORD:?Set ORGMAP_DB_PASSWORD in .env}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - postgres-socket:/var/run/postgresql
+      - data:/var/lib/orgmap
+      - backups:/backups
+    # The PostgreSQL base image declares a data volume. The operator uses the socket.
+    tmpfs:
+      - /var/lib/postgresql
+
+  app:
+    image: ${ORGMAP_IMAGE_PREFIX:-ghcr.io/targetteal/orgmap}-app:${ORGMAP_VERSION:?Set ORGMAP_VERSION in .env}
+    hostname: orgmap-runtime
+    init: true
+    restart: unless-stopped
+    stop_grace_period: 30s
+    environment:
+      PORT: "3001"
+      ORGMAP_HTTP_HOST: 0.0.0.0
+      ORGMAP_PUBLIC_URL: ${ORGMAP_PUBLIC_URL:-http://localhost:5230}
+      ORGMAP_MAIL_FROM: ${ORGMAP_MAIL_FROM:-}
+      BREVO_API_KEY: ${BREVO_API_KEY:-}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - postgres-socket:/var/run/postgresql
+      - data:/var/lib/orgmap
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3001/api/ready').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+
+  web:
+    image: ${ORGMAP_IMAGE_PREFIX:-ghcr.io/targetteal/orgmap}-web:${ORGMAP_VERSION:?Set ORGMAP_VERSION in .env}
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${ORGMAP_PORT:-5230}:8080"
+    depends_on:
+      app:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/api/ready"]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+
+volumes:
+  postgres:
+  postgres-socket:
+  data:
+  backups:

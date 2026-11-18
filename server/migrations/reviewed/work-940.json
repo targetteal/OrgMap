@@ -1,0 +1,17 @@
+{
+  "format": "orgmap-work-reviewed-schema-v1",
+  "postgresMajor": 18,
+  "through": 939,
+  "predecessorSnapshotSha256": "280d4aae4b1e80e22369c610be819f31c42ef37daab025534b46c3563a2ead2a",
+  "schemaFingerprint": "ac714b95a8ffe26855ee086451e65e432de62a10486a5ecef48678c1e12e3ff8",
+  "migrations": [
+    {
+      "name": "938_mare_reviewed_schema_baseline.sql",
+      "checksum": "0b32698c4355c8431ac1183ea4941fe20073c9cbd92d1f9648d44c289d317976"
+    },
+    {
+      "name": "939_work_project_extensions.sql",
+      "checksum": "2f2b373247dccdeb3925b16e1a4da29347b2657e5cab6e8cb50a0421777f2774"
+    }
+  ]
+}

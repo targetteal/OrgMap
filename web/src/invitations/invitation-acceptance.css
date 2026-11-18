@@ -1,0 +1,12 @@
+.invitation-acceptance{min-height:100dvh;background:var(--mare-neutral);padding:clamp(20px,5vw,64px);color:var(--mare-ink)}
+.invitation-acceptance>header{display:flex;align-items:center;justify-content:space-between;gap:24px;max-width:960px;margin:0 auto 40px;flex-wrap:wrap}
+.invitation-acceptance>header .orgmap-brand{max-width:220px}
+.invitation-acceptance .auth-language{max-width:210px;margin:0}
+.invitation-card{max-width:620px;margin:0 auto;padding:clamp(24px,5vw,40px);background:var(--mare-surface);border:1px solid var(--mare-line);border-radius:14px}
+.invitation-card h1{font-size:clamp(24px,4vw,32px);line-height:1.25;margin:0 0 24px;overflow-wrap:anywhere}
+.invitation-card p{line-height:1.6;overflow-wrap:anywhere}
+.invitation-email{font-weight:600}
+.invitation-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.invitation-card footer{border-top:1px solid var(--mare-line);margin-top:32px;padding-top:20px}
+.invitation-card button{min-height:44px}
+.invitation-card input{min-height:44px;width:100%}

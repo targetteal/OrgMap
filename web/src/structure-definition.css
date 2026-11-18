@@ -1,0 +1,19 @@
+.definition-editor { border: 0; padding: 0; margin: 20px 0; min-width: 0; }
+.definition-editor legend { font-weight: 600; }
+.definition-editor > p { margin: 6px 0 12px; }
+.definition-items { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.definition-items > li { display: flex; align-items: end; gap: 8px; }
+.definition-items .field { flex: 1; min-width: 0; margin: 0; }
+.definition-items textarea { width: 100%; resize: vertical; }
+.definition-items > li > button { flex-shrink: 0; margin-bottom: 2px; }
+.definition-editor > button { margin-top: 12px; }
+.definition-section li { white-space: pre-wrap; overflow-wrap: anywhere; margin-block: 8px; }
+.definition-authority { max-width: 70ch; font-size: 0.875rem; }
+@media (max-width: 480px) {
+  .definition-items > li { flex-direction: column; align-items: stretch; gap: 4px; }
+  .definition-items > li > button { align-self: flex-end; }
+}
+
+.definition-items .orgmap-rich-editor {width: 100%;}
+
+.definition-items>li{display:grid;grid-template-columns:minmax(0,1fr) 36px;gap:8px;align-items:start}.definition-items .field{margin:0}.definition-items .orgmap-rich-label{font-size:12px;font-weight:550;line-height:1.5;display:flex;gap:6px;align-items:baseline;margin-bottom:8px}.definition-items .orgmap-rich-label>span{font-size:11px;color:var(--muted);font-weight:400}.app-shell .definition-items>li>.definition-remove,.definition-items>li>.definition-remove{display:grid;place-items:center;width:32px;min-height:32px;padding:4px;margin-top:27px;border:0;background:transparent;border-radius:8px;color:var(--muted)}.definition-remove:hover{background:var(--subtle);color:var(--ink)}.definition-editor>.definition-add{display:inline-flex;align-items:center;gap:8px;margin-top:12px;padding:6px 0;min-height:36px;border:0;background:transparent;color:var(--mare-primary-ink);font-size:13px;font-weight:550}.definition-editor>p{font-size:12px;line-height:1.6;margin:6px 0 16px}.definition-editor{margin:24px 0}.definition-editor legend{padding:0;font-size:14px}.definition-items .orgmap-rich-editor{min-width:0}.definition-items .orgmap-rich-editor p{margin-block:0}

@@ -1,0 +1,42 @@
+{
+  "license": "SIL OFL1.1; license texts included",
+  "cjkSourceCommit": "f8d157532fbfaeda587e826d4cd5b21a49186f7c",
+  "sources": [
+    "https://github.com/notofonts/noto-cjk/tree/main/Sans",
+    "https://github.com/google/fonts/tree/main/ofl/notoemoji"
+  ],
+  "files": [
+    {
+      "file": "NotoSansCJKjp-Bold.otf",
+      "size": 17032620,
+      "sha256": "e53dcb0dcb2922e45d01aae1ebd2f382bb81d4229b18b6b883bd170678af1f76"
+    },
+    {
+      "file": "source-commit.txt",
+      "size": 41,
+      "sha256": "f0e0ed60866a96ce3c90cd01643f810866efa48104aea30c5bb768e73bf2f7c6"
+    },
+    {
+      "file": "OFL-NotoEmoji.txt",
+      "size": 4330,
+      "sha256": "500bb1ccf43df7bbb522112f9133a52b16e1c35e809632f5d8609b179152de5b"
+    },
+    {
+      "file": "NotoSansCJKjp-Regular.otf",
+      "size": 16467736,
+      "sha256": "68a3fc98800b2a27b371f2fb79991daf3633bd89309d4ffaa6946fd587f375b5"
+    },
+    {
+      "file": "OFL-NotoSansCJK.txt",
+      "size": 4301,
+      "sha256": "6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2"
+    },
+    {
+      "file": "NotoEmoji-Regular.ttf",
+      "size": 1982596,
+      "sha256": "de6c18832938afc99caf132b39d6a30a19bac7f2e812e28db2535b4608d27551"
+    }
+  ],
+  "runtimeNetwork": false,
+  "status": "assets downloaded; actual fontkit coverage/subset/render proof still pending dependency install"
+}

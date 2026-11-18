@@ -1,0 +1,207 @@
+/* Approved Maré catalogue composition, using authorized live records. */
+.mare-record-catalogue{--ink:var(--mare-ink);--muted:var(--mare-muted);--surface:var(--mare-surface);--line:var(--mare-line);--subtle:var(--mare-subtle);background:var(--mare-neutral);min-width:0}
+.mare-record-catalogue.gov-page>.gov-heading{display:flex;align-items:center;padding:24px 32px 20px;background:transparent;border:0;gap:16px}
+.mare-record-catalogue>.gov-heading>div:first-child:empty,.mare-record-catalogue>.gov-heading>div:first-child:has(h1:only-child){display:none}
+.record-organization-context{font-size:13px;color:var(--mare-muted);margin-right:auto}
+.mare-record-catalogue .gov-heading>.gov-actions{margin-left:auto}
+.mare-record-catalogue .gov-heading button.primary{display:inline-flex;align-items:center;gap:9px;padding:11px 16px}
+.mare-record-catalogue .mare-governance-scopes{display:flex;align-items:center;gap:24px;padding:0;margin:0 32px;border-bottom:1px solid var(--mare-line)}
+.mare-record-catalogue .mare-governance-scopes button{display:flex;align-items:center;gap:9px;border:0;background:none;border-radius:0;padding:14px 3px;margin-bottom:-1px;border-bottom:2px solid transparent;font-size:14px;color:var(--mare-muted);font-weight:550}
+.mare-record-catalogue .mare-governance-scopes button[aria-pressed=true]{color:var(--mare-primary-ink);border-bottom-color:var(--mare-primary);background:none}
+.record-scope-help{font-size:13px;line-height:1.6;color:var(--mare-muted);margin:14px 32px 0}
+.mare-record-catalogue .gov-toolbar{padding:20px 32px 24px;display:flex;align-items:center;gap:16px;border:0;background:transparent}
+.mare-record-catalogue .gov-toolbar>strong{order:2;white-space:nowrap;font-size:12px;color:var(--mare-muted);font-weight:450}
+.mare-record-catalogue .gov-toolbar>.gov-actions{display:flex;flex-direction:row;flex:1;gap:12px;align-items:center;margin:0}
+.mare-record-catalogue .record-search{display:flex;align-items:center;gap:10px;flex:1;order:-1;border:1px solid var(--mare-line);border-radius:10px;padding:0 14px;background:var(--mare-surface);min-width:0;color:var(--mare-muted)}
+.mare-record-catalogue .record-search input{width:100%;min-width:0;border:0;padding:13px 0;background:transparent;box-shadow:none;font-size:14px}
+.mare-record-catalogue .record-search:focus-within{outline:2px solid var(--mare-primary-ink);outline-offset:2px}
+.mare-record-catalogue .record-search input:focus{outline:0}
+.mare-record-catalogue .mare-governance-options>summary{font-size:13px;font-weight:550;min-height:45px;background:var(--mare-surface)}
+.mare-record-catalogue .empty-state{margin:0 32px 32px;background:var(--mare-surface);border:1px solid var(--mare-line);border-radius:14px;padding:56px 24px}
+.mare-record-catalogue .empty-state h2{font-size:22px;line-height:1.35;font-weight:650}
+.mare-record-catalogue .empty-state p{color:var(--mare-muted);font-size:14px;line-height:1.6}
+.mare-record-catalogue .mare-governance-restrictions{padding:0 32px 32px}
+.mare-record-catalogue .mare-governance-restrictions section{margin-bottom:28px}
+.mare-record-catalogue .mare-governance-restrictions h2{margin:0 0 14px}
+.mare-record-catalogue .gov-group-toggle{display:flex;align-items:center;gap:12px;text-align:left;width:100%;border:0;background:transparent;padding:3px 0;min-height:40px;font-size:20px;font-weight:650}
+.restriction-circle-icon{display:grid;place-items:center;color:var(--mare-primary-ink);flex:none}
+.restriction-group-count{font-size:12px;font-weight:450;color:var(--mare-muted)}
+.mare-record-catalogue .gov-group-toggle>svg:last-child{margin-left:auto;transition:transform .18s ease-out}
+.mare-record-catalogue .gov-group-toggle>svg.is-collapsed{transform:rotate(-90deg)}
+.restriction-group-rows{border:1px solid var(--mare-line);border-radius:14px;overflow:hidden;background:var(--mare-surface)}
+.mare-record-catalogue .restriction-reading-row{display:grid;grid-template-columns:24px minmax(0,1fr) auto 18px;align-items:center;gap:18px;width:100%;text-align:left;border:0;border-radius:0;background:var(--mare-surface);padding:22px 24px;color:var(--mare-ink)}
+.restriction-reading-row+.restriction-reading-row{border-top:1px solid var(--mare-line)}
+.mare-record-catalogue .restriction-reading-row:hover{background:var(--mare-subtle)}
+.restriction-reading-row>svg{color:var(--mare-primary-ink)}
+.restriction-row-copy{display:flex;flex-direction:column;gap:8px;min-width:0}
+.restriction-row-copy>strong{font-size:15px;font-weight:650;line-height:1.5}
+.restriction-row-excerpt{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:var(--mare-muted);font-size:13px;line-height:1.65;font-weight:400;max-width:75ch}
+.restriction-row-meta{display:flex;align-items:flex-end;flex-direction:column;gap:8px;font-size:12px;font-weight:400;color:var(--mare-muted)}
+.restriction-row-meta small{font-size:11px}
+.record-state{display:inline-flex;align-items:center;padding:4px 9px;min-height:20px;border-radius:6px;font-size:11px;line-height:1.4;color:var(--mare-primary-ink);background:var(--mare-subtle);font-weight:550;white-space:nowrap}
+.restriction-role-chips{display:flex;flex-wrap:wrap;gap:6px}
+.restriction-role-chips>span{font-size:11px;padding:3px 8px;color:var(--mare-muted);background:var(--mare-neutral);border:1px solid var(--mare-line);border-radius:5px;font-weight:450}
+.tension-catalogue-list{margin:0 32px 32px;background:var(--mare-surface);border:1px solid var(--mare-line);border-radius:14px;overflow:hidden}
+.tension-catalogue-row{padding:22px 24px}
+.tension-catalogue-row+.tension-catalogue-row{border-top:1px solid var(--mare-line)}
+.tension-catalogue-row.is-selected{background:var(--mare-subtle)}
+.mare-record-catalogue .tension-catalogue-open{display:flex;flex-direction:column;position:relative;gap:12px;padding:0 30px 0 0;border:0;border-radius:0;background:transparent;width:100%;text-align:left}
+.tension-row-title{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tension-row-title>strong{font-size:18px;font-weight:650;line-height:1.45}
+.tension-row-context{display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;color:var(--mare-muted);font-size:12px;font-weight:400}
+.tension-row-context>span{display:inline-flex;align-items:center;gap:6px}
+.tension-row-excerpt{font-size:14px;line-height:1.6;color:var(--mare-muted);font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tension-row-arrow{position:absolute;right:0;top:50%;color:var(--mare-primary-ink)}
+.mare-record-catalogue .tension-row-route{display:flex;align-items:center;gap:8px;border:0;background:var(--mare-neutral);margin-top:16px;padding:7px 10px;min-height:30px;font-size:12px;font-weight:450}
+.mare-record-catalogue.has-tension-drawer .tension-catalogue-list{margin-right:calc(50% + 24px)}
+.mare-record-catalogue .mare-governance-tension-drawer{top:70px;padding:28px 30px;width:calc(50vw - 34px);border-color:var(--mare-line);box-shadow:none;z-index:25}
+.mare-record-catalogue .mare-governance-tension-drawer.is-expanded{width:calc(100vw - 70px)}
+.mare-record-catalogue .mare-governance-drawer-actions{align-items:center;gap:6px}
+.mare-governance-drawer-actions>span{display:flex;align-items:center;gap:8px;margin-right:auto;min-width:0;font-size:13px;color:var(--mare-muted)}
+.mare-record-catalogue .mare-governance-drawer-actions button{display:grid;place-items:center;border:0;background:transparent;padding:7px;min-height:36px}
+.mare-record-catalogue .mare-governance-tension-drawer h2{font-size:28px;margin:30px 0 16px;line-height:1.3;letter-spacing:-.025em}
+.mare-governance-tension-drawer>.rich-text-view{padding:24px 0;border-block:1px solid var(--mare-line);margin-block:24px;line-height:1.7}
+.mare-record-catalogue .tension-process-help{font-size:13px;line-height:1.7;color:var(--mare-muted)}
+.mare-record-catalogue .tension-forward-actions{display:grid;grid-template-columns:1fr;gap:10px;margin-top:28px;padding-top:24px;border-top:1px solid var(--mare-line)}
+.tension-forward-actions>h3{font-size:19px;margin:0 0 12px;font-weight:650}
+.mare-record-catalogue .tension-forward-actions>button{display:flex;align-items:center;gap:10px;text-align:left;justify-content:flex-start;padding:12px 14px;background:var(--mare-surface);border-color:var(--mare-line)}
+.mare-record-catalogue .tension-forward-actions>button:last-child{margin-top:12px;justify-content:flex-end;border:0;color:var(--mare-muted);font-size:12px;text-decoration:underline;text-underline-offset:4px}
+@media(max-width:900px){.mare-record-catalogue .gov-toolbar{flex-wrap:wrap}.mare-record-catalogue .gov-toolbar>strong{width:100%}.mare-record-catalogue .gov-toolbar>.gov-actions{min-width:0}.restriction-reading-row{gap:12px}.restriction-row-meta{grid-column:2;align-items:flex-start;flex-direction:row}.restriction-reading-row>svg:last-child{grid-column:4;grid-row:1}.mare-record-catalogue .mare-governance-tension-drawer{width:50vw}.mare-record-catalogue.has-tension-drawer .tension-row-title>strong{font-size:16px}}
+@media(max-width:700px){.mare-record-catalogue.gov-page>.gov-heading{padding:20px 16px 16px;flex-wrap:wrap}.mare-record-catalogue .mare-governance-scopes{margin-inline:16px;gap:16px}.mare-record-catalogue .mare-governance-scopes button{font-size:13px;gap:6px}.record-scope-help{margin-inline:16px;font-size:12px}.mare-record-catalogue .gov-toolbar{padding:16px}.mare-record-catalogue .gov-toolbar>.gov-actions{flex-wrap:wrap;width:100%;gap:10px}.mare-record-catalogue .record-search{flex-basis:100%}.mare-record-catalogue .mare-governance-restrictions{padding-inline:16px}.mare-record-catalogue .gov-group-toggle{font-size:17px;flex-wrap:wrap;gap:8px}.restriction-group-count{font-size:11px}.mare-record-catalogue .restriction-reading-row{padding:18px 16px;grid-template-columns:20px minmax(0,1fr) 18px;gap:12px}.restriction-reading-row>svg:last-child{grid-column:3}.restriction-row-meta{grid-column:2/3;flex-wrap:wrap;gap:6px}.tension-catalogue-list,.mare-record-catalogue.has-tension-drawer .tension-catalogue-list{margin:0 16px 24px}.tension-catalogue-row{padding:20px 16px}.tension-row-title>strong{font-size:17px}.mare-record-catalogue .mare-governance-tension-drawer,.mare-record-catalogue .mare-governance-tension-drawer.is-expanded{top:64px;width:100vw;padding:24px 20px}.mare-record-catalogue .empty-state{margin-inline:16px}.mare-record-catalogue .mare-governance-options-panel{position:fixed;top:25vh;left:16px;right:16px;width:auto;max-height:65dvh;overflow:auto}.workspace[data-main-page="/projects"]>.main-content>.work-root>.page-heading{padding:20px 16px 0}}
+
+.mare-record-catalogue .gov-table-scroll[hidden]{display:none}.tension-state-filter{display:flex;align-items:center;gap:8px;color:var(--mare-muted)}.tension-state-filter select{min-width:140px}.mare-project-organization{color:var(--mare-muted);font-size:13px;font-weight:400}
+
+.mare-record-catalogue .mare-governance-scopes{background:transparent}.app-shell:not(.secondary-collapsed) .mare-record-catalogue .mare-governance-tension-drawer{top:76px;width:calc((100vw - 256px)/2)}.app-shell:not(.secondary-collapsed) .mare-record-catalogue .mare-governance-tension-drawer.is-expanded{width:calc(100vw - 256px)}.app-shell.secondary-collapsed .mare-record-catalogue .mare-governance-tension-drawer{top:76px;width:calc((100vw - 72px)/2)}.app-shell.secondary-collapsed .mare-record-catalogue .mare-governance-tension-drawer.is-expanded{width:calc(100vw - 72px)}
+.mare-governance-restriction-preview>.gov-document-content{margin-block:24px 32px}.mare-governance-restriction-preview>.gov-document-content>p:first-child{font-size:12px;color:var(--mare-muted)}.mare-governance-restriction-preview>.gov-document-content>.rich-text-view{font-size:16px;line-height:1.8}.restriction-history{margin:24px 0;border-top:1px solid var(--mare-line);padding-top:20px}.restriction-history summary{cursor:pointer;font-weight:550;font-size:13px}.restriction-history ol{font-size:12px;line-height:1.7;color:var(--mare-muted)}
+@media(max-width:767px){.app-shell .mare-record-catalogue .mare-governance-tension-drawer,.app-shell .mare-record-catalogue .mare-governance-tension-drawer.is-expanded{top:72px;width:100vw}.record-organization-context{flex-basis:100%}.mare-record-catalogue .gov-heading>.gov-actions{margin-left:0}}
+
+@media(max-width:700px){.app-shell .mare-record-catalogue .gov-toolbar>.gov-actions>.record-search{flex:1 0 100%;width:100%;box-sizing:border-box}.app-shell .mare-record-catalogue .gov-toolbar>.gov-actions{width:100%}}
+
+.app-shell .mare-record-catalogue .tension-catalogue-open{align-items:flex-start;justify-content:flex-start}.tension-drawer-person{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--mare-muted);margin:0 0 24px}.tension-person-avatar{display:grid;place-items:center;width:34px;height:34px;flex:none;border-radius:50%;background:var(--mare-subtle);color:var(--mare-primary-ink);font-size:11px;font-weight:650}.tension-drawer-person>.record-state{margin-left:auto}.tension-drawer-description{padding-block:20px;border-block:1px solid var(--mare-line);font-size:14px;line-height:1.75}.app-shell:not(.secondary-collapsed) .mare-record-catalogue.has-tension-drawer{padding-right:calc((100vw - 256px)/2);box-sizing:border-box}.app-shell.secondary-collapsed .mare-record-catalogue.has-tension-drawer{padding-right:calc((100vw - 72px)/2);box-sizing:border-box}.mare-record-catalogue.has-tension-drawer .tension-catalogue-list{margin-right:24px}.mare-record-catalogue.has-tension-drawer .gov-toolbar{flex-wrap:wrap}.mare-record-catalogue.has-tension-drawer .gov-toolbar>.gov-actions{flex-wrap:wrap}.mare-record-catalogue.has-tension-drawer .gov-toolbar .record-search{flex:1 0 100%;box-sizing:border-box}.mare-record-catalogue.has-tension-drawer .gov-heading{flex-wrap:wrap}.mare-record-catalogue.has-tension-drawer .record-organization-context{flex-basis:100%}.mare-record-catalogue.has-tension-drawer .gov-heading>.gov-actions{margin-left:0}
+@media(max-width:767px){.app-shell .mare-record-catalogue.has-tension-drawer{padding-right:0}.mare-record-catalogue.has-tension-drawer .tension-catalogue-list{margin-inline:16px}}
+.composer-destination{border-top:1px solid var(--mare-line);padding-top:14px}.composer-destination>summary{cursor:pointer;min-height:32px;color:var(--mare-muted);font-size:12px;font-weight:550}.composer-destination[open]>summary{margin-bottom:12px}.mare-governance-composer .gov-change-builder>legend{font-size:16px}.mare-governance-composer .composer-add-change{align-self:flex-start;display:inline-flex;gap:8px;color:var(--mare-primary-ink);background:var(--mare-subtle);border-color:transparent}.mare-governance-composer .gov-change-builder>ol:empty{display:none}
+
+.mare-governance-detail{container-type:inline-size}.mare-governance-detail>.trace-links{margin:20px 32px 0;background:transparent;border:0}.mare-governance-detail .gov-detail{grid-template-columns:minmax(0,1fr) minmax(240px,290px);gap:28px;padding:24px 32px;max-width:1200px;margin:0 auto}.mare-governance-detail .gov-evolution{min-width:0}.mare-governance-detail .gov-change{padding:26px;border-radius:14px}.mare-governance-detail .gov-properties{padding:24px;min-height:0;border-radius:14px}.mare-governance-detail .gov-properties dl{grid-template-columns:80px minmax(0,1fr);gap:16px 12px;font-size:13px}.mare-governance-detail .gov-properties h2{font-size:15px;letter-spacing:0;font-weight:650;color:var(--mare-ink)}.mare-governance-detail .gov-detail-toolbar>h2{font-size:17px;font-weight:650}.mare-governance-detail .mare-governance-source{background:var(--mare-neutral);padding:18px;border-radius:10px;margin-bottom:28px;font-size:13px;line-height:1.7}.mare-governance-detail .mare-governance-source p{margin:10px 0 0}.proposal-definition-change>h3{font-size:20px;font-weight:650;margin:0 0 24px;line-height:1.4}.proposal-definition-change+.proposal-definition-change{border-top:1px solid var(--mare-line);margin-top:28px;padding-top:28px}.proposal-definition-purpose{margin-bottom:24px}.proposal-definition-purpose h4,.proposal-definition-change .definition-section h3{font-size:14px;font-weight:650;margin:24px 0 10px}.proposal-definition-change .definition-section{margin-block:24px}.proposal-definition-change .definition-section ul{padding-left:22px;font-size:14px;line-height:1.75}.proposal-definition-change .definition-section li+li{margin-top:10px}.proposal-definition-change>p:last-child{font-size:12px;color:var(--mare-muted);padding-top:16px;border-top:1px solid var(--mare-line)}
+@container(max-width:850px){.mare-governance-detail .gov-detail{grid-template-columns:minmax(0,1fr)}.mare-governance-detail .gov-properties{min-height:0}.mare-governance-detail .gov-properties dl{grid-template-columns:110px minmax(0,1fr)}}
+@media(max-width:700px){.mare-governance-detail .gov-detail{padding:20px 16px}.mare-governance-detail>.trace-links{margin-inline:16px}.mare-governance-detail .gov-change{padding:20px}.mare-governance-detail .gov-detail-toolbar{flex-wrap:wrap}.mare-governance-detail .gov-properties{padding:20px}}
+
+@media(max-width:767px){.app-shell:not(.secondary-collapsed) .mare-record-catalogue.has-tension-drawer,.app-shell.secondary-collapsed .mare-record-catalogue.has-tension-drawer{padding-right:0}.app-shell:not(.secondary-collapsed) .mare-record-catalogue .mare-governance-tension-drawer,.app-shell.secondary-collapsed .mare-record-catalogue .mare-governance-tension-drawer,.app-shell:not(.secondary-collapsed) .mare-record-catalogue .mare-governance-tension-drawer.is-expanded,.app-shell.secondary-collapsed .mare-record-catalogue .mare-governance-tension-drawer.is-expanded{top:72px;width:100vw}}
+
+.app-shell .gov-page .mare-governance-tension-drawer:is(:focus,:focus-visible){outline:none}
+
+/* Proposal authoring is a single agreement, with direct progression. */
+.mare-governance-dialog .mare-governance-composer .gov-form-fields{padding:28px 32px;background:var(--mare-surface);gap:0}
+.mare-governance-composer .gov-form-fields>div:not([hidden]){display:grid;gap:22px;align-content:start;min-width:0}
+.mare-governance-composer .gov-form-fields>[hidden],.proposal-detail-dialog [hidden]{display:none!important}
+.mare-governance-composer .mare-governance-stage-heading{margin:0 0 4px}.mare-governance-stage-heading h3{font-size:24px;line-height:1.35;letter-spacing:-.02em;margin:0 0 8px;font-weight:650}.mare-governance-stage-heading p{font-size:13px;line-height:1.7;margin:0;color:var(--mare-muted)}
+.mare-governance-composer .gov-field{display:grid;gap:8px;margin:0;min-width:0;font-size:13px;font-weight:550;color:var(--mare-ink)}
+.mare-governance-composer .gov-field>span{display:block;font-size:13px;font-weight:550;line-height:1.5}
+.mare-governance-composer .gov-field>:is(input,select,textarea){width:100%;box-sizing:border-box;min-height:44px;border:1px solid var(--mare-line);border-radius:10px;background:var(--mare-surface);color:var(--mare-ink);font:inherit;font-size:14px;padding:10px 12px}
+.mare-governance-composer .gov-change-builder{display:grid;gap:20px;margin:0;padding:20px 0 0;border:0;border-top:1px solid var(--mare-line);min-width:0}
+.mare-governance-composer .gov-change-builder>legend{padding:0 0 12px;font-size:14px;font-weight:650}
+.mare-governance-composer .gov-change-builder>.definition-editor{display:block;margin:0;padding:20px 0 0;border:0;border-top:1px solid var(--mare-line)}
+.mare-governance-composer .definition-editor>legend{float:none;padding:0;font-size:14px;line-height:1.5;font-weight:650}
+.mare-governance-composer .definition-editor>p{margin:6px 0 16px;font-size:12px;line-height:1.6}
+.mare-governance-composer .definition-items{gap:16px}.mare-governance-composer .definition-items .field{display:block;margin:0}
+.mare-governance-composer .definition-items .orgmap-rich-label>span{display:none}
+.mare-governance-composer .orgmap-rich-label{font-size:13px;line-height:1.5;margin-bottom:8px;font-weight:550}
+.mare-governance-composer .orgmap-rich-content .tiptap{font-size:14px;line-height:1.7;min-height:90px;padding:12px 14px}
+.mare-governance-composer .orgmap-rich-compact .orgmap-rich-content .tiptap{min-height:48px;padding:10px 12px}
+.mare-governance-composer .orgmap-rich-content .tiptap p{margin:0}
+.mare-governance-composer .definition-items>li{display:grid;grid-template-columns:minmax(0,1fr) 32px;align-items:start;gap:8px}
+.mare-governance-composer .definition-items .definition-remove{width:32px;min-height:32px;padding:4px;margin:27px 0 0;border:0;background:transparent;color:var(--mare-muted)}
+.mare-governance-composer .definition-editor>.definition-add{border:0;background:transparent;padding:6px 0;min-height:36px;gap:8px;margin:12px 0 0;font-size:12px;color:var(--mare-primary-ink);justify-content:flex-start}
+.mare-governance-composer .gov-form-footer{padding:16px 24px;gap:10px;background:var(--mare-surface);border-color:var(--mare-line)}
+.mare-governance-composer .gov-form-footer>button{min-height:40px;font-size:13px;border-radius:10px;padding:9px 16px}
+.mare-governance-dialog .search-select-control>input{border:0;padding:10px 0;min-height:42px;background:transparent;box-shadow:none;outline:0}
+.mare-governance-dialog .search-select-control>button{border:0;background:transparent;min-height:32px;padding:0;width:28px}
+.orgmap-dialog:has(.proposal-detail-dialog){width:min(1050px,calc(100vw - 40px));max-width:1050px;height:min(850px,calc(100dvh - 40px));padding:0;overflow:auto;background:var(--mare-surface);border-color:var(--mare-line);border-radius:14px}
+.orgmap-dialog:has(.proposal-detail-dialog)>.dialog-head{position:sticky;top:0;z-index:3;padding:20px 28px;border-bottom:1px solid var(--mare-line);background:var(--mare-surface)}
+.proposal-detail-dialog .gov-page{min-height:0;background:var(--mare-surface);color:var(--mare-ink)}
+.proposal-detail-dialog .gov-heading{padding:24px 28px 20px;background:var(--mare-surface);border:0;gap:20px;align-items:flex-start}
+.proposal-detail-dialog .gov-heading h1{font-size:26px;line-height:1.35;font-weight:650;margin:0 0 12px;letter-spacing:-.025em}
+.proposal-detail-dialog .gov-back,.proposal-detail-dialog>.gov-page>.trace-links{display:none}
+.proposal-detail-tabs{display:flex;gap:24px;padding:0 28px;border-bottom:1px solid var(--mare-line)}
+.gov-page .proposal-detail-tabs>button{border:0;background:transparent;border-radius:0;padding:12px 0;min-height:44px;font-size:13px;color:var(--mare-muted);border-bottom:2px solid transparent}
+.gov-page .proposal-detail-tabs>button[aria-pressed=true]{color:var(--mare-primary-ink);border-bottom-color:var(--mare-primary);background:transparent}
+.proposal-detail-dialog .gov-detail{display:grid;grid-template-columns:minmax(0,1fr) 225px;padding:24px 28px;gap:28px;margin:0;max-width:none}
+.proposal-detail-dialog .gov-detail-toolbar{display:flex;align-items:center;gap:16px;justify-content:space-between;margin-bottom:20px}
+.proposal-detail-dialog .gov-detail-toolbar h2{display:none}
+.proposal-detail-dialog .gov-detail-toolbar>button{margin-left:auto;font-size:12px}
+.proposal-detail-dialog .gov-change{padding:0;border:0;background:transparent;border-radius:0}
+.proposal-detail-dialog .gov-properties{background:var(--mare-neutral);padding:18px;border:0;border-radius:10px;align-self:start}
+.proposal-detail-dialog .gov-properties h2{font-size:13px;margin:0 0 20px}
+.proposal-detail-dialog .gov-properties dl{display:grid;grid-template-columns:1fr;gap:4px;font-size:12px;margin:0}
+.proposal-detail-dialog .gov-properties dd{margin:0 0 14px;color:var(--mare-ink);overflow-wrap:anywhere}
+.proposal-detail-dialog .gov-properties dt{font-size:11px;color:var(--mare-muted)}
+.proposal-detail-dialog .gov-process{padding:0 0 24px;border:0;margin:0 0 24px;border-bottom:1px solid var(--mare-line)}
+.proposal-detail-dialog .gov-process h2{font-size:18px;margin:0 0 16px}
+.proposal-detail-dialog .gov-history{padding:0;border:0;margin:0}.proposal-detail-dialog .gov-history summary{display:none}
+@media(max-width:767px){.mare-governance-dialog .mare-governance-composer .gov-form-fields{padding:24px 20px}.mare-governance-stage-heading h3{font-size:22px}.orgmap-dialog:has(.proposal-detail-dialog){width:calc(100vw - 24px);height:calc(100dvh - 24px)}.proposal-detail-dialog .gov-heading{padding:20px}.proposal-detail-tabs{padding:0 20px;gap:20px}.proposal-detail-dialog .gov-detail{display:flex;flex-direction:column;padding:20px;gap:24px}.proposal-detail-dialog .gov-properties dl{grid-template-columns:80px minmax(0,1fr);gap:10px}.proposal-detail-dialog .gov-properties dd{margin:0}.proposal-detail-dialog .gov-properties h2{display:none}.proposal-detail-dialog .gov-heading h1{font-size:24px}.mare-governance-composer .gov-form-fields>div:not([hidden]){gap:20px}}
+
+.proposal-async-choice{display:grid;grid-template-columns:22px minmax(0,1fr) 46px;gap:14px;align-items:center;padding:20px 0;border-block:1px solid var(--mare-line)}
+.proposal-async-choice>svg{color:var(--mare-primary-ink);align-self:start;margin-top:3px}
+.proposal-async-choice strong{font-size:15px;font-weight:650;color:var(--mare-ink)}
+.proposal-async-choice p{font-size:13px;line-height:1.65;color:var(--mare-muted);margin:6px 0 0;max-width:58ch}
+.mare-governance-composer button.proposal-async-switch{display:flex;align-items:center;width:46px;height:26px;min-width:46px;min-height:26px;padding:3px;border:0;border-radius:999px;background:var(--mare-line);cursor:pointer;justify-content:flex-start}
+.proposal-async-switch>span{display:block;width:20px;height:20px;border-radius:50%;background:var(--mare-surface);transition:transform .16s ease-out;flex:none}
+.mare-governance-composer button.proposal-async-switch[aria-checked=true]{background:var(--mare-primary)}
+.proposal-async-switch[aria-checked=true]>span{transform:translateX(20px)}
+.proposal-async-switch:focus-visible{outline:2px solid var(--mare-primary-ink);outline-offset:4px}
+.proposal-conduction-details{display:grid;gap:16px}
+.proposal-conduction-note{display:flex;align-items:flex-start;gap:12px;color:var(--mare-muted);font-size:13px;line-height:1.65;margin:0;max-width:65ch}
+.proposal-conduction-note>svg{flex:none;margin-top:2px;color:var(--mare-primary-ink)}
+@media(max-width:767px){.mare-governance-composer .gov-form-footer{flex-wrap:wrap}.mare-governance-composer .gov-form-footer .mare-governance-progress{flex-basis:100%}.proposal-async-choice{gap:10px}}
+@media(prefers-reduced-motion:reduce){.proposal-async-switch>span{transition:none}}
+
+.tension-state-options > summary { display: none; }
+.tension-state-filter > span {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
+}
+@media (max-width: 767px) {
+  .mare-tensions-catalogue.gov-page > .gov-heading { padding: 12px 16px 8px; }
+  .mare-tensions-catalogue .record-organization-context { display: none; }
+  .mare-tensions-catalogue .mare-governance-scopes { margin-inline: 16px; gap: 12px; flex-wrap: wrap; }
+  .mare-tensions-catalogue .mare-governance-scopes button { min-height: 44px; padding-block: 9px; }
+  .mare-tensions-catalogue .record-scope-help { margin: 8px 16px 0; }
+  .mare-tensions-catalogue .gov-toolbar-tensions { padding: 10px 16px 12px; gap: 8px; }
+  .app-shell .mare-tensions-catalogue .gov-toolbar-tensions > .gov-actions { flex-wrap: nowrap; gap: 8px; }
+  .app-shell .mare-tensions-catalogue .gov-toolbar-tensions > .gov-actions > .record-search { flex: 1 1 0; min-height: 44px; padding-inline: 10px; }
+  .mare-tensions-catalogue .record-search input { padding-block: 8px; }
+  .tension-state-options { flex: none; position: relative; }
+  .tension-state-options > summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    gap: 6px;
+    padding: 7px 10px;
+    border: 1px solid var(--mare-line);
+    border-radius: 10px;
+    background: var(--mare-surface);
+    color: var(--mare-primary-ink, var(--mare-primary));
+    cursor: pointer;
+  }
+  .tension-state-options > summary::-webkit-details-marker { display: none; }
+  .tension-state-options > .tension-state-filter {
+    position: absolute;
+    inset: calc(100% + 8px) 0 auto auto;
+    z-index: 12;
+    display: grid;
+    width: max-content;
+    max-width: calc(100vw - 32px);
+    padding: 12px;
+    border-radius: 14px;
+    background: var(--mare-surface);
+    box-shadow: 0 12px 36px var(--mare-shadow);
+  }
+  .tension-state-filter > span { position: static; width: auto; height: auto; clip-path: none; }
+  .tension-state-filter > select, .mare-tensions-catalogue .gov-heading .primary, .mare-tensions-catalogue .tension-row-route { min-height: 44px; }
+  .mare-tensions-catalogue .tension-catalogue-row { padding: 16px; }
+  .mare-tensions-catalogue .tension-row-route { margin-top: 10px; }
+}

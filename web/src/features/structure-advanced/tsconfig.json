@@ -1,0 +1,10 @@
+{
+  "extends": "../../../tsconfig.json",
+  "include": [
+    "index.tsx",
+    "preview.tsx",
+    "p17-preview.tsx",
+    "value-editor-preview.tsx",
+    "value-editor-state.test.ts"
+  ]
+}

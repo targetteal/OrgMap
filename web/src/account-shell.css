@@ -1,0 +1,139 @@
+.app-shell.mare-account-shell.workspace-branded,.app-shell.mare-account-shell{display:grid;grid-template-columns:256px minmax(0,1fr);background:var(--mare-neutral);color:var(--mare-ink);font-family:Manrope,sans-serif}.mare-account-shell>.account-navigation{grid-column:1;grid-row:1;padding:0;min-width:0;background:var(--mare-neutral);border-right:1px solid var(--mare-line)}.mare-account-shell>.workspace{grid-column:2;grid-row:1;min-width:0}.account-nav-heading{padding:16px 12px 12px;font-size:12px;font-weight:600;color:var(--mare-muted)}.account-navigation nav{display:grid;gap:4px}.account-navigation .nav-item{gap:12px;min-height:44px;padding:10px 12px;font-size:13px;line-height:1.5;text-align:left;justify-content:flex-start;white-space:normal}.account-navigation .nav-item svg{flex:none;width:18px;height:18px}.account-navigation .nav-item.selected{background:var(--mare-primary);color:var(--mare-on-primary)}.account-nav-close,.account-nav-toggle{display:none}.mare-account-shell .topbar{justify-content:space-between}.mare-account-shell .identity-button{gap:10px;max-width:240px;min-height:40px}.mare-account-shell .identity-button>span:not(.avatar){white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px}.account-identity-menu{position:absolute;z-index:30;right:0;top:calc(100% + 10px);width:290px;padding:16px;background:var(--mare-surface);border:1px solid var(--mare-line);border-radius:14px;box-shadow:0 14px 36px var(--mare-shadow);font-size:13px}.account-identity-menu>strong{display:block;padding:4px 8px 14px}.account-identity-menu>span{display:block;padding:12px 8px 6px;border-top:1px solid var(--mare-line);color:var(--mare-muted);font-size:11px}.account-identity-menu>div{max-height:220px;overflow:auto}.account-identity-menu button{display:flex;align-items:center;gap:10px;width:100%;text-align:left;justify-content:flex-start;border:0;background:transparent;padding:10px 8px;min-height:40px;font-size:13px}.account-identity-menu button>span{flex:1}.account-identity-menu>button:last-child{border-top:1px solid var(--mare-line);margin-top:8px;padding-top:16px}.account-identity-menu button:hover{background:var(--mare-neutral)}.mare-account-shell .account-main{padding:0;overflow:auto;min-width:0;background:var(--mare-neutral)}.account-main>.account-page-heading{display:block;height:auto;min-height:0;box-sizing:border-box;padding:28px 32px 20px;border:0;background:transparent;max-width:980px;margin:0 auto}.account-page-heading h2{font-size:28px;font-weight:650;line-height:1.25;letter-spacing:-.025em;margin:0 0 10px}.account-page-heading p{color:var(--mare-muted);font-size:13px;line-height:1.7;margin:0;max-width:65ch}.mare-account-shell article.account-content{margin:0 auto 32px;padding:28px;width:calc(100% - 64px);max-width:916px;min-height:0;border:1px solid var(--mare-line);border-radius:14px;background:var(--mare-surface);box-sizing:border-box;font-size:14px;line-height:1.7}.account-main .edit-form{max-width:none;padding:0;margin:0;gap:20px;display:flex;flex-direction:column}.account-main h1{font-size:28px;line-height:1.3;letter-spacing:-.025em}.account-main h2{font-size:18px;font-weight:650;line-height:1.4;margin:0 0 20px}.account-main h3{font-size:15px;font-weight:650;margin:0 0 12px}.account-main .field{display:flex;flex-direction:column;gap:8px;font-size:13px;font-weight:550;max-width:650px;width:100%;margin:0;line-height:1.5}.account-main :is(input:not([type=checkbox]):not([type=radio]),select,textarea){width:100%;box-sizing:border-box;border:1px solid var(--mare-line);border-radius:10px;padding:10px 12px;min-height:44px;font:inherit;font-size:14px;color:var(--mare-ink);background:var(--mare-surface)}.account-main input[readonly]{background:var(--mare-neutral);color:var(--mare-muted)}.account-main small,.account-main .muted{font-size:12px;font-weight:400;line-height:1.6;color:var(--mare-muted)}.account-main button{min-height:40px;border:1px solid var(--mare-line);border-radius:10px;padding:9px 14px;font-size:13px;background:var(--mare-surface);color:var(--mare-ink);font-weight:550}.account-main button.primary{background:var(--mare-primary);border-color:var(--mare-primary);color:var(--mare-on-primary)}.account-main .form-actions{position:static;display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap;margin:8px 0 0;padding:20px 0 0;border-top:1px solid var(--mare-line);background:transparent;max-width:650px}.account-main article.account-content>section,.account-main .mfa-settings{margin-top:28px;padding-top:28px;border-top:1px solid var(--mare-line)}.account-main article.account-content>section>p{font-size:13px;color:var(--mare-muted);max-width:66ch;margin-bottom:20px}.account-main .account-session{padding:20px 0;border-bottom:1px solid var(--mare-line);display:flex;align-items:center;justify-content:space-between;gap:20px}.account-session strong{font-size:14px}.account-session p{font-size:12px;color:var(--mare-muted);line-height:1.8;margin:8px 0 0}.account-main .entity-row{background:transparent;border-bottom:1px solid var(--mare-line);gap:12px;padding:16px 0;font-size:13px}.account-main .entity-row>svg{color:var(--mare-muted)}.account-main .entity-actions{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}.account-main .account-check{display:flex;align-items:center;gap:10px;font-size:13px}.account-main input[type=checkbox],.account-main input[type=radio]{accent-color:var(--mare-primary);width:16px;height:16px;min-height:0;flex:none}.account-main .organization-closure-receipts{padding:32px;margin:0 auto;max-width:980px;font-size:13px;line-height:1.7}.organization-closure-receipts>.page-heading{height:auto;min-height:0;padding:0 0 24px;border:0;background:transparent;gap:16px;align-items:flex-start}.organization-closure-receipts>.page-heading h1{margin:0;font-size:28px}.organization-closure-receipts>p{color:var(--mare-muted);max-width:65ch}.organization-closure-receipts>p:last-child{padding:32px;background:var(--mare-surface);border:1px solid var(--mare-line);border-radius:14px;color:var(--mare-ink)}.account-main .organization-closure-receipt{border:1px solid var(--mare-line);border-radius:14px;background:var(--mare-surface);padding:24px;margin:20px 0}.account-main .mfa-actions{gap:10px}.account-main .mfa-status{background:var(--mare-subtle);color:var(--mare-primary-ink);border:0;border-radius:8px;padding:10px 12px}.account-main :is(input,button,select,textarea):focus-visible,.account-navigation button:focus-visible{outline:2px solid var(--mare-primary-ink);outline-offset:3px}.account-main .a11y-settings{max-width:980px;margin:0 auto;padding:32px}.account-main .a11y-card{border-color:var(--mare-line);border-radius:12px;background:var(--mare-surface);box-shadow:none}.account-main .a11y-card[data-checked=true]{background:var(--mare-subtle);border-color:var(--mare-primary)}.account-main .a11y-section{border-color:var(--mare-line)}
+@media(max-width:767px){.app-shell.mare-account-shell,.app-shell.mare-account-shell.workspace-branded{display:flex}.mare-account-shell>.workspace{width:100%}.mare-account-shell>.account-navigation{position:fixed;inset:0 auto 0 0;width:256px;z-index:32;transform:translateX(-100%);display:flex;transition:transform .18s ease-out}.mare-account-shell>.account-navigation.open{transform:translateX(0)}.account-nav-toggle,.account-nav-close{display:inline-grid;place-items:center;min-height:40px;width:40px;border:0;background:transparent;flex:none}.account-main>.account-page-heading{padding:24px 20px 20px}.account-page-heading h2{font-size:25px}.mare-account-shell article.account-content{padding:20px;width:calc(100% - 32px);margin-bottom:24px}.account-main .account-session{align-items:flex-start;flex-direction:column;gap:12px}.mare-account-shell .identity-button>span:not(.avatar){display:none}.account-main .organization-closure-receipts{padding:24px 20px}.organization-closure-receipts>.page-heading h1{font-size:25px}.account-main .a11y-settings{padding:24px 20px}.account-main .field{max-width:100%}.account-main :is(input,select,textarea){font-size:16px}.mare-account-shell .topbar{gap:10px}.mare-account-shell .identity-button{padding:4px 8px}.account-identity-menu{width:min(290px,calc(100vw - 32px))}}
+.account-identity-menu{display:flex;flex-direction:column;max-height:calc(100dvh - 96px)}
+.account-identity-menu>.account-identity-organizations{min-height:0;max-height:220px;overflow:auto;overscroll-behavior:contain}
+.account-identity-organizations button>span{min-width:0;overflow-wrap:anywhere}
+.account-identity-organizations p{margin:0;padding:12px 8px;color:var(--mare-muted);line-height:1.5}
+.account-identity-search{display:flex;align-items:center;gap:8px;margin:0 8px 8px;padding:0 8px;border:1px solid var(--mare-line);border-radius:8px;color:var(--mare-muted)}
+.account-identity-search input{min-width:0;flex:1;height:40px;border:0;background:transparent;color:var(--mare-ink);font:inherit}
+@media(max-width:767px){.account-identity-search input{font-size:16px}}
+@media(prefers-reduced-motion:reduce){.mare-account-shell>.account-navigation{transition:none}}
+
+/* Account accessibility uses the same Maré surfaces and controls as the other settings. */
+.account-main .a11y-settings{background:var(--mare-neutral);color:var(--mare-ink);box-sizing:border-box}
+.account-main .a11y-header{padding:0;background:transparent;border-color:var(--mare-line)}
+.account-main .a11y-header h1{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+.account-main .a11y-tabs{gap:24px;flex-wrap:nowrap}
+.account-main .a11y-tabs button{border:0;border-bottom:2px solid transparent;border-radius:0;background:transparent;color:var(--mare-muted);padding:12px 0;min-height:48px;font-size:13px}
+.account-main .a11y-tabs button[aria-selected=true]{color:var(--mare-primary-ink);border-bottom-color:var(--mare-primary)}
+.account-main .a11y-body{padding:28px 0;max-width:none}
+.account-main .a11y-settings :is(p,legend,.a11y-card-status,.a11y-reset-title,.a11y-reset-help){color:var(--mare-muted)}
+.account-main .a11y-settings h2{font-size:18px;margin-bottom:8px}
+.account-main .a11y-settings legend{letter-spacing:.08em;font-size:11px}
+.account-main .a11y-control{background:var(--mare-surface);border-color:var(--mare-line);border-radius:12px;min-height:76px;padding:16px;gap:12px}
+.account-main .a11y-card-label,.account-main .a11y-speech-control .a11y-card-label{font-size:14px;color:var(--mare-ink);font-weight:550}
+.account-main .a11y-icon,.account-main .a11y-size .a11y-icon{width:36px;height:36px;flex-basis:36px;border:0;border-radius:10px;background:var(--mare-subtle);color:var(--mare-primary-ink)}
+.account-main .a11y-icon svg{width:20px;height:20px}
+.account-main .a11y-control-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.account-main .a11y-card[data-checked=true]{border-color:var(--mare-primary);background:var(--mare-subtle)}
+.account-main .a11y-card[data-checked=true] .a11y-icon{color:var(--mare-primary-ink);background:var(--mare-surface);border:0}
+.account-main .a11y-card:hover{border-color:var(--mare-primary)}
+.account-main .a11y-checked-indicator{color:var(--mare-primary-ink)}
+.account-main :is(.a11y-card,.a11y-speech-control):focus-within{outline-color:var(--mare-primary-ink)}
+.account-main .a11y-switch-track,.account-main .a11y-size-bars i{background:var(--mare-line)}
+.account-main .a11y-speech-control:has(input:checked) .a11y-switch-track,.account-main .a11y-size-bars i[data-active=true]{background:var(--mare-primary)}
+.account-main .a11y-size{min-height:0}
+.account-main .a11y-size select{max-width:240px;margin-left:auto}
+.account-main .a11y-size-bars{display:none}
+.account-main .a11y-interaction .a11y-card{min-height:96px;flex-direction:row;justify-content:flex-start;text-align:left}
+.account-main .a11y-reset{border-color:var(--mare-line);padding-top:24px}
+.account-main .a11y-settings button.a11y-action{color:var(--mare-ink);border-color:var(--mare-line);border-radius:10px;background:var(--mare-surface);min-height:40px;padding:8px 12px}
+@media(max-width:600px){.account-main .a11y-control-grid{grid-template-columns:minmax(0,1fr)}.account-main .a11y-tabs{gap:18px}.account-main .a11y-size select{max-width:100%}}
+
+.organization-closure-receipts>.page-heading{justify-content:space-between}.organization-closure-receipts>.page-heading>p{margin:0;color:var(--mare-muted)}.organization-closure-receipts>p:last-child{max-width:none}
+
+
+.account-return {
+  max-width: 980px;
+  margin-inline: auto;
+  padding: 12px 32px 0;
+}
+.mare-account-shell .account-return-action {
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 0;
+  background: transparent;
+  color: var(--mare-primary-ink);
+}
+.mare-account-shell .account-return-action:hover {
+  background: var(--mare-subtle);
+}
+@media (max-width: 767px) {
+  .account-return { padding-inline: 20px; }
+}
+
+/* Account settings rhythm: one surface per section, 32px between sections, actions closing each section. */
+.mare-account-shell article.account-content{padding:0;border:0;background:transparent;border-radius:0;max-width:916px}
+.account-sections{display:flex;flex-direction:column;gap:32px;margin:0;padding:0}
+.account-main .account-section,.account-main .account-sections>.mfa-settings{display:flex;flex-direction:column;gap:20px;max-width:none;margin:0;padding:28px;border:1px solid var(--mare-line);border-radius:14px;background:var(--mare-surface);box-sizing:border-box}
+.account-main article.account-content .account-sections>section{margin-top:0;border-top:1px solid var(--mare-line)}
+.account-main .account-section>h2,.account-main .account-sections>.mfa-settings>h3{margin:0;font-size:18px;font-weight:650;line-height:1.35;color:var(--mare-ink)}
+.account-main .account-section>h2+p,.account-main .account-sections>.mfa-settings>h3+p{margin:-12px 0 0;max-width:66ch;font-size:13px;line-height:1.6;color:var(--mare-muted)}
+.account-main .account-section>p{margin:0}
+.account-main .account-section .field{max-width:none}
+.account-main .account-section .edit-form{gap:20px}
+.account-fieldset{display:grid;gap:20px;min-width:0;margin:0;padding:0;border:0}
+.account-main .account-section .form-actions,.account-main .account-sections>.mfa-settings>.mfa-actions{max-width:none;margin:4px -28px -28px;padding:16px 28px;border-top:1px solid var(--mare-line);border-radius:0 0 14px 14px;background:var(--mare-neutral);justify-content:flex-end}
+.account-main .account-sections>.mfa-settings>.mfa-actions{display:flex;flex-wrap:wrap;gap:10px}
+.account-main .account-sections-actions{margin:0;padding:0;border:0;background:transparent;max-width:none;position:sticky;bottom:0;padding-block:16px;background:linear-gradient(to top,var(--mare-neutral) 70%,transparent)}
+.account-main .account-sections>.mfa-settings .mfa-status{margin:0}
+.account-field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.account-field-grid .account-field-wide{grid-column:1/-1}
+.account-main .account-success,.account-main .account-error{display:flex;align-items:flex-start;gap:10px;margin:0 0 24px;padding:12px 14px;border:1px solid currentColor;border-radius:10px;font-size:13px;line-height:1.5}
+.account-main .account-section .account-success,.account-main .account-section .account-error{margin:0}
+.account-main .account-success{color:var(--mare-success);background:var(--mare-success-bg)}
+.account-main .account-error{color:var(--mare-error);background:var(--mare-error-bg)}
+.account-main :is(.account-success,.account-error)>svg{flex:none;margin-top:1px}
+.account-main .account-hint{padding:10px 12px;border-radius:10px;background:var(--mare-warning-bg);color:var(--mare-warning);font-size:13px}
+.account-main article.account-content>.notice{margin:0 0 24px;border-color:currentColor;border-radius:10px;display:flex;flex-wrap:wrap;align-items:center;gap:12px;justify-content:space-between}
+.account-main article.account-content>.notice button{margin:0}
+.account-visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+.account-main .account-loading .mare-loading{padding:28px;border:1px solid var(--mare-line);border-radius:14px;background:var(--mare-surface);max-width:none}
+.account-session-list,.account-method-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.account-main .account-session-list .account-session{display:grid;grid-template-columns:40px minmax(0,1fr) auto;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--mare-line)}
+.account-main .account-session-list .account-session:first-child{padding-top:4px}
+.account-main .account-session-list .account-session:last-child{border-bottom:0;padding-bottom:0}
+.account-session-icon{display:grid;place-items:center;width:40px;height:40px;border-radius:10px;background:var(--mare-neutral);color:var(--mare-muted)}
+.account-session.current .account-session-icon{background:var(--mare-subtle);color:var(--mare-primary-ink)}
+.account-main .account-session p{display:flex;flex-wrap:wrap;gap:4px 16px;margin:4px 0 0;font-size:12px;line-height:1.6;color:var(--mare-muted)}
+.account-session.current strong{color:var(--mare-primary-ink)}
+.account-main .account-empty{margin:0;padding:16px;border:1px dashed var(--mare-line);border-radius:10px;color:var(--mare-muted);font-size:13px;line-height:1.6;text-align:center}
+.account-main .account-method-list .entity-row{display:flex;align-items:center;min-height:56px;padding:12px 0}
+.account-main .account-method-list .entity-row:last-child{border-bottom:0}
+.account-main .account-method-list .entity-row>span{flex:1;font-size:14px;font-weight:550}
+.account-main .account-state{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:9999px;font-size:12px;font-weight:550;line-height:1.4}
+.account-main .account-state-active{color:var(--mare-success);background:var(--mare-success-bg)}
+.account-main .account-state-pending{color:var(--mare-warning);background:var(--mare-warning-bg)}
+.account-main .account-state-inactive{color:var(--mare-muted);background:var(--mare-neutral)}
+.account-main .account-section .entity-actions{margin:0}
+.account-main .account-check{min-height:44px}
+.account-main .account-section .field small{margin-top:-2px}
+.account-main .account-section input[readonly]{border-style:dashed}
+@media(max-width:767px){
+ .account-sections{gap:24px}
+ .account-main .account-section,.account-main .account-sections>.mfa-settings{padding:20px}
+ .account-main .account-section .form-actions,.account-main .account-sections>.mfa-settings>.mfa-actions{margin:4px -20px -20px;padding:14px 20px}
+ .account-field-grid{grid-template-columns:minmax(0,1fr)}
+ .account-main .account-session-list .account-session{grid-template-columns:40px minmax(0,1fr)}
+ .account-main .account-session-list .account-session>button{grid-column:2;justify-self:start;max-width:none}
+ .account-main .account-section .form-actions>button,.account-main .account-sections-actions>button{flex:1 1 auto}
+ .account-main .account-loading .mare-loading{padding:20px}
+}
+.mare-account-shell .account-main form.account-section{max-width:none;padding:28px}
+.mare-account-shell .account-main form.account-sections{max-width:none;padding:0;gap:32px}
+@media(max-width:767px){.mare-account-shell .account-main form.account-section{padding:20px}.mare-account-shell .account-main form.account-sections{gap:24px}}
+.account-main .account-section .entity-actions{padding:0}
+.account-main .account-section>.field,.account-main .account-section .account-fieldset>.field,.account-main .account-section>.account-fieldset>.field{max-width:600px}
+.account-main .account-field-grid{max-width:720px}
+.account-main .account-section>.entity-actions{justify-content:flex-end;margin:4px -28px -28px;padding:16px 28px;border-top:1px solid var(--mare-line);border-radius:0 0 14px 14px;background:var(--mare-neutral)}
+.account-main .account-sections>.mfa-settings .mfa-status:not([role]){display:inline-flex;align-self:flex-start;padding:4px 12px;border-radius:9999px;background:var(--mare-neutral);border:1px solid var(--mare-line);color:var(--mare-ink);font-size:12px;font-weight:600}
+@media(max-width:767px){.account-main .account-section>.entity-actions{margin:4px -20px -20px;padding:14px 20px}}
+.account-main>.account-page-heading{padding-top:12px;padding-bottom:24px}
+.account-main>.account-page-heading p{font-size:14px}
+.account-main .account-section>.field,.account-main .account-section .account-fieldset>.field,.account-main .account-section>.account-fieldset>.field{max-width:720px}
+.account-main .organization-closure-receipts{padding-top:12px}
+.organization-closure-receipts>.page-heading{align-items:center;padding-bottom:24px}
+.organization-closure-receipts>.page-heading>p{font-size:14px}
+.organization-closure-receipts>p:last-child{padding:40px 32px;border-style:dashed;color:var(--mare-muted);text-align:center}
+.account-main .a11y-settings{padding-top:12px}

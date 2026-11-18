@@ -1,0 +1,19 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+coverage/
+*.tsbuildinfo
+.orgmap/
+playwright-report/
+test-results/
+__pycache__/
+*.py[cod]
+.preview-dist/
+
+# Local audit output and retired build snapshots
+.impeccable/
+web/dist-before-*/
+.DS_Store
+*.log

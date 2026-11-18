@@ -1,0 +1,8 @@
+DM Mono, Regular (Latin)
+https://fonts.gstatic.com/s/dmmono/v16/aFTU7PB1QTsUX8KYthqQBA.woff2
+
+DM Sans, 100–1000 (Latin)
+https://fonts.gstatic.com/s/dmsans/v17/rP2Yp2ywxg089UriI5-g4vlH9VoD8Cmcqbu0-K4.woff2
+
+DM Sans, 100–1000 (Latin Extended)
+https://fonts.gstatic.com/s/dmsans/v17/rP2Yp2ywxg089UriI5-g4vlH9VoD8Cmcqbu6-K6h9Q.woff2

@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /$
+Allow: /assets/
+Allow: /brand/
+Allow: /landing/manrope.woff2
+Allow: /favicon
+Allow: /apple-touch-icon.png
+Allow: /site.webmanifest
+Allow: /sitemap.xml
+Disallow: /
+
+Sitemap: https://orgmap.work/sitemap.xml

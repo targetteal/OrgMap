@@ -1,0 +1,14 @@
+# Preserve raw test transcripts and RFC5545 CRLF evidence bytes.
+*.ics whitespace=cr-at-eol
+# Preserve the browser's raw accessibility text in this audit.
+
+# Preserve the upstream font license verbatim.
+web/public/fonts/*-OFL.txt -whitespace
+
+# Historical reports keep their original evidence formatting.
+docs/archive/** -whitespace
+
+# Preserve source formatting and upstream font notices.
+server/modules/o2/import-archive.ts whitespace=cr-at-eol
+server/modules/platform/fonts/OFL-*.txt -whitespace
+web/src/accessibility/assets/OFL.txt -whitespace

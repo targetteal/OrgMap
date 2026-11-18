@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "orgmap-transfer-v1",
+  "resourceType": "project",
+  "kind": "project-definitions-v1",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "sourceId": "ui-fixture-project",
+      "title": "Projeto importado pela interface",
+      "description": "Fixture sintética para prova de revisão e confirmação.",
+      "visibility": "PUBLIC",
+      "views": [
+        "LIST"
+      ]
+    }
+  ],
+  "manifest": {
+    "coverage": "Synthetic project definition for isolated UI verification",
+    "estimated": false,
+    "recordCount": 1
+  }
+}

@@ -1,0 +1,10 @@
+.structure-create-menu{position:relative;flex:none}
+.structure-create-menu>.mare-map-new{display:inline-flex;align-items:center;gap:8px}
+.structure-create-options{position:absolute;left:0;top:calc(100% + 8px);width:264px;padding:6px;z-index:30;background:var(--mare-surface);border-radius:12px;box-shadow:0 8px 32px rgb(24 50 55 / .16)}
+.app-shell .structure-create-options>button{display:flex;align-items:center;justify-content:flex-start;gap:12px;padding:12px;width:100%;text-align:left;border:0;background:transparent;border-radius:8px;color:var(--mare-ink)}
+.app-shell .structure-create-options>button:hover,.app-shell .structure-create-options>button:focus-visible{background:var(--mare-neutral)}
+.structure-create-options>button>svg{flex:none;color:var(--mare-primary-ink)}
+.structure-create-options>button>span{display:grid;gap:3px}
+.structure-create-options strong{font-size:14px;font-weight:600}
+.structure-create-options small{font-size:12px;font-weight:400;color:var(--mare-muted)}
+@media(max-width:767px){.structure-create-options{width:min(264px,calc(100vw - 40px))}}

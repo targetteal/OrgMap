@@ -1,0 +1,451 @@
+/* Catalogue controls share one surface; filters wrap independently of the search. */
+.mare-meetings-controls {
+  margin: 24px 28px 16px;
+  border: 1px solid var(--mare-line);
+  border-radius: 14px;
+  background: var(--mare-surface);
+}
+
+.mare-meetings-controls .mare-meetings-catalogue-toolbar {
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 12px 16px;
+  gap: 12px;
+}
+
+.mare-meetings-controls .mare-meetings-search {
+  background: var(--mare-neutral);
+}
+.mare-meetings-controls .mare-meetings-search input {
+  background: transparent;
+}
+.mare-meetings-controls .mare-meetings-scope,
+.mare-meetings-controls .mare-meetings-viewtoggle {
+  flex: none;
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--mare-line);
+  border-radius: 10px;
+  background: var(--mare-neutral);
+}
+.mare-meetings-controls .mare-meetings-viewtoggle button {
+  min-height: 32px;
+  background: transparent;
+  border: 0;
+  padding-inline: 10px;
+}
+.mare-meetings-controls .mare-meetings-viewtoggle button[aria-pressed="true"] {
+  background: var(--mare-subtle);
+  color: var(--mare-primary-ink);
+  font-weight: 650;
+}
+.mare-meetings-controls
+  .mare-meetings-scope
+  button:not([aria-pressed="true"]):hover,
+.mare-meetings-controls
+  .mare-meetings-viewtoggle
+  button:not([aria-pressed="true"]):hover {
+  background: var(--mare-surface);
+}
+.mare-meetings-controls .mare-meetings-catalogue-toolbar > button.primary {
+  background: var(--mare-primary);
+  color: var(--mare-on-primary);
+  border-color: var(--mare-primary);
+}
+.mare-meetings-controls
+  .mare-meetings-catalogue-toolbar
+  > button.primary:hover {
+  background: var(--mare-primary-hover);
+}
+.mare-meetings-controls .mare-meetings-viewtools {
+  padding: 12px 16px;
+  border-top: 1px solid var(--mare-line);
+  gap: 10px;
+}
+.mare-meetings-controls .mare-meetings-viewtools > .field {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+.mare-meetings-controls
+  :is(.mare-meetings-viewtools > .field select, .mare-meetings-period) {
+  width: auto;
+  min-height: 40px;
+  max-width: min(100%, 240px);
+  font-size: 13px;
+  color: var(--mare-ink);
+  background: var(--mare-surface);
+  border: 1px solid var(--mare-line);
+}
+.mare-meetings-timezone {
+  margin-inline-start: auto;
+  font-size: 12px;
+  color: var(--mare-muted);
+}
+
+/* Shared report hierarchy for the analytics and export routes. */
+.mare-meetings-report {
+  --report-gutter: 28px;
+  display: grid;
+  align-content: start;
+  gap: 20px;
+  min-width: 0;
+  padding: 24px var(--report-gutter) 40px;
+}
+.mare-meetings-report :is(h2, h3, p, dl, dd) {
+  margin: 0;
+}
+.mare-meetings-report-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 20px;
+  padding-block: 0 4px;
+}
+.mare-meetings-report-heading h2 {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+}
+.mare-meetings-report-heading p {
+  flex: 1 0 100%;
+  max-width: 72ch;
+  font-size: 13px;
+  color: var(--mare-muted);
+}
+.mare-meetings-report .field {
+  min-width: 0;
+  gap: 6px;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--mare-ink);
+}
+.mare-meetings-report .field :is(input, select) {
+  width: 100%;
+  min-width: 0;
+}
+.mare-statistics-filters {
+  display: grid;
+  grid-template-columns: minmax(0, 200px) minmax(0, 270px) auto;
+  align-items: end;
+  justify-content: start;
+  gap: 12px;
+}
+.mare-statistics-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  background: var(--mare-surface);
+  border: 1px solid var(--mare-line);
+  border-radius: 14px;
+}
+.mare-statistics-summary > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 4px;
+  padding: 14px 18px;
+}
+.mare-statistics-summary > div + div {
+  border-inline-start: 1px solid var(--mare-line);
+}
+.mare-statistics-summary dt {
+  color: var(--mare-muted);
+  font-size: 13px;
+  line-height: 1.35;
+}
+.mare-statistics-summary dd {
+  font-size: 24px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.mare-statistics-results {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.4fr);
+  gap: 16px;
+  align-items: start;
+}
+.mare-statistics-table,
+.mare-statistics-coverage,
+.mare-statistics-distributions > section {
+  min-width: 0;
+  border: 1px solid var(--mare-line);
+  border-radius: 14px;
+  background: var(--mare-surface);
+}
+.mare-statistics-table {
+  overflow: auto;
+}
+.mare-meetings-report table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.mare-statistics-table table {
+  min-width: 510px;
+}
+.mare-meetings-report :is(th, td) {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--mare-line);
+  text-align: start;
+  font-variant-numeric: tabular-nums;
+}
+.mare-meetings-report thead th {
+  font-weight: 650;
+  color: var(--mare-muted);
+  background: var(--mare-neutral);
+}
+.mare-meetings-report tbody th {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.mare-meetings-report tbody tr:last-child > * {
+  border-bottom: 0;
+}
+.mare-statistics-table td:nth-child(2) {
+  font-weight: 700;
+  color: var(--mare-primary-ink);
+}
+.mare-meetings-report .mare-statistics-coverage {
+  padding: 16px;
+  font-size: 13px;
+}
+.mare-statistics-coverage h3,
+.mare-statistics-distributions h3,
+.mare-export-job h3 {
+  font-size: 14px;
+  font-weight: 700;
+}
+.mare-statistics-coverage > p {
+  margin-top: 8px;
+  color: var(--mare-muted);
+}
+.mare-statistics-coverage dl {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+}
+.mare-statistics-coverage dl > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+.mare-statistics-coverage dd {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+  font-weight: 650;
+}
+.mare-statistics-coverage .mare-statistics-period {
+  border-top: 1px solid var(--mare-line);
+  margin-top: 12px;
+  padding-top: 12px;
+}
+.mare-statistics-distributions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.mare-statistics-distributions > section {
+  overflow: hidden;
+}
+.mare-statistics-distributions :is(h3, p) {
+  padding: 12px;
+}
+
+.mare-exports-form,
+.mare-export-job {
+  border: 1px solid var(--mare-line);
+  border-radius: 14px;
+  background: var(--mare-surface);
+}
+.mare-exports-form {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(0, 1fr);
+}
+.mare-exports-form :is(fieldset, legend) {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.mare-exports-form legend {
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+.mare-exports-content,
+.mare-exports-scope {
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  min-width: 0;
+  padding: 20px;
+}
+.mare-exports-scope {
+  border-inline-start: 1px solid var(--mare-line);
+}
+.mare-export-kinds label {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  min-height: 46px;
+  padding: 8px 12px;
+  border: 1px solid var(--mare-line);
+  border-radius: 10px;
+  cursor: pointer;
+}
+.mare-export-kinds label + label {
+  margin-top: 6px;
+}
+.mare-export-kinds label:has(:checked) {
+  border-color: var(--mare-primary);
+  background: var(--mare-subtle);
+  color: var(--mare-primary-ink);
+  font-weight: 650;
+}
+.mare-export-kinds label:hover:not(:has(:checked)),
+.mare-export-circle-list label:hover {
+  background: var(--mare-neutral);
+}
+.mare-exports-form :is(input[type="checkbox"], input[type="radio"]) {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  min-height: 0;
+  margin: 0;
+  accent-color: var(--mare-primary);
+}
+.mare-exports-dates {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.mare-export-circles > p,
+.mare-exports-scope > p,
+.mare-exports-footer p {
+  color: var(--mare-muted);
+  font-size: 13px;
+}
+.mare-export-circle-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr));
+  max-height: 224px;
+  overflow: auto;
+  margin-top: 8px;
+  padding: 4px;
+  border: 1px solid var(--mare-line);
+  border-radius: 10px;
+}
+.mare-export-circle-list label,
+.mare-export-private {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 6px 8px;
+  cursor: pointer;
+}
+.mare-exports-footer {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  border-top: 1px solid var(--mare-line);
+}
+.mare-exports-footer p {
+  max-width: 54ch;
+}
+.mare-export-job {
+  padding: 16px 20px;
+}
+.mare-export-job p {
+  margin-block: 6px;
+  color: var(--mare-muted);
+}
+.mare-export-job button {
+  margin: 8px 8px 0 0;
+}
+
+@media (max-width: 1050px) {
+  .mare-statistics-results {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 767px) {
+  .mare-meetings-controls {
+    margin: 16px 16px 12px;
+  }
+  .mare-meetings-controls .mare-meetings-catalogue-toolbar {
+    padding: 10px;
+  }
+  .mare-meetings-controls .mare-meetings-search {
+    flex-basis: 100%;
+  }
+  .mare-meetings-controls .mare-meetings-presentation {
+    margin: 0;
+  }
+  .mare-meetings-controls .mare-meetings-presentation > summary {
+    padding-inline: 10px;
+    border-top: 1px solid var(--mare-line);
+    border-bottom: 0;
+  }
+  .mare-meetings-controls
+    .mare-meetings-presentation
+    > .mare-meetings-viewtools {
+    padding: 10px;
+  }
+  .mare-meetings-controls .mare-meetings-viewtools > .field select {
+    flex: 1;
+  }
+  .mare-meetings-controls .mare-meetings-timezone {
+    margin-inline-start: 0;
+  }
+  .mare-meetings-report {
+    --report-gutter: 16px;
+    padding-top: 16px;
+    gap: 16px;
+  }
+  .mare-statistics-filters {
+    grid-template-columns: minmax(0, 1fr) auto;
+    justify-content: stretch;
+  }
+  .mare-statistics-filters > .field:first-child {
+    grid-column: 1 / -1;
+  }
+  .mare-statistics-filters > button {
+    justify-self: start;
+  }
+  .mare-statistics-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .mare-statistics-summary > div:nth-child(3) {
+    border-inline-start: 0;
+  }
+  .mare-statistics-summary > div:nth-child(n + 3) {
+    border-top: 1px solid var(--mare-line);
+  }
+  .mare-statistics-distributions,
+  .mare-exports-form {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .mare-exports-content,
+  .mare-exports-scope,
+  .mare-exports-footer {
+    padding: 14px;
+  }
+  .mare-exports-scope {
+    border-inline-start: 0;
+    border-top: 1px solid var(--mare-line);
+  }
+  .mare-export-circle-list label {
+    min-height: 44px;
+  }
+}

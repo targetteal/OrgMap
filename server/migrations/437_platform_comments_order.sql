@@ -1,0 +1,1 @@
+CREATE INDEX platform_comments_thread_order ON platform_comments(organization_id,resource_type,resource_id,created_at,id);

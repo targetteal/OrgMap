@@ -1,0 +1,5 @@
+{
+ "extends":"../../web/tsconfig.json",
+ "include":["../../packages/i18n/**/*.ts","../../web/src/localization/**/*.tsx","../../web/src/accessibility/**/*.ts","../../web/src/accessibility/**/*.tsx"],
+ "exclude":[]
+}

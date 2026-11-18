@@ -1,0 +1,35 @@
+.word-diff ins {
+  text-decoration: none;
+  background: var(--mare-success-bg);
+  color: var(--mare-success);
+  border-radius: 3px;
+  padding: 0 2px;
+}
+.word-diff del {
+  background: var(--mare-error-bg);
+  color: var(--mare-error);
+  border-radius: 3px;
+  padding: 0 2px;
+}
+.word-diff-text {
+  margin: 4px 0 0;
+  white-space: pre-wrap;
+}
+.word-diff-list {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.word-diff-list li {
+  position: relative;
+  padding-left: 12px;
+}
+.word-diff-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--mare-muted);
+}

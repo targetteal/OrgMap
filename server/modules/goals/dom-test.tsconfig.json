@@ -1,0 +1,5 @@
+{
+ "extends":"../../../web/tsconfig.json",
+ "include":["../../../tests/server/goals.conflict-dom.test.tsx","../../../web/src/features/goals/assets.d.ts"],
+ "exclude":[]
+}

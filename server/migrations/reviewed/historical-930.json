@@ -1,0 +1,628 @@
+{
+  "format": "orgmap-historical-migration-order-v1",
+  "sourceSnapshotSha256": "fa7fecf8a79eaf40436e27bbfe2150b7b61b569654bee32ca214c62549216175",
+  "migrations": [
+    {
+      "name": "001_foundation.sql",
+      "checksum": "c7f6a48696179f01e023cee708b6276ab7acc357400973f0bea13e8f559eebab"
+    },
+    {
+      "name": "002_identity_rls.sql",
+      "checksum": "f2bcacb8ffd97f8d412e787207abcde6c153d868aa3fe3692fea70bf8c2f70a6"
+    },
+    {
+      "name": "003_invitations.sql",
+      "checksum": "9e66756b3bb5786b1628a258d1040f8008d25a3dcf3a45e6a2d8c1ca670e1539"
+    },
+    {
+      "name": "004_delivery_lease.sql",
+      "checksum": "14a3b541d241aca7ac9ccee35d1bcc47dbb5529c4b1dca3fa7c8d6da0090e855"
+    },
+    {
+      "name": "005_structure_guards.sql",
+      "checksum": "d6965a91eda86560bfe28d800bb1e081f28cf5abc8ef2674de2700aac5ae30d2"
+    },
+    {
+      "name": "006_account_security.sql",
+      "checksum": "ea9b8f302421449cff5fcc90d76a4363651e6c0011dc612b57b58ab6d8cf9e29"
+    },
+    {
+      "name": "007_provisioned_enrollment.sql",
+      "checksum": "5ce7f2a8fe2f8a5906219bc816f905a73e98f3e0ed1cc894de8d2bc5076017c4"
+    },
+    {
+      "name": "008_session_provenance.sql",
+      "checksum": "43ed176af267bf3a9d4574034d01b3725d1878ae824453604eda687409d5c82d"
+    },
+    {
+      "name": "009_iam_mail_dispatch.sql",
+      "checksum": "0d1cb42c73096e5507d1a9d4d338f6041ef28adbc668a76d309c2433126701a6"
+    },
+    {
+      "name": "010_circle_membership_version.sql",
+      "checksum": "72812540244bac26619387e4cd85622d86956066591ff36aad7e17cb95b0ec61"
+    },
+    {
+      "name": "011_guest_membership_access.sql",
+      "checksum": "fdfac2cce0d0f0751cb67b9f95e99b3e0ba6d981da68847a53b0349d131841e3"
+    },
+    {
+      "name": "012_credential_policy.sql",
+      "checksum": "6090769426d3642629cd6027d3e24fbc3a720e2da8063ef11b80b38c5772ef0e"
+    },
+    {
+      "name": "013_account_mfa.sql",
+      "checksum": "76b8595815fafeef65d41e60f722ab391209d6bb0b0732cac245abaaf7468064"
+    },
+    {
+      "name": "015_public_admission.sql",
+      "checksum": "5813ae92639fd8a3b3538c12a2ac863c63cbbc8bbdd02173474de4998a1b755c"
+    },
+    {
+      "name": "016_invitation_details.sql",
+      "checksum": "66741aed1b46ef78d39bb07c246d54de570cd867db9c607d17c5ed14a2fd2712"
+    },
+    {
+      "name": "017_suspension_origin.sql",
+      "checksum": "9bac0a9f5dd0fef2b0095ebf0bb9b1881094084f7f5787ba037beee3b3d0823b"
+    },
+    {
+      "name": "018_admission_mail_dispatch.sql",
+      "checksum": "54c68ff78e7f90f7330ca98076dbd83163cea4915f4b731dcb193aaa421566e1"
+    },
+    {
+      "name": "020_structure_advanced.sql",
+      "checksum": "e9be2b704917256a271372bdc9face02617cf9d059fb260e4ab4c7c8b2b6ddba"
+    },
+    {
+      "name": "021_structure_policies.sql",
+      "checksum": "be4024d22bc65e9f41100475c8aa3e0b9a0d538de409f8598219cfcec8a07562"
+    },
+    {
+      "name": "022_structure_snapshot_tenant.sql",
+      "checksum": "9062257ddf6b141a94dfeb5c7cbbc5bb5df46bb666da4eb0d6892f3a16aa728b"
+    },
+    {
+      "name": "023_structure_view_lifecycle.sql",
+      "checksum": "2397f2d11a26da1cf0a3187539efb17ae30bf802667998f47e82718750037be1"
+    },
+    {
+      "name": "024_structure_collective_policy.sql",
+      "checksum": "1182cb658b56ed731eeeb408f2dd70351d025240de74654573255620b06208aa"
+    },
+    {
+      "name": "025_structure_circle_created_events.sql",
+      "checksum": "fcf60b3abb01262e66f228aab12778e9692da3496b0b62fdf3e55aa121785ce5"
+    },
+    {
+      "name": "026_structure_circle_display.sql",
+      "checksum": "feaa246e998ecd7038fba37d3376a6fa22f75349781eb45d4965f4882192dae8"
+    },
+    {
+      "name": "027_structure_role_functions.sql",
+      "checksum": "a0bc1bdb23d28f00dfa40151ad37d7f71e478efd2cce97efac46f5e0806c6c88"
+    },
+    {
+      "name": "028_structure_rich_purpose.sql",
+      "checksum": "5db256e4b7d74e28e097dbc64153276e23b21d021d83eaf60c1f77eaefb46cf2"
+    },
+    {
+      "name": "029_structure_template_purpose.sql",
+      "checksum": "d4c93f72dda04e56a2999e8ae2c6c3271ad4b092d50f3e867b644ec8546c3bd1"
+    },
+    {
+      "name": "030_structure_indicator_subject.sql",
+      "checksum": "98bec34fd32c9c98a35fff14292f481a6ce2e0f52035f4ab6b88ee552e8d3800"
+    },
+    {
+      "name": "031_structure_indicator_history_scope.sql",
+      "checksum": "e95bada10bc96197913c52d5de6d8597d142ea508d5fab0f854bb118b420e8a0"
+    },
+    {
+      "name": "032_structure_indicator_lifecycle.sql",
+      "checksum": "939157784ac66099f286cbc38c3d34e7b0c6198f40eeb98934992d6076420530"
+    },
+    {
+      "name": "100_governance.sql",
+      "checksum": "0f559491c47579da885c4d0cd4eaed6463103d0cc9fe81e118e174fb9ddab285"
+    },
+    {
+      "name": "101_governance_document_revisions.sql",
+      "checksum": "e2ef167e64856e318befff754c40969f61e4245f4171c61bb7c7980d160d2a40"
+    },
+    {
+      "name": "102_governance_types_links.sql",
+      "checksum": "9f9c5118cad1f4a28762518bbab2027019c6ec7a0602e2e19394657fbd06cc68"
+    },
+    {
+      "name": "103_governance_history_immutability.sql",
+      "checksum": "0773ba70a83cffd7f47c350b0a0e7767d9a7d58f2d180bf8cf39f68a41ce477f"
+    },
+    {
+      "name": "104_governance_proposal_created_at.sql",
+      "checksum": "cd58119828d75ea6d9f3bd142dee2d707bf5fdbc8dfad1e1fd78dd8f53b7e51f"
+    },
+    {
+      "name": "105_governance_rich_documents.sql",
+      "checksum": "33186928ddb160cd0abc3db71eb7dc53fb22a0cddedbc9da24545555230ed70c"
+    },
+    {
+      "name": "106_governance_agenda_links.sql",
+      "checksum": "e278a3a70e973044088bea7d65762a39391f8a6cc512de1ce9e72cb95ce99886"
+    },
+    {
+      "name": "107_governance_rich_tensions.sql",
+      "checksum": "2cc485520b91db09250e2219f5e7ee044037d29e0511f05ca859c84497a57062"
+    },
+    {
+      "name": "200_work.sql",
+      "checksum": "39a6f603c26fcd674824508bfbc84b6795cde797b317c89f00b2b848796e36f9"
+    },
+    {
+      "name": "201_work_circle_context.sql",
+      "checksum": "aa2571455c076b92f865cdeda8285d3f969977d04fd00237eaeb21e767fcf822"
+    },
+    {
+      "name": "202_work_subtask_groups.sql",
+      "checksum": "39fd24d3f17269cb3aa908be1c00c48a6dfe048f163d8bf1f7e6bfb2bfc75692"
+    },
+    {
+      "name": "203_work_layouts.sql",
+      "checksum": "4d39c8518581f670731fd818aa79a4fc7696ec0e169109c90ed703c5f83a281a"
+    },
+    {
+      "name": "204_work_settings.sql",
+      "checksum": "58944915de7ef23aa0a5821bacf80d54cd2a25c1d8475bbfecd9da38ead02989"
+    },
+    {
+      "name": "205_work_circle_provisioning.sql",
+      "checksum": "b7bb2506a385ac8f3ada7999bd7d774f2bc291d75a6c2e0e0ea0c8b69e7c76f8"
+    },
+    {
+      "name": "206_work_templates.sql",
+      "checksum": "f3d53be62fc2938c7a8f28991c81a9896c5c8013ef7ada5ab35ae6b57af66e7b"
+    },
+    {
+      "name": "207_work_project_import.sql",
+      "checksum": "d8baabbe43a6f35ff4fec4a196dd512e933ead6a90adf01f94a828defa2189fa"
+    },
+    {
+      "name": "208_work_statistics_history.sql",
+      "checksum": "a9f79042169aa3c33179e92995dbac5087267209f98810445c04165024361a42"
+    },
+    {
+      "name": "209_work_export_selections.sql",
+      "checksum": "3798f7179960da4fcf19223069858da510733d57c99ea395ff19d5c51f18b48f"
+    },
+    {
+      "name": "210_work_rich_descriptions.sql",
+      "checksum": "2dd0d4560d088374bdbfa412c1dc80e85e41993a9c4d480052cdea305ef05772"
+    },
+    {
+      "name": "211_work_comments_immutable.sql",
+      "checksum": "b32d3a0dcf1083ce63f2fa15ab369588edd56b1a675dc2f845528276c2e2537a"
+    },
+    {
+      "name": "212_work_task_properties.sql",
+      "checksum": "a2ee87316105527fc862d9d517f27bdb47a2bd4c6f9c4c1a06c4d787626aabf6"
+    },
+    {
+      "name": "213_work_role_assignments.sql",
+      "checksum": "2a8d18404cfb79c4bd8c7bbde0e9f027313c77752ee3d5b57d699141260d4565"
+    },
+    {
+      "name": "250_goals.sql",
+      "checksum": "c15c52cee52f85190c101b61bc6496393e767ba238dfa4a8dd57d6f2cb8a6d99"
+    },
+    {
+      "name": "251_goal_links.sql",
+      "checksum": "aaa28e847b34064757e4101c703059abd849fff8c27ba78f372be90ebc106e41"
+    },
+    {
+      "name": "252_goal_history_comments.sql",
+      "checksum": "574d5a845619da9df0b66ebe918240d5e987365e14bcd5971c5a187afae76dca"
+    },
+    {
+      "name": "253_goals_draft.sql",
+      "checksum": "4aba86c6355bfc534f2c1326b24e612f1bc97de3cab91bc51a3cf6fc5c11a3e4"
+    },
+    {
+      "name": "254_goal_circle_origins.sql",
+      "checksum": "8ca8c61f893ea0f42f73f92e4db8852307883933193f259e835c8a4bde8e87dc"
+    },
+    {
+      "name": "255_goal_result_types.sql",
+      "checksum": "101979a8f0139e824d97223fd9fb995fabf3888ed2b0788766c3c68c5d295274"
+    },
+    {
+      "name": "256_goal_rich_descriptions.sql",
+      "checksum": "648accca1d913c3344d66daf259221c1b35229d2b4823be10058b5746e745eff"
+    },
+    {
+      "name": "257_goal_kr_confidence.sql",
+      "checksum": "9851a9f8ed5bcba14456fa9c2449c77f16c30df05f4acbb2b21b7fab15b1c981"
+    },
+    {
+      "name": "300_meetings.sql",
+      "checksum": "e6dec95e1d93330f60294062a91a2db06474b5a5e0423b12dd0350905432c9ff"
+    },
+    {
+      "name": "301_meeting_access_roster.sql",
+      "checksum": "218ba783536d239bbc7995100cdace717df7b4b64112dbf123cc65c72f0f9712"
+    },
+    {
+      "name": "302_meeting_query_indexes.sql",
+      "checksum": "7edf68336f62c78423f2b1bec70abd996a9119f6a67e4ecd78154d2a24303b92"
+    },
+    {
+      "name": "303_meetings_document_protocol.sql",
+      "checksum": "889dcca65872eb57e3c01789277d4c08049886070cbddcc10683c625c656a1a1"
+    },
+    {
+      "name": "304_meetings_agenda_items.sql",
+      "checksum": "61c103139262c64b3c84c092a27826bda5c251b6732f3fabb6ce1c6e3baaae1b"
+    },
+    {
+      "name": "305_meetings_statistics.sql",
+      "checksum": "dcfbff415c3729bd9e14a644a08efb0c7b089711db8988b93ab59623c8e7b95d"
+    },
+    {
+      "name": "306_meetings_exports.sql",
+      "checksum": "6ad1fb211d525d665aed98a08f0ac050d425b41d67ef5ff391ba5d21e46fa479"
+    },
+    {
+      "name": "307_meeting_outcomes.sql",
+      "checksum": "02e74fa56d24b8ed1ea7fddf0fa50d8ef34b86b4168a3886300a2d7f1df4fa57"
+    },
+    {
+      "name": "400_administration.sql",
+      "checksum": "688c271f33687c434c86636d55266cd0e76a97625624812ae353d7d67a537c3d"
+    },
+    {
+      "name": "401_administration_grants.sql",
+      "checksum": "bea28a032fa4a9f26ffd2add7fd0c87c57ee41a68a9645908f23c7932e81b685"
+    },
+    {
+      "name": "402_administration_relations.sql",
+      "checksum": "0cd0fccb92def007410549b0aa820a08a12f07e92b4f98c212d2e9f8a7cba8a3"
+    },
+    {
+      "name": "403_administration_schema_plans.sql",
+      "checksum": "0ebca93ae6091453769b919f21d59ee7c2ebcc881262bc88f42514b60cb96288"
+    },
+    {
+      "name": "404_administration_entry.sql",
+      "checksum": "5d129edeabfab57bd239d5dc0f1371e54051b29b01db801f40cae9bd92536098"
+    },
+    {
+      "name": "405_administration_credential_policy.sql",
+      "checksum": "6bd51d85ecbdf278bc4c21328dca0d706dd0dbf479d03f9971c70db5a935a852"
+    },
+    {
+      "name": "406_administration_admission_policy.sql",
+      "checksum": "118208387c2b598ddbb1ffb9f062292fd6d4f42bb16ccd74f5af22b47ac4049d"
+    },
+    {
+      "name": "407_administration_upload_policy.sql",
+      "checksum": "71b2e325d7ef05aa7e0d343ef8fda745fb8b40800e89f17ea3bbdaec29b50f5f"
+    },
+    {
+      "name": "408_administration_member_indicator_consent.sql",
+      "checksum": "aada5cbfdac8ea430b9fe915394972ffdead04532d3574a9aeec5db8122922b5"
+    },
+    {
+      "name": "409_administration_branding.sql",
+      "checksum": "cf0f7cb2497e0f21f069b92d933ab5608f61c1690bbcfee948e3e14022c625a0"
+    },
+    {
+      "name": "411_administration_feed.sql",
+      "checksum": "d40b7cb9045b3f864bf30c9883d99f99df6151c11cc29dde1c28665a59ac1184"
+    },
+    {
+      "name": "412_administration_assistant.sql",
+      "checksum": "ae12ad432de376fea278e05248fb8b5183f9a989b716f24aa61efadc9271a2aa"
+    },
+    {
+      "name": "425_platform.sql",
+      "checksum": "0ce5f9861e802f090468a5af584186f2914cf6a41e70389d4b555375f6ff322c"
+    },
+    {
+      "name": "426_platform_xlsx.sql",
+      "checksum": "47bc220db1d973d97809ac1213a3503be10834a8b5ef91972c8bd30280f31ce1"
+    },
+    {
+      "name": "427_platform_structure_transfer.sql",
+      "checksum": "a5dac1981a45d0ef9ded8524a99035f19385c2b246ae99fbfa58e67c1c577ab4"
+    },
+    {
+      "name": "428_platform_adapter_transfer_kinds.sql",
+      "checksum": "5ecd4380bc61544d74df259228ecf36dfe166068d52ef9cd4406b972df33dad4"
+    },
+    {
+      "name": "429_platform_dispatch.sql",
+      "checksum": "616f7e1025ff9a96e4dc90b731d62170794e016364409f94ceb33a335dc68698"
+    },
+    {
+      "name": "430_platform_delivery_follow.sql",
+      "checksum": "8eb1ec64c24b0489d134838df62c96470d47580bf8c7cdf8c3525a00bd333075"
+    },
+    {
+      "name": "431_platform_job_diagnostics.sql",
+      "checksum": "e856c39f31fb60d947f3b1b389f72fb8bb364b238ebceff4923496a7565f401f"
+    },
+    {
+      "name": "432_platform_scope_scheduling.sql",
+      "checksum": "96a61e6c61005cbdb176f9589a93a9ebc757e74e49854bbaae15d4509eff2df5"
+    },
+    {
+      "name": "433_platform_claimed_participants.sql",
+      "checksum": "3dc421f12bb5f2b8d01690c0b859a99f7df32c47221a60942116b5c895ffd33c"
+    },
+    {
+      "name": "434_platform_private_export_intent.sql",
+      "checksum": "d83229cb64290b889af15af34ec368d8324347ea648d0905188980b03a9679a8"
+    },
+    {
+      "name": "435_platform_rich_comments.sql",
+      "checksum": "b64929d0809400e9aa3d07ed150dd81f561fde0bcfd2c05cc8f2f7ea524e7d79"
+    },
+    {
+      "name": "436_platform_delivery_metadata.sql",
+      "checksum": "9227c4459cfd84db1c3571160073674bbf9964d5340d13bfde610d8eb116b643"
+    },
+    {
+      "name": "437_platform_comments_order.sql",
+      "checksum": "d1c1325c34e917a7770a83e8677cc50339d17a14db62b839b21f3043d19dac7c"
+    },
+    {
+      "name": "438_platform_upload_policy.sql",
+      "checksum": "8edf6e35fff3f21e7515e93b67def595a02b17c4f3f7efa4fb477d373a40be17"
+    },
+    {
+      "name": "439_platform_report_exports.sql",
+      "checksum": "88c40e706a70587bb2a1fad822e6deda5b9801c44e627c60e940ee43881d8b9c"
+    },
+    {
+      "name": "440_platform_publication_exports.sql",
+      "checksum": "c348ec4f3bf68d7da064de1879c18c5f1ee38bd9a27618c0def36a4969ac7998"
+    },
+    {
+      "name": "450_interoperability.sql",
+      "checksum": "8d60e217d01402291c7bc3dfb552e63755088dc20b1ecd68d676323241661c90"
+    },
+    {
+      "name": "451_interoperability_delivery.sql",
+      "checksum": "e57fdb3f95fb5daf58dd64df63f84da79a2fa4726ed2dedf82570ab1ac7a8a71"
+    },
+    {
+      "name": "452_interoperability_scim.sql",
+      "checksum": "7683e315c5cece8bdbb97b5532d51fc28624eee1c7d9a5afd57a11b9be8a79fc"
+    },
+    {
+      "name": "453_interoperability_federation.sql",
+      "checksum": "82f888dba3f6a3999b90338f64a03f1895d41ea7a23ee9230a447af644edb199"
+    },
+    {
+      "name": "454_interoperability_saml.sql",
+      "checksum": "c7ad63d22c2fc92e31bb175191b4750410772a79b0b6f17e01eb1a9f28292f88"
+    },
+    {
+      "name": "455_interoperability_delivery_lease.sql",
+      "checksum": "6afe76adb8d66433e51e67714f45c0a0605b4a3a235d1b4fb099e182f73be2b9"
+    },
+    {
+      "name": "456_interoperability_account_methods.sql",
+      "checksum": "ed819a045ea0bd22979e6de1ef5d6890365ddb6f0c743c82fac847a98923952e"
+    },
+    {
+      "name": "457_interoperability_dispatch.sql",
+      "checksum": "13bc7491692f09239746d4d49b694cf2266f17056edd80cfa6187f3eff011804"
+    },
+    {
+      "name": "458_interoperability_enrollment_mapping.sql",
+      "checksum": "e263a8ae1e92a486c80a976a742ce737fd4e8588dcc9d8281f028da8792ab49c"
+    },
+    {
+      "name": "459_interoperability_enrollment_flows.sql",
+      "checksum": "8c951df3467169ac621d532a93014993e76bbefdcb40ad0a46ef7d879907dbdb"
+    },
+    {
+      "name": "460_interoperability_enrollment_member_type.sql",
+      "checksum": "d7b050adee6841aec19e3af198b77b1a5fe61ff272a5e15a2ca799a0d02e1dcd"
+    },
+    {
+      "name": "461_interoperability_project_output.sql",
+      "checksum": "a82b42aa37f59a9aa88e93dccf1d15bad17d3edf9f5679e49ab605fc7c6ea497"
+    },
+    {
+      "name": "462_interoperability_link_account_epoch.sql",
+      "checksum": "8e563b906cac4d7500d20898106b04b20f46dc0974c58ba819cebe6b444334dd"
+    },
+    {
+      "name": "500_account_email.sql",
+      "checksum": "a5733783cbea803c3f3b2b7a659caddee1033267097399a651d46a0f0e881153"
+    },
+    {
+      "name": "501_account_email_proof_epochs.sql",
+      "checksum": "c0cfd40fffaf9048f213dac0387102bbc01f2e6b08c486c1a6fba5a4cd0ff606"
+    },
+    {
+      "name": "502_account_media.sql",
+      "checksum": "0eeaafb52339e6d8746eab30865f6a3a467fa4233e6425440dd525bfa1fdf15d"
+    },
+    {
+      "name": "503_account_email_mail_dispatch.sql",
+      "checksum": "81d7ce502c8aecafa108f4143b382692eec18c9b7014609fdde54fe61a387bed"
+    },
+    {
+      "name": "504_account_media_namespace.sql",
+      "checksum": "2dfc2abe5a7280708f1ed53cebbd361a1e87626684d107e57328ac9a3561be3e"
+    },
+    {
+      "name": "505_account_email_session_binding.sql",
+      "checksum": "3e81731e199b385a3f8bcd236ba7c06ad69c8d35b78e52e1d2e21544e98a3261"
+    },
+    {
+      "name": "506_credential_policy_input_revision.sql",
+      "checksum": "44fb110b4224b448df51e8f0ee2bc11d657568589283f8cf3be383e0e7ee4178"
+    },
+    {
+      "name": "507_account_media_integrity.sql",
+      "checksum": "77cafd3fdd984d582228d4e7bef66217afaed260cfd728e93c9d027ee36a1d4e"
+    },
+    {
+      "name": "508_organization_lifecycle.sql",
+      "checksum": "46d065e5aef46f19d09f426c543fab7fbd32e82f5e67c01bb096cb3ee788e237"
+    },
+    {
+      "name": "509_lifecycle_capability_fences.sql",
+      "checksum": "e554ed0a8b6a26604f31817a7fb7844a6da8469c776915e082cba369fed21aba"
+    },
+    {
+      "name": "510_organization_deletion_maintenance.sql",
+      "checksum": "18e9bdcf4017106e65cd1e08e6a26f662302632c7ae223b7f4f34cd8eea3f815"
+    },
+    {
+      "name": "511_organization_effects.sql",
+      "checksum": "c6753bed75b6de8f6554ffa677f8276771509c69acc130d3eb0575e3a149d207"
+    },
+    {
+      "name": "512_organization_runtime_identity.sql",
+      "checksum": "d134044eb7121775506db558a583884c005b05e942cbe50751a50c53fefa5a25"
+    },
+    {
+      "name": "513_organization_deletion_checkpoints.sql",
+      "checksum": "a2c3541b98a592a3ef18cd3f8f0cbea10b34be11b667601f169519c33a4a6f39"
+    },
+    {
+      "name": "514_organization_maintenance_isolation.sql",
+      "checksum": "3ca21ff8ffa9673271b312ed083183889291cac113dd2febbd12c8e24061b277"
+    },
+    {
+      "name": "515_iam_mail_read_committed.sql",
+      "checksum": "91bb3f3ebde3f06d51e37428c01b95ee2fe499e02f5971ef046e637427b1b026"
+    },
+    {
+      "name": "516_administration_branding_stages.sql",
+      "checksum": "36ee31439bc4f4f36585be67aafc7a6c12d41579fef135d27ec8d9381c3512a7"
+    },
+    {
+      "name": "900_lifecycle_dispatch_fences.sql",
+      "checksum": "60b297236e7325cf6edfa9b440001b8ef6ff49003f328359003f0792bc866cc5"
+    },
+    {
+      "name": "901_lifecycle_administration_platform_teardown.sql",
+      "checksum": "db5a06e560d23f2baeb66a1d4acfbb75f68a48fd7c1f0fe287b582dca75307aa"
+    },
+    {
+      "name": "902_lifecycle_structure_teardown.sql",
+      "checksum": "a0f19aa786769d387a1ce1df9c1dcdf58713fc09649ea8c29f04ccf0b41cf9d5"
+    },
+    {
+      "name": "903_lifecycle_governance_teardown.sql",
+      "checksum": "6a7b13c24f28686bafbf8acc5f267f9cd6097d63ce2c9b71003afd0efb7271bf"
+    },
+    {
+      "name": "904_lifecycle_work_teardown.sql",
+      "checksum": "a0e677c70eebc9ee567c46e18a9b35057b1c94d48ec383512175cae5be875862"
+    },
+    {
+      "name": "905_lifecycle_goals_teardown.sql",
+      "checksum": "a74412c810ae581a55d521bd24987f4e205744e55d4041e78c8645caa30ca4df"
+    },
+    {
+      "name": "906_lifecycle_meetings_teardown.sql",
+      "checksum": "b648b9a6bbd6da9cdf204e25a28e756cce942431e71a17d3df3c62205678a9fb"
+    },
+    {
+      "name": "907_lifecycle_interoperability_teardown.sql",
+      "checksum": "4cc878cb11d8deee0f9fb7ace1411b0da2692e745f497834654f8169e4421960"
+    },
+    {
+      "name": "908_lifecycle_foundation_sessions.sql",
+      "checksum": "f735369e15106395ade9f76e66f5a60fb3e27b7eefddcdfbe169c0271c4d9c03"
+    },
+    {
+      "name": "909_lifecycle_foundation_teardown.sql",
+      "checksum": "22baa8b886e3d67dbb92f48e0f33809e5edd2f8be564581c6caea431f799448c"
+    },
+    {
+      "name": "910_lifecycle_acceptance_authority.sql",
+      "checksum": "bbd4b0603b6daf363ae5b872d74f43746b4fe86ddf4b0990799d42bb1229904b"
+    },
+    {
+      "name": "911_organization_deletion_drain.sql",
+      "checksum": "c5217350ff49f33f199e0a748760c616f399f40de88d8c56c1107d9ad6ca4a6d"
+    },
+    {
+      "name": "912_organization_ledger_confirmation.sql",
+      "checksum": "cd8a30e2162d689c2c0432070fe49eed0b1aa2927be3df3f89aa415949500e32"
+    },
+    {
+      "name": "913_organization_deletion_quiescence.sql",
+      "checksum": "fdff1f37e589fed8cbfd7449082709ea586a9d861fb99d9a5aaa61e98e88510a"
+    },
+    {
+      "name": "914_interoperability_deletion_outcomes.sql",
+      "checksum": "21fc5ed385aabfa0ed13409dedafb7886a05512bc2fe16d903cd52a6afa20c9d"
+    },
+    {
+      "name": "915_organization_deletion_job_leases.sql",
+      "checksum": "7c7b3586ca3162c9ba9a045999f6138511f6a157ef3e7458a131626b05ea81f6"
+    },
+    {
+      "name": "916_organization_deletion_schema_attestation.sql",
+      "checksum": "95cad85b0af4224629c8a3e8455c66dda3ed179786b87b4e89cfed4dbe20c434"
+    },
+    {
+      "name": "918_organization_session_revocation.sql",
+      "checksum": "ba1fcc1fe140f8b389b56ebd49b757c849dcd553bff1411a06cd5e4aded00ec9"
+    },
+    {
+      "name": "919_organization_deletion_phase_transitions.sql",
+      "checksum": "6cfc059ce5231d9d97f206a621060978a571a9d73556866ac13a95badbbf886a"
+    },
+    {
+      "name": "920_organization_blob_removal.sql",
+      "checksum": "7dd5d71f65797d6327e722eff74fb92624d449afaa26b98a2909b49701aef1e9"
+    },
+    {
+      "name": "921_organization_deletion_finalize.sql",
+      "checksum": "3ef4125f654f4e6f405c17e0dfe926b2abad0e7b4ddb75970108f5838149aa75"
+    },
+    {
+      "name": "923_lifecycle_owner_absence.sql",
+      "checksum": "ea384bc7c85db97606cde76729689eba201901d21dbb7623e670a4b56248f1ee"
+    },
+    {
+      "name": "924_organization_deletion_readiness.sql",
+      "checksum": "ffe89712bb606d159ef36a6023f78e9e4081017b65c6285e4ad4a3cca55e7f87"
+    },
+    {
+      "name": "925_organization_deletion_supervisor_reads.sql",
+      "checksum": "2e3e7c397cf0b0e045f73fdcbb63e1f899fd2fdca5cddfe8e7a61686a819b854"
+    },
+    {
+      "name": "927_organization_deletion_status_privacy.sql",
+      "checksum": "f243afe21700f7660af9a13ea741418a0b86cb0bb210bd901a21dfffe1d6e58f"
+    },
+    {
+      "name": "928_organization_deletion_reviewed_baseline.sql",
+      "checksum": "c3a2f7d011860ebbef0fe724caef12f9c310c1a92b71334bb3f3909509ea2ffb"
+    },
+    {
+      "name": "929_organization_deletion_operator_receipt.sql",
+      "checksum": "db5908b73aeed457ff800e3f2f73dcec3f5eb65d94196d814a7ecb28d3db419a"
+    },
+    {
+      "name": "930_organization_deletion_receipt_reviewed_baseline.sql",
+      "checksum": "ffb9e346339bbd7d31e6746a20cd36d751aff59985afca65d2304f14c8b2b2a9"
+    }
+  ],
+  "deferredAfter930": [
+    "033_structure_definition_items.sql",
+    "034_governance_model.sql",
+    "050_o2_meeting_panel.sql",
+    "051_o2_meeting_configuration.sql"
+  ]
+}
